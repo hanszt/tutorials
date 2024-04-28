@@ -3,9 +3,6 @@ package com.baeldung.algorithms.ga.annealing;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import lombok.Data;
-
-@Data
 public class Travel {
 
     private ArrayList<City> travel = new ArrayList<>();

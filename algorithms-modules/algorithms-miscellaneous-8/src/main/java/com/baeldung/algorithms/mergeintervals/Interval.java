@@ -22,10 +22,12 @@ public class Interval {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o)
+        if (this == o) {
             return true;
-        if (o == null || getClass() != o.getClass())
+        }
+        if (o == null || getClass() != o.getClass()) {
             return false;
+        }
         Interval interval = (Interval) o;
         return start == interval.start && end == interval.end;
     }

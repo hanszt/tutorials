@@ -32,8 +32,9 @@ public class TextSearchAlgorithms {
             int j = 0;
             while (text[i + j] == pattern[j]) {
                 j += 1;
-                if (j >= patternSize)
+                if (j >= patternSize) {
                     return i;
+                }
             }
             i += 1;
         }
@@ -102,8 +103,9 @@ public class TextSearchAlgorithms {
         while ((i + patternSize) <= textSize) {
             while (text[i + j] == pattern[j]) {
                 j += 1;
-                if (j >= patternSize)
+                if (j >= patternSize) {
                     return i;
+                }
             }
 
             if (j > 0) {
@@ -130,8 +132,9 @@ public class TextSearchAlgorithms {
                 shift[i + j] = i;
                 j++;
             } else {
-                if (j == 0)
+                if (j == 0) {
                     shift[i] = i + 1;
+                }
 
                 if (j > 0) {
                     i = i + shift[j - 1];
@@ -155,8 +158,9 @@ public class TextSearchAlgorithms {
             j = patternSize - 1;
             while (text[i + j] == pattern[j]) {
                 j--;
-                if (j < 0)
+                if (j < 0) {
                     return i;
+                }
             }
             i++;
         }
@@ -182,8 +186,9 @@ public class TextSearchAlgorithms {
 
             while (text[i + j] == pattern[j]) {
                 j -= 1;
-                if (j < 0)
+                if (j < 0) {
                     return i;
+                }
             }
 
             i = i + shift[text[i + pattern.length - 1]];

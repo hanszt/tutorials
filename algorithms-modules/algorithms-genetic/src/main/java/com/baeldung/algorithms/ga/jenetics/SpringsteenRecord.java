@@ -4,11 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import org.jenetics.util.ISeq;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-@Data
-@NoArgsConstructor
 public class SpringsteenRecord {
 
     String name;

@@ -67,8 +67,9 @@ public class DancingLinks {
                 if (aGrid[j]) {
                     ColumnNode col = columnNodes.get(j);
                     DancingNode newNode = new DancingNode(col);
-                    if (prev == null)
+                    if (prev == null) {
                         prev = newNode;
+                    }
                     col.U.hookDown(newNode);
                     prev = prev.hookRight(newNode);
                     col.size++;

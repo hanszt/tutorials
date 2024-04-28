@@ -25,7 +25,7 @@ public class MayFailRule implements TestRule {
 	public Statement apply(Statement base, Description description) {
 		return new Statement() {
 			@Override
-			public void evaluate() throws Throwable {
+			public void evaluate() {
 				try {
 					base.evaluate();
 				} catch (Throwable e) {

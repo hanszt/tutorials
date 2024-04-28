@@ -100,8 +100,9 @@ public class StringRotation {
             for (int i = 0; i < origin.length(); i++) {
                 if (origin.charAt(i) == rotation.charAt(0)) {
                     if (checkRotationPrefixWithOriginSuffix(origin, rotation, i)) {
-                        if (checkOriginPrefixWithRotationSuffix(origin, rotation, i))
+                        if (checkOriginPrefixWithRotationSuffix(origin, rotation, i)) {
                             return true;
+                        }
                     }
                 }
             }

@@ -1,6 +1,6 @@
 package com.baeldung.algorithms.minheapmerge;
 
-public class HeapNode {
+public final class HeapNode {
 
     int element;
     int arrayIndex;

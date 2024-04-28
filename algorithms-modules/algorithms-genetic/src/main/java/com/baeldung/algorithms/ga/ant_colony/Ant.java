@@ -30,8 +30,9 @@ public class Ant {
 	}
 
 	protected void clear() {
-		for (int i = 0; i < trailSize; i++)
-			visited[i] = false;
+		for (int i = 0; i < trailSize; i++) {
+            visited[i] = false;
+        }
 	}
 
 }

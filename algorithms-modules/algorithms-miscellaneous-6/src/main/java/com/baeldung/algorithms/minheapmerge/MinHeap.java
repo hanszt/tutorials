@@ -1,10 +1,10 @@
 package com.baeldung.algorithms.minheapmerge;
 
-public class MinHeap {
+public final class MinHeap {
 
     HeapNode[] heapNodes;
 
-    public MinHeap(HeapNode heapNodes[]) {
+    public MinHeap(HeapNode[] heapNodes) {
         this.heapNodes = heapNodes;
         heapifyFromLastLeafsParent();
     }

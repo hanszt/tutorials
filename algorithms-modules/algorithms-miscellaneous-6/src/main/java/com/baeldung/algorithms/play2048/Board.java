@@ -8,7 +8,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Board {
+public final class Board {
     private static final Logger LOG = LoggerFactory.getLogger(Board.class);
 
     private final int[][] board;
@@ -47,8 +47,8 @@ public class Board {
     }
 
     public int getCell(Cell cell) {
-        int x = cell.getX();
-        int y = cell.getY();
+        int x = cell.x();
+        int y = cell.y();
         assert(x >= 0 && x < board.length);
         assert(y >= 0 && y < board.length);
 
@@ -78,7 +78,7 @@ public class Board {
         }
 
         Board result = new Board(this.board, this.score);
-        result.board[cell.getX()][cell.getY()] = number;
+        result.board[cell.x()][cell.y()] = number;
         return result;
     }
 

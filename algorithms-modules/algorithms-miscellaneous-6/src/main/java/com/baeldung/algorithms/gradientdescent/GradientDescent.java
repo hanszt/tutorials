@@ -1,24 +1,27 @@
 package com.baeldung.algorithms.gradientdescent;
 
-import java.util.function.Function;
+import java.util.function.DoubleUnaryOperator;
 
-public class GradientDescent {
+public final class GradientDescent {
 
-    private final double precision = 0.000001;
+    private static final double PRECISION = 0.000001;
 
-    public double findLocalMinimum(Function<Double, Double> f, double initialX) {
+    private GradientDescent() {
+    }
+
+    public static double findLocalMinimum(DoubleUnaryOperator f, double initialX) {
         double stepCoefficient = 0.1;
         double previousStep = 1.0;
         double currentX = initialX;
         double previousX = initialX;
-        double previousY = f.apply(previousX);
+        double previousY = f.applyAsDouble(previousX);
         int iter = 100;
 
         currentX += stepCoefficient * previousY;
 
-        while (previousStep > precision && iter > 0) {
+        while (previousStep > PRECISION && iter > 0) {
             iter--;
-            double currentY = f.apply(currentX);
+            double currentY = f.applyAsDouble(currentX);
             if (currentY > previousY) {
                 stepCoefficient = -stepCoefficient / 2;
             }

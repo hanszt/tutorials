@@ -27,7 +27,9 @@ public class LargestNumberRemoveKDigits {
         String numStr = Integer.toString(num);
         int length = numStr.length();
 
-        if (k == length) return 0;
+        if (k == length) {
+            return 0;
+        }
 
         Stack<Character> stack = new Stack<>();
 

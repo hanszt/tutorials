@@ -96,7 +96,8 @@ public class RotateArray {
     }
 
     private static void checkInvalidInput(int[] arr, int rotation) {
-        if (rotation < 1 || arr == null)
+        if (rotation < 1 || arr == null) {
             throw new IllegalArgumentException("Rotation must be greater than zero or array must be not null");
+        }
     }
 }

@@ -23,7 +23,9 @@ public class Node<T> {
     }
 
     public void connect(Node<T> node) {
-        if (this == node) throw new IllegalArgumentException("Can't connect node to itself");
+        if (this == node) {
+            throw new IllegalArgumentException("Can't connect node to itself");
+        }
         this.neighbors.add(node);
         node.neighbors.add(this);
     }

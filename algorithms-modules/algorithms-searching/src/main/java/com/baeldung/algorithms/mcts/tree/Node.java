@@ -31,8 +31,9 @@ public class Node {
     public Node(Node node) {
         this.childArray = new ArrayList<>();
         this.state = new State(node.getState());
-        if (node.getParent() != null)
+        if (node.getParent() != null) {
             this.parent = node.getParent();
+        }
         List<Node> childArray = node.getChildArray();
         for (Node child : childArray) {
             this.childArray.add(new Node(child));

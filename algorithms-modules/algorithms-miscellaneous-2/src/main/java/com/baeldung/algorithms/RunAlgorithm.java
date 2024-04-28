@@ -6,7 +6,7 @@ import com.baeldung.algorithms.slope_one.SlopeOne;
 
 public class RunAlgorithm {
 
-	public static void main(String[] args) throws InstantiationException, IllegalAccessException {
+	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		System.out.println("1 - Slope One");
 		System.out.println("2 - Dijkstra");

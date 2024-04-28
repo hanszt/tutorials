@@ -9,14 +9,14 @@ import org.junit.jupiter.api.Test;
 class FoldingHashUnitTest {
 
     @Test
-    void givenStringJavaLanguage_whenSize2Capacity100000_then48933() throws Exception {
+    void givenStringJavaLanguage_whenSize2Capacity100000_then48933() {
         final FoldingHash hasher = new FoldingHash();
         final int value = hasher.hash("Java language", 2, 100_000);
         assertEquals(value, 48933);
     }
 
     @Test
-    void givenStringVaJaLanguage_whenSize2Capacity100000_thenSameAsJavaLanguage() throws Exception {
+    void givenStringVaJaLanguage_whenSize2Capacity100000_thenSameAsJavaLanguage() {
         final FoldingHash hasher = new FoldingHash();
         final int java = hasher.hash("Java language", 2, 100_000);
         final int vaja = hasher.hash("vaJa language", 2, 100_000);
@@ -24,28 +24,28 @@ class FoldingHashUnitTest {
     }
 
     @Test
-    void givenSingleElementArray_whenOffset0Size2_thenSingleElement() throws Exception {
+    void givenSingleElementArray_whenOffset0Size2_thenSingleElement() {
         final FoldingHash hasher = new FoldingHash();
         final int[] value = hasher.extract(new int[] { 5 }, 0, 2);
         assertArrayEquals(new int[] { 5 }, value);
     }
 
     @Test
-    void givenFiveElementArray_whenOffset0Size3_thenFirstThreeElements() throws Exception {
+    void givenFiveElementArray_whenOffset0Size3_thenFirstThreeElements() {
         final FoldingHash hasher = new FoldingHash();
         final int[] value = hasher.extract(new int[] { 1, 2, 3, 4, 5 }, 0, 3);
         assertArrayEquals(new int[] { 1, 2, 3 }, value);
     }
 
     @Test
-    void givenFiveElementArray_whenOffset1Size2_thenTwoElements() throws Exception {
+    void givenFiveElementArray_whenOffset1Size2_thenTwoElements() {
         final FoldingHash hasher = new FoldingHash();
         final int[] value = hasher.extract(new int[] { 1, 2, 3, 4, 5 }, 1, 2);
         assertArrayEquals(new int[] { 2, 3 }, value);
     }
 
     @Test
-    void givenFiveElementArray_whenOffset2SizeTooBig_thenElementsToTheEnd() throws Exception {
+    void givenFiveElementArray_whenOffset2SizeTooBig_thenElementsToTheEnd() {
         final FoldingHash hasher = new FoldingHash();
         final int[] value = hasher.extract(new int[] { 1, 2, 3, 4, 5 }, 2, 2000);
         assertArrayEquals(new int[] { 3, 4, 5 }, value);

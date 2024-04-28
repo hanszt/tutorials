@@ -1,18 +1,14 @@
 package com.baeldung.algorithms.slope_one;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import lombok.Data;
-
-@Data
 public class InputData {
 
-    protected static List<Item> items = Arrays.asList(new Item("Candy"), new Item("Drink"), new Item("Soda"), new Item("Popcorn"), new Item("Snacks"));
+    protected static List<Item> items = List.of(new Item("Candy"), new Item("Drink"), new Item("Soda"), new Item("Popcorn"), new Item("Snacks"));
 
     public static Map<User, HashMap<Item, Double>> initializeData(int numberOfUsers) {
         Map<User, HashMap<Item, Double>> data = new HashMap<>();

@@ -1,11 +1,10 @@
 package com.baeldung.algorithms.greedy;
 
-import lombok.Getter;
 
 public class Follower {
 
-    @Getter String username;
-    @Getter long count;
+    String username;
+    long count;
     
     public Follower(String username, long count) {
         super();

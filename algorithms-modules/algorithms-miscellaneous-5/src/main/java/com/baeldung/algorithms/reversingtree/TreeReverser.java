@@ -27,10 +27,12 @@ public class TreeReverser {
         while (!queue.isEmpty()) {
 
             TreeNode node = queue.poll();
-            if (node.getLeftChild() != null)
+            if (node.getLeftChild() != null) {
                 queue.add(node.getLeftChild());
-            if (node.getRightChild() != null)
+            }
+            if (node.getRightChild() != null) {
                 queue.add(node.getRightChild());
+            }
 
             TreeNode temp = node.getLeftChild();
             node.setLeftChild(node.getRightChild());

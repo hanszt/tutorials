@@ -147,11 +147,13 @@ public class BinaryTree {
             current = stack.pop();
             visit(current.value);
 
-            if(current.right != null)
+            if(current.right != null) {
                 stack.push(current.right);
+            }
 
-            if(current.left != null)
+            if(current.left != null) {
                 stack.push(current.left);
+            }
         }
     }
 

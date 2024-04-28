@@ -2,22 +2,19 @@ package com.baeldung.algorithms.greedy;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-import lombok.Getter;
+public final class SocialUser {
 
-public class SocialUser {
-
-    @Getter private String username;
-    @Getter private List<SocialUser> followers;
+    private final String username;
+    private final List<SocialUser> followers;
 
     public SocialUser(String username) {
-        super();
         this.username = username;
         this.followers = new ArrayList<>();
     }
     
     public SocialUser(String username, List<SocialUser> followers) {
-        super();
         this.username = username;
         this.followers = followers;
     }
@@ -32,7 +29,26 @@ public class SocialUser {
     
     @Override
     public boolean equals(Object obj) {
-        return ((SocialUser) obj).getUsername().equals(username);
+        return ((SocialUser) obj).username.equals(username);
     }
-    
+
+    public String getUsername() {
+        return username;
+    }
+
+    public List<SocialUser> getFollowers() {
+        return followers;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(username);
+    }
+
+    @Override
+    public String toString() {
+        return "SocialUser{" +
+               "username='" + username + '\'' +
+               '}';
+    }
 }

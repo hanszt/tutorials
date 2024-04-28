@@ -101,7 +101,7 @@ class ByteArrayConverterUnitTest {
     }
 
     @Test
-    void shouldEncodeByteArrayToHexStringUsingApacheCommons() throws DecoderException {
+    void shouldEncodeByteArrayToHexStringUsingApacheCommons() {
         byte[] bytes = getSampleBytes();
         String hexString = getSampleHexString();
         String output = hexStringConverter.encodeUsingApacheCommons(bytes);
@@ -117,7 +117,7 @@ class ByteArrayConverterUnitTest {
     }
 
     @Test
-    void shouldEncodeByteArrayToHexStringUsingHexFormat() throws DecoderException {
+    void shouldEncodeByteArrayToHexStringUsingHexFormat() {
         byte[] bytes = getSampleBytes();
         String hexString = getSampleHexString();
         String output = hexStringConverter.encodeUsingHexFormat(bytes);
@@ -125,7 +125,7 @@ class ByteArrayConverterUnitTest {
     }
 
     @Test
-    void shouldDecodeHexStringToByteArrayUsingHexFormat() throws DecoderException {
+    void shouldDecodeHexStringToByteArrayUsingHexFormat() {
         byte[] bytes = getSampleBytes();
         String hexString = getSampleHexString();
         byte[] output = hexStringConverter.decodeUsingHexFormat(hexString);

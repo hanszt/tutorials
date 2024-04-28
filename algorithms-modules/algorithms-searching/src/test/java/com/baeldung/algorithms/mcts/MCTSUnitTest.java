@@ -76,10 +76,11 @@ class MCTSUnitTest {
         int player = Board.P1;
         int totalMoves = Board.DEFAULT_BOARD_SIZE * Board.DEFAULT_BOARD_SIZE;
         for (int i = 0; i < totalMoves; i++) {
-            if (player == Board.P1)
+            if (player == Board.P1) {
                 board = mcts3.findNextMove(board, player);
-            else
+            } else {
                 board = mcts1.findNextMove(board, player);
+            }
 
             if (board.checkStatus() != -1) {
                 break;

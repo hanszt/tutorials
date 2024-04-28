@@ -16,18 +16,19 @@ import org.junit.jupiter.api.Test;
 
 import com.baeldung.algorithms.astar.Graph;
 import com.baeldung.algorithms.astar.RouteFinder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 class RouteFinderIntegrationTest {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(RouteFinderIntegrationTest.class);
 
     private Graph<Station> underground;
 
     private RouteFinder<Station> routeFinder;
 
     @BeforeEach
-    public void setUp() throws Exception {
+    public void setUp() {
         Set<Station> stations = new HashSet<>();
         Map<String, Set<String>> connections = new HashMap<>();
 
@@ -646,6 +647,6 @@ class RouteFinderIntegrationTest {
         List<Station> route = routeFinder.findRoute(underground.getNode("74"), underground.getNode("7"));
         assertThat(route).size().isPositive();
 
-        route.stream().map(Station::getName).collect(Collectors.toList()).forEach(station -> log.debug(station));
+        route.stream().map(Station::getName).toList().forEach(LOGGER::debug);
     }
 }

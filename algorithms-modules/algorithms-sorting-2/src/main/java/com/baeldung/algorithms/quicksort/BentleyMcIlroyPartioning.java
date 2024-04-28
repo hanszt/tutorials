@@ -11,12 +11,14 @@ public class BentleyMcIlroyPartioning {
         int partitioningValue = input[end];
 
         while (true) {
-            while (input[left] < partitioningValue)
+            while (input[left] < partitioningValue) {
                 left++;
+            }
 
             while (input[right] > partitioningValue) {
-                if (right == begin)
+                if (right == begin) {
                     break;
+                }
                 right--;
             }
 
@@ -45,19 +47,22 @@ public class BentleyMcIlroyPartioning {
         }
         right = left - 1;
         for (int k = begin; k < begin + leftEqualKeysCount; k++, right--) {
-            if (right >= begin + leftEqualKeysCount)
+            if (right >= begin + leftEqualKeysCount) {
                 swap(input, k, right);
+            }
         }
         for (int k = end; k > end - rightEqualKeysCount; k--, left++) {
-            if (left <= end - rightEqualKeysCount)
+            if (left <= end - rightEqualKeysCount) {
                 swap(input, left, k);
+            }
         }
         return new Partition(right + 1, left - 1);
     }
 
     public static void quicksort(int input[], int begin, int end) {
-        if (end <= begin)
+        if (end <= begin) {
             return;
+        }
         Partition middlePartition = partition(input, begin, end);
         quicksort(input, begin, middlePartition.getLeft() - 1);
         quicksort(input, middlePartition.getRight() + 1, end);

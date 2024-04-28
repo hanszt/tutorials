@@ -3,7 +3,7 @@ package com.baeldung.algorithms.kruskal;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CycleDetector {
+public final class CycleDetector {
 
     List<DisjointSetInfo> nodes;
 

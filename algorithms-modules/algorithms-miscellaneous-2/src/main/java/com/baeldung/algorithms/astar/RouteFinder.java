@@ -1,5 +1,8 @@
 package com.baeldung.algorithms.astar;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,10 +11,11 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.stream.Collectors;
 
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
-public class RouteFinder<T extends GraphNode> {
+public final class RouteFinder<T extends GraphNode> {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(RouteFinder.class);
+
     private final Graph<T> graph;
     private final Scorer<T> nextNodeScorer;
     private final Scorer<T> targetScorer;
@@ -24,27 +28,27 @@ public class RouteFinder<T extends GraphNode> {
 
     public List<T> findRoute(T from, T to) {
         Map<T, RouteNode<T>> allNodes = new HashMap<>();
-        Queue<RouteNode> openSet = new PriorityQueue<>();
+        Queue<RouteNode<T>> openSet = new PriorityQueue<>();
 
         RouteNode<T> start = new RouteNode<>(from, null, 0d, targetScorer.computeCost(from, to));
         allNodes.put(from, start);
         openSet.add(start);
 
         while (!openSet.isEmpty()) {
-            log.debug("Open Set contains: " + openSet.stream().map(RouteNode::getCurrent).collect(Collectors.toSet()));
+            LOGGER.debug("Open Set contains: {}", openSet.stream().map(RouteNode::getCurrent).collect(Collectors.toSet()));
             RouteNode<T> next = openSet.poll();
-            log.debug("Looking at node: " + next);
+            LOGGER.debug("Looking at node: {}", next);
             if (next.getCurrent().equals(to)) {
-                log.debug("Found our destination!");
+                LOGGER.debug("Found our destination!");
 
                 List<T> route = new ArrayList<>();
                 RouteNode<T> current = next;
                 do {
-                    route.add(0, current.getCurrent());
+                    route.addFirst(current.getCurrent());
                     current = allNodes.get(current.getPrevious());
                 } while (current != null);
 
-                log.debug("Route: " + route);
+                LOGGER.debug("Route: {}", route);
                 return route;
             }
 
@@ -58,7 +62,7 @@ public class RouteFinder<T extends GraphNode> {
                     nextNode.setRouteScore(newScore);
                     nextNode.setEstimatedScore(newScore + targetScorer.computeCost(connection, to));
                     openSet.add(nextNode);
-                    log.debug("Found a better route to node: " + nextNode);
+                    LOGGER.debug("Found a better route to node: " + nextNode);
                 }
             });
         }
