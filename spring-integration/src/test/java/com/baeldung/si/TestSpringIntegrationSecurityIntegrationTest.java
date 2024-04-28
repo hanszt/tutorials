@@ -37,7 +37,7 @@ public class TestSpringIntegrationSecurityIntegrationTest {
 
     @Test(expected = AuthenticationCredentialsNotFoundException.class)
     public void givenNoUser_whenSendToDirectChannel_thenCredentialNotFound() {
-        startDirectChannel.send(new GenericMessage<String>(DIRECT_CHANNEL_MESSAGE));
+        startDirectChannel.send(new GenericMessage<>(DIRECT_CHANNEL_MESSAGE));
     }
 
     @Test
@@ -45,7 +45,7 @@ public class TestSpringIntegrationSecurityIntegrationTest {
     public void givenRoleLogger_whenSendMessageToDirectChannel_thenAccessDenied() {
         expectedException.expectCause(IsInstanceOf.<Throwable> instanceOf(AccessDeniedException.class));
 
-        startDirectChannel.send(new GenericMessage<String>(DIRECT_CHANNEL_MESSAGE));
+        startDirectChannel.send(new GenericMessage<>(DIRECT_CHANNEL_MESSAGE));
     }
 
     @Test
@@ -53,7 +53,7 @@ public class TestSpringIntegrationSecurityIntegrationTest {
     public void givenJane_whenSendMessageToDirectChannel_thenAccessDenied() {
         expectedException.expectCause(IsInstanceOf.<Throwable> instanceOf(AccessDeniedException.class));
 
-        startDirectChannel.send(new GenericMessage<String>(DIRECT_CHANNEL_MESSAGE));
+        startDirectChannel.send(new GenericMessage<>(DIRECT_CHANNEL_MESSAGE));
     }
 
     @Test
@@ -61,20 +61,20 @@ public class TestSpringIntegrationSecurityIntegrationTest {
     public void givenRoleViewer_whenSendToDirectChannel_thenAccessDenied() {
         expectedException.expectCause(IsInstanceOf.<Throwable> instanceOf(AccessDeniedException.class));
 
-        startDirectChannel.send(new GenericMessage<String>(DIRECT_CHANNEL_MESSAGE));
+        startDirectChannel.send(new GenericMessage<>(DIRECT_CHANNEL_MESSAGE));
     }
 
     @Test
     @WithMockUser(roles = { "LOGGER", "VIEWER", "EDITOR" })
     public void givenRoleLoggerAndUser_whenSendMessageToDirectChannel_thenFlowCompletedSuccessfully() {
-        startDirectChannel.send(new GenericMessage<String>(DIRECT_CHANNEL_MESSAGE));
+        startDirectChannel.send(new GenericMessage<>(DIRECT_CHANNEL_MESSAGE));
         assertEquals(DIRECT_CHANNEL_MESSAGE, messageConsumer.getMessageContent());
     }
 
     @Test
     @WithMockUser(username = "jane", roles = { "LOGGER", "EDITOR" })
     public void givenJaneLoggerEditor_whenSendToDirectChannel_thenFlowCompleted() {
-        startDirectChannel.send(new GenericMessage<String>(DIRECT_CHANNEL_MESSAGE));
+        startDirectChannel.send(new GenericMessage<>(DIRECT_CHANNEL_MESSAGE));
         assertEquals(DIRECT_CHANNEL_MESSAGE, messageConsumer.getMessageContent());
     }
 

@@ -12,6 +12,14 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import com.baeldung.domain.Order;
 import com.baeldung.domain.OrderType;
 import com.baeldung.subflows.postgresqlnotify.PostgresqlPubSubExample.OrdersGateway;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
+
+import java.math.BigDecimal;
+import java.util.concurrent.TimeUnit;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringJUnitConfig(classes = {PostgresqlPubSubExample.class})
 public class PostgresqlPubSubExampleLiveTest {
