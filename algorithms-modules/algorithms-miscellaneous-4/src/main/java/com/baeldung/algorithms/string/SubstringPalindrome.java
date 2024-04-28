@@ -41,10 +41,11 @@ public class SubstringPalindrome {
             return palindromes;
         }
         for (int i = 0; i < input.length(); i++) {
-            for (int j = i + 1; j <= input.length(); j++)
+            for (int j = i + 1; j <= input.length(); j++) {
                 if (isPalindrome(input.substring(i, j))) {
                     palindromes.add(input.substring(i, j));
                 }
+            }
         }
         return palindromes;
     }
@@ -66,8 +67,9 @@ public class SubstringPalindrome {
             int i = 1;
             while (i <= input.length()) {
                 palindromes.add(Character.toString(inputCharArr[i]));
-                while (inputCharArr[i - max - 1] == inputCharArr[i + j + max])
+                while (inputCharArr[i - max - 1] == inputCharArr[i + j + max]) {
                     max++;
+                }
                 radius[j][i] = max;
                 int k = 1;
                 while ((radius[j][i - k] != max - k) && (k < max)) {

@@ -13,6 +13,14 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
+    <properties>
+        <java.version>21</java.version>
+        <commons-codec.version>1.16.0</commons-codec.version>
+        <commons-math3.version>3.6.1</commons-math3.version>
+        <cobertura.plugin.version>2.7</cobertura.plugin.version>
+        <tradukisto.version>1.0.1</tradukisto.version>
+    </properties>
+
     <modules>
         <module>algorithms-genetic</module>
         <module>algorithms-miscellaneous-1</module>
@@ -29,11 +37,17 @@
         <module>algorithms-sorting-2</module>
     </modules>
 
-    <properties>
-        <commons-codec.version>1.16.0</commons-codec.version>
-        <commons-math3.version>3.6.1</commons-math3.version>
-        <cobertura.plugin.version>2.7</cobertura.plugin.version>
-        <tradukisto.version>1.0.1</tradukisto.version>
-    </properties>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

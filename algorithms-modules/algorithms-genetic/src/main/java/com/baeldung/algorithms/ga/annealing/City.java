@@ -1,12 +1,9 @@
 package com.baeldung.algorithms.ga.annealing;
 
-import lombok.Data;
+public final class City {
 
-@Data
-public class City {
-
-    private int x;
-    private int y;
+    private final int x;
+    private final int y;
 
     public City() {
         this.x = (int) (Math.random() * 500);
@@ -14,8 +11,8 @@ public class City {
     }
 
     public double distanceToCity(City city) {
-        int x = Math.abs(getX() - city.getX());
-        int y = Math.abs(getY() - city.getY());
+        int x = Math.abs(this.x - city.x);
+        int y = Math.abs(this.y - city.y);
         return Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
     }
 

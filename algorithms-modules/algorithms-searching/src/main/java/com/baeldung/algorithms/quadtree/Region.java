@@ -7,8 +7,9 @@ public class Region {
     private float y2;
 
     public Region(float x1, float y1, float x2, float y2) {
-        if (x1 >= x2 || y1 >= y2)
+        if (x1 >= x2 || y1 >= y2) {
             throw new IllegalArgumentException("(x1,y1) should be lesser than (x2,y2)");
+        }
         this.x1 = x1;
         this.y1 = y1;
         this.x2 = x2;

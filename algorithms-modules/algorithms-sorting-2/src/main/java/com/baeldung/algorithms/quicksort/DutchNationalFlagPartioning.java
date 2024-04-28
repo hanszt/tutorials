@@ -27,8 +27,9 @@ public class DutchNationalFlagPartioning {
     }
 
     public static void quicksort(int[] input, int begin, int end) {
-        if (end <= begin)
+        if (end <= begin) {
             return;
+        }
 
         Partition middlePartition = partition(input, begin, end);
 

@@ -34,8 +34,9 @@ public class QuadTree {
         for (int i = 0; i < 4; i++) {
             isPointAdded = this.quadTrees.get(i)
                 .addPoint(point);
-            if (isPointAdded)
+            if (isPointAdded) {
                 return true;
+            }
         }
         return false;
     }

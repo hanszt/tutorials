@@ -1,9 +1,7 @@
 package com.baeldung.algorithms.ga.binary;
 
-import lombok.Data;
 
-@Data
-public class SimpleGeneticAlgorithm {
+public final class SimpleGeneticAlgorithm {
 
     private static final double uniformRate = 0.5;
     private static final double mutationRate = 0.025;
@@ -33,23 +31,23 @@ public class SimpleGeneticAlgorithm {
 
     public Population evolvePopulation(Population pop) {
         int elitismOffset;
-        Population newPopulation = new Population(pop.getIndividuals().size(), false);
+        Population newPopulation = new Population(pop.individuals().size(), false);
 
         if (elitism) {
-            newPopulation.getIndividuals().add(0, pop.getFittest());
+            newPopulation.individuals().addFirst(pop.getFittest());
             elitismOffset = 1;
         } else {
             elitismOffset = 0;
         }
 
-        for (int i = elitismOffset; i < pop.getIndividuals().size(); i++) {
+        for (int i = elitismOffset; i < pop.individuals().size(); i++) {
             Individual indiv1 = tournamentSelection(pop);
             Individual indiv2 = tournamentSelection(pop);
             Individual newIndiv = crossover(indiv1, indiv2);
-            newPopulation.getIndividuals().add(i, newIndiv);
+            newPopulation.individuals().add(i, newIndiv);
         }
 
-        for (int i = elitismOffset; i < newPopulation.getIndividuals().size(); i++) {
+        for (int i = elitismOffset; i < newPopulation.individuals().size(); i++) {
             mutate(newPopulation.getIndividual(i));
         }
 
@@ -58,7 +56,7 @@ public class SimpleGeneticAlgorithm {
 
     private Individual crossover(Individual indiv1, Individual indiv2) {
         Individual newSol = new Individual();
-        for (int i = 0; i < newSol.getDefaultGeneLength(); i++) {
+        for (int i = 0; i < newSol.defaultGeneLength; i++) {
             if (Math.random() <= uniformRate) {
                 newSol.setSingleGene(i, indiv1.getSingleGene(i));
             } else {
@@ -69,7 +67,7 @@ public class SimpleGeneticAlgorithm {
     }
 
     private void mutate(Individual indiv) {
-        for (int i = 0; i < indiv.getDefaultGeneLength(); i++) {
+        for (int i = 0; i < indiv.defaultGeneLength; i++) {
             if (Math.random() <= mutationRate) {
                 byte gene = (byte) Math.round(Math.random());
                 indiv.setSingleGene(i, gene);
@@ -80,8 +78,8 @@ public class SimpleGeneticAlgorithm {
     private Individual tournamentSelection(Population pop) {
         Population tournament = new Population(tournamentSize, false);
         for (int i = 0; i < tournamentSize; i++) {
-            int randomId = (int) (Math.random() * pop.getIndividuals().size());
-            tournament.getIndividuals().add(i, pop.getIndividual(randomId));
+            int randomId = (int) (Math.random() * pop.individuals().size());
+            tournament.individuals().add(i, pop.getIndividual(randomId));
         }
         Individual fittest = tournament.getFittest();
         return fittest;
@@ -89,7 +87,7 @@ public class SimpleGeneticAlgorithm {
 
     protected static int getFitness(Individual individual) {
         int fitness = 0;
-        for (int i = 0; i < individual.getDefaultGeneLength() && i < solution.length; i++) {
+        for (int i = 0; i < individual.defaultGeneLength && i < solution.length; i++) {
             if (individual.getSingleGene(i) == solution[i]) {
                 fitness++;
             }

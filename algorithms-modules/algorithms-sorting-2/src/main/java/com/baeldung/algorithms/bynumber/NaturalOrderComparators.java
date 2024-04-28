@@ -10,19 +10,19 @@ public final class NaturalOrderComparators {
         throw new AssertionError("Let's keep this static");
     }
 
-    public static Comparator<String> createNaturalOrderRegexComparator() {
-        return Comparator.comparingDouble(NaturalOrderComparators::parseStringToNumber);
-    }
+    public static final Comparator<String> comparingByNumbersInString = Comparator
+            .comparingDouble(NaturalOrderComparators::parseStringToNumber);
 
-    private static double parseStringToNumber(String input){
-
+    private static double parseStringToNumber(String input) {
         final String digitsOnly = input.replaceAll(DIGIT_AND_DECIMAL_REGEX, "");
 
-        if("".equals(digitsOnly)) return 0;
+        if (digitsOnly.isEmpty()) {
+            return 0;
+        }
 
-        try{
+        try {
             return Double.parseDouble(digitsOnly);
-        }catch (NumberFormatException nfe){
+        } catch (NumberFormatException nfe) {
             return 0;
         }
     }

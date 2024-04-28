@@ -34,15 +34,16 @@ public class HillClimbing {
 
     private Stack<String> getStackWithValues(String[] blocks) {
         Stack<String> stack = new Stack<>();
-        for (String block : blocks)
+        for (String block : blocks) {
             stack.push(block);
+        }
         return stack;
     }
 
     /**
      * This method prepares path from init state to goal state
      */
-    public List<State> getRouteWithHillClimbing(Stack<String> initStateStack, Stack<String> goalStateStack) throws Exception {
+    public List<State> getRouteWithHillClimbing(Stack<String> initStateStack, Stack<String> goalStateStack) {
         List<Stack<String>> initStateStackList = new ArrayList<>();
         initStateStackList.add(initStateStack);
         int initStateHeuristics = getHeuristicsValue(initStateStackList, goalStateStack);
@@ -92,14 +93,16 @@ public class HillClimbing {
         State tempState;
         List<Stack<String>> tempStackList = new ArrayList<>(listOfStacks);
         String block = stack.pop();
-        if (stack.size() == 0)
+        if (stack.size() == 0) {
             tempStackList.remove(stack);
+        }
         tempState = pushElementToNewStack(tempStackList, block, currentStateHeuristics, goalStateStack);
         if (tempState == null) {
             tempState = pushElementToExistingStacks(stack, tempStackList, block, currentStateHeuristics, goalStateStack);
         }
-        if (tempState == null)
+        if (tempState == null) {
             stack.push(block);
+        }
         return tempState;
     }
     

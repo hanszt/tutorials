@@ -1,6 +1,6 @@
 package com.baeldung.algorithms.play2048;
 
-public class Play2048 {
+public final class Play2048 {
     private static final int SIZE = 4;
     private static final int INITIAL_NUMBERS = 2;
 

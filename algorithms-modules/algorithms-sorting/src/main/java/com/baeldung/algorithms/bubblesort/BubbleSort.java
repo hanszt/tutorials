@@ -1,27 +1,30 @@
 package com.baeldung.algorithms.bubblesort;
 
-import java.util.stream.IntStream;
+public final class BubbleSort {
 
-public class BubbleSort {
-
-    void bubbleSort(Integer[] arr) {
-        int n = arr.length;
-        IntStream.range(0, n - 1)
-          .flatMap(i -> IntStream.range(1, n - i))
-          .forEach(j -> {
-              if (arr[j - 1] > arr[j]) {
-                  int temp = arr[j];
-                  arr[j] = arr[j - 1];
-                  arr[j - 1] = temp;
-              }
-          });
+    private BubbleSort() {
     }
 
-    void optimizedBubbleSort(Integer[] arr) {
+    static void bubbleSort(Integer[] arr) {
+        int n = arr.length;
+        int boundOuter = n - 1;
+        for (int i = 0; i < boundOuter; i++) {
+            int bound = n - i;
+            for (int j = 1; j < bound; j++) {
+                if (arr[j - 1] > arr[j]) {
+                    int temp = arr[j];
+                    arr[j] = arr[j - 1];
+                    arr[j - 1] = temp;
+                }
+            }
+        }
+    }
+
+    static void optimizedBubbleSort(Integer[] arr) {
         int i = 0, n = arr.length;
 
-        boolean swapNeeded = true;
-        while (i < n - 1 && swapNeeded) {
+        boolean swapNeeded;
+        while (i < n - 1) {
             swapNeeded = false;
             for (int j = 1; j < n - i; j++) {
                 if (arr[j - 1] > arr[j]) {
@@ -32,8 +35,9 @@ public class BubbleSort {
                     swapNeeded = true;
                 }
             }
-            if (!swapNeeded)
+            if (!swapNeeded) {
                 break;
+            }
             i++;
         }
     }

@@ -1,8 +1,11 @@
 package com.baeldung.algorithms.gravitysort;
 
-public class GravitySort {
+public final class GravitySort {
 
-    public static int findMax(int[] A) {
+    private GravitySort() {
+    }
+
+    private static int findMax(int[] A) {
         int max = A[0];
         for (int i = 1; i< A.length; i++) {
             if (A[i] > max) {
@@ -12,7 +15,7 @@ public class GravitySort {
         return max;
     }
 
-    public static boolean[][] setupAbacus(int[] A, int m) {
+    private static boolean[][] setupAbacus(int[] A, int m) {
         boolean[][] abacus = new boolean[A.length][m];
         for (int i = 0; i < abacus.length; i++) {
             int number = A[i];
@@ -23,12 +26,12 @@ public class GravitySort {
         return abacus;
     }
 
-    public static void dropBeads(boolean[][] abacus, int[] A, int m) {
+    private static void dropBeads(boolean[][] abacus, int[] A, int m) {
         for (int i = 1; i < A.length; i++) {
             for (int j = m - 1; j >= 0; j--) {
-                if (abacus[i][j] == true) {
+                if (abacus[i][j]) {
                     int x = i;
-                    while (x > 0 && abacus[x - 1][j] == false) {
+                    while (x > 0 && !abacus[x - 1][j]) {
                         boolean temp = abacus[x - 1][j];
                         abacus[x - 1][j] = abacus[x][j];
                         abacus[x][j] = temp;
@@ -39,11 +42,11 @@ public class GravitySort {
         }
     }
 
-    public static void transformToList(boolean[][] abacus, int[] A) {
+    private static void transformToList(boolean[][] abacus, int[] A) {
         int index = 0;
         for (int i = abacus.length - 1; i >= 0; i--) {
             int beads = 0;
-            for (int j = 0; j < abacus[0].length && abacus[i][j] == true; j++) {
+            for (int j = 0; j < abacus[0].length && abacus[i][j]; j++) {
                 beads++;
             }
             A[index++] = beads;

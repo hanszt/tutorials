@@ -72,29 +72,34 @@ public class Board {
             }
             
             int checkRowForWin = checkForWin(row);
-            if(checkRowForWin!=0)
+            if(checkRowForWin!=0) {
                 return checkRowForWin;
+            }
             
             int checkColForWin = checkForWin(col);
-            if(checkColForWin!=0)
+            if(checkColForWin!=0) {
                 return checkColForWin;
+            }
             
             diag1[i] = boardValues[i][i];
             diag2[i] = boardValues[maxIndex - i][i];
         }
 
         int checkDia1gForWin = checkForWin(diag1);
-        if(checkDia1gForWin!=0)
+        if(checkDia1gForWin!=0) {
             return checkDia1gForWin;
+        }
         
         int checkDiag2ForWin = checkForWin(diag2);
-        if(checkDiag2ForWin!=0)
+        if(checkDiag2ForWin!=0) {
             return checkDiag2ForWin;
+        }
         
-        if (getEmptyPositions().size() > 0)
+        if (getEmptyPositions().size() > 0) {
             return IN_PROGRESS;
-        else
+        } else {
             return DRAW;
+        }
     }
 
     private int checkForWin(int[] row) {
@@ -108,10 +113,11 @@ public class Board {
             }
             previous = row[i];
         }
-        if(isEqual)
+        if(isEqual) {
             return previous;
-        else
+        } else {
             return 0;
+        }
     }
 
     public void printBoard() {
@@ -129,8 +135,9 @@ public class Board {
         List<Position> emptyPositions = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                if (boardValues[i][j] == 0)
+                if (boardValues[i][j] == 0) {
                     emptyPositions.add(new Position(i, j));
+                }
             }
         }
         return emptyPositions;

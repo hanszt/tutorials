@@ -43,16 +43,17 @@ public class Maze {
             }
 
             for (int col = 0; col < getWidth(); col++) {
-                if (lines[row].charAt(col) == '#')
+                if (lines[row].charAt(col) == '#') {
                     maze[row][col] = WALL;
-                else if (lines[row].charAt(col) == 'S') {
+                } else if (lines[row].charAt(col) == 'S') {
                     maze[row][col] = START;
                     start = new Coordinate(row, col);
                 } else if (lines[row].charAt(col) == 'E') {
                     maze[row][col] = EXIT;
                     end = new Coordinate(row, col);
-                } else
+                } else {
                     maze[row][col] = ROAD;
+                }
             }
         }
     }
@@ -135,7 +136,8 @@ public class Maze {
     }
 
     public void reset() {
-        for (int i = 0; i < visited.length; i++)
+        for (int i = 0; i < visited.length; i++) {
             Arrays.fill(visited[i], false);
+        }
     }
 }

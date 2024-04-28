@@ -120,24 +120,32 @@ public class Swarm {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
+		if (this == obj) {
+            return true;
+        }
+		if (obj == null) {
+            return false;
+        }
+		if (getClass() != obj.getClass()) {
+            return false;
+        }
 		Swarm other = (Swarm) obj;
-		if (Double.doubleToLongBits(bestFitness) != Double.doubleToLongBits(other.bestFitness))
-			return false;
-		if (!Arrays.equals(bestPosition, other.bestPosition))
-			return false;
-		if (!Arrays.equals(particles, other.particles))
-			return false;
+		if (Double.doubleToLongBits(bestFitness) != Double.doubleToLongBits(other.bestFitness)) {
+            return false;
+        }
+		if (!Arrays.equals(bestPosition, other.bestPosition)) {
+            return false;
+        }
+		if (!Arrays.equals(particles, other.particles)) {
+            return false;
+        }
 		if (random == null) {
-			if (other.random != null)
-				return false;
-		} else if (!random.equals(other.random))
-			return false;
+			if (other.random != null) {
+                return false;
+            }
+		} else if (!random.equals(other.random)) {
+            return false;
+        }
 		return true;
 	}
 

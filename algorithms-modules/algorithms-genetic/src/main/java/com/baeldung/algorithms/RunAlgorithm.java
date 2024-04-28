@@ -8,7 +8,7 @@ import com.baeldung.algorithms.ga.binary.SimpleGeneticAlgorithm;
 
 public class RunAlgorithm {
 
-	public static void main(String[] args) throws InstantiationException, IllegalAccessException {
+	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		System.out.println("Run algorithm:");
 		System.out.println("1 - Simulated Annealing");

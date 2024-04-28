@@ -33,8 +33,9 @@ public class Graph {
                 isVisited[current] = true;
                 visit(current);
                 for (int dest : adjVertices.get(current)) {
-                    if (!isVisited[dest])
+                    if (!isVisited[dest]) {
                         stack.push(dest);
+                    }
                 }
             }
         }
@@ -50,8 +51,9 @@ public class Graph {
         isVisited[current] = true;
         visit(current);
         for (int dest : adjVertices.get(current)) {
-            if (!isVisited[dest])
+            if (!isVisited[dest]) {
                 dfsRecursive(dest, isVisited);
+            }
         }
         return isVisited;
     }
@@ -66,8 +68,9 @@ public class Graph {
     private void topologicalSortRecursive(int current, boolean[] isVisited, LinkedList<Integer> result) {
         isVisited[current] = true;
         for (int dest : adjVertices.get(current)) {
-            if (!isVisited[dest])
+            if (!isVisited[dest]) {
                 topologicalSortRecursive(dest, isVisited, result);
+            }
         }
         result.addFirst(current);
     }

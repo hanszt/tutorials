@@ -170,23 +170,31 @@ public class Particle {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
+		if (this == obj) {
+            return true;
+        }
+		if (obj == null) {
+            return false;
+        }
+		if (getClass() != obj.getClass()) {
+            return false;
+        }
 		Particle other = (Particle) obj;
-		if (Double.doubleToLongBits(bestFitness) != Double.doubleToLongBits(other.bestFitness))
-			return false;
-		if (!Arrays.equals(bestPosition, other.bestPosition))
-			return false;
-		if (Double.doubleToLongBits(fitness) != Double.doubleToLongBits(other.fitness))
-			return false;
-		if (!Arrays.equals(position, other.position))
-			return false;
-		if (!Arrays.equals(speed, other.speed))
-			return false;
+		if (Double.doubleToLongBits(bestFitness) != Double.doubleToLongBits(other.bestFitness)) {
+            return false;
+        }
+		if (!Arrays.equals(bestPosition, other.bestPosition)) {
+            return false;
+        }
+		if (Double.doubleToLongBits(fitness) != Double.doubleToLongBits(other.fitness)) {
+            return false;
+        }
+		if (!Arrays.equals(position, other.position)) {
+            return false;
+        }
+		if (!Arrays.equals(speed, other.speed)) {
+            return false;
+        }
 		return true;
 	}
 

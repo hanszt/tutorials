@@ -2,7 +2,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
+
     <artifactId>parent-spring-6</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>parent-spring-6</name>
@@ -14,6 +16,12 @@
         <artifactId>parent-modules</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
+
+    <properties>
+        <spring.version>6.1.5</spring.version>
+        <spring-cloud.version>2023.0.0</spring-cloud.version>
+        <spring-boot.version>3.2.1</spring-boot.version>
+    </properties>
 
     <dependencyManagement>
         <dependencies>
@@ -33,11 +41,5 @@
             <artifactId>spring-core</artifactId>
         </dependency>
     </dependencies>
-
-    <properties>
-        <spring.version>6.1.5</spring.version>
-        <spring-cloud.version>2023.0.0</spring-cloud.version>
-        <spring-boot.version>3.2.1</spring-boot.version>
-    </properties>
 
 </project>

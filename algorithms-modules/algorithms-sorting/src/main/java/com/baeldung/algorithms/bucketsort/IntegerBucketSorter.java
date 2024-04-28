@@ -42,7 +42,9 @@ public class IntegerBucketSorter implements Sorter<Integer> {
         final int numberOfBuckets = (int) Math.sqrt(initialList.size());
 
         List<List<Integer>> buckets = new ArrayList<>();
-        for(int i = 0; i < numberOfBuckets; i++) buckets.add(new ArrayList<>());
+        for(int i = 0; i < numberOfBuckets; i++) {
+            buckets.add(new ArrayList<>());
+        }
 
         //distribute the data
         for (int i : initialList) {

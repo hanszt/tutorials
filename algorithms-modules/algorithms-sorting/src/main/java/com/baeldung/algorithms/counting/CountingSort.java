@@ -7,7 +7,9 @@ public class CountingSort {
 
     public static int[] sort(int[] input, int k) {
         verifyPreconditions(input, k);
-        if (input.length == 0) return input;
+        if (input.length == 0) {
+            return input;
+        }
 
         int[] c = countElements(input, k);
         int[] sorted = new int[input.length];

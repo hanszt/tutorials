@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 import pl.allegro.finance.tradukisto.MoneyConverters;
 
-public class NumberWordConverter {
+public final class NumberWordConverter {
 
     public static final String INVALID_INPUT_GIVEN = "Invalid input given";
 
@@ -43,7 +43,7 @@ public class NumberWordConverter {
         }
         String centsPart = "";
         if (cents > 0) {
-            if (dollarPart.length() > 0) {
+            if (!dollarPart.isEmpty()) {
                 centsPart = " and ";
             }
             centsPart += convert(cents) + " cent" + (cents == 1 ? "" : "s");

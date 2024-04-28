@@ -1,12 +1,14 @@
 package com.baeldung.algorithms.maze.solver;
 
+import com.baeldung.Resources;
+
 import java.io.File;
 import java.util.List;
 
-public class MazeDriver {
+public final class MazeDriver {
     public static void main(String[] args) throws Exception {
-        File maze1 = new File("src/main/resources/maze/maze1.txt");
-        File maze2 = new File("src/main/resources/maze/maze2.txt");
+        File maze1 = Resources.resourceFile("/maze/maze1.txt");
+        File maze2 = Resources.resourceFile("/maze/maze2.txt");
 
         execute(maze1);
         execute(maze2);

@@ -2,7 +2,7 @@ package com.baeldung.algorithms.sudoku;
 
 import java.util.stream.IntStream;
 
-public class BacktrackingAlgorithm {
+public final class BacktrackingAlgorithm {
 
     private static final int BOARD_SIZE = 9;
     private static final int SUBSECTION_SIZE = 3;
@@ -12,16 +12,16 @@ public class BacktrackingAlgorithm {
     private static final int MIN_VALUE = 1;
     private static final int MAX_VALUE = 9;
 
-    private static int[][] board = {
-      {8, 0, 0, 0, 0, 0, 0, 0, 0},
-      {0, 0, 3, 6, 0, 0, 0, 0, 0},
-      {0, 7, 0, 0, 9, 0, 2, 0, 0},
-      {0, 5, 0, 0, 0, 7, 0, 0, 0},
-      {0, 0, 0, 0, 4, 5, 7, 0, 0},
-      {0, 0, 0, 1, 0, 0, 0, 3, 0},
-      {0, 0, 1, 0, 0, 0, 0, 6, 8},
-      {0, 0, 8, 5, 0, 0, 0, 1, 0},
-      {0, 9, 0, 0, 0, 0, 4, 0, 0}
+    private static final int[][] board = {
+            {8, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 3, 6, 0, 0, 0, 0, 0},
+            {0, 7, 0, 0, 9, 0, 2, 0, 0},
+            {0, 5, 0, 0, 0, 7, 0, 0, 0},
+            {0, 0, 0, 0, 4, 5, 7, 0, 0},
+            {0, 0, 0, 1, 0, 0, 0, 3, 0},
+            {0, 0, 1, 0, 0, 0, 0, 6, 8},
+            {0, 0, 8, 5, 0, 0, 0, 1, 0},
+            {0, 9, 0, 0, 0, 0, 4, 0, 0}
     };
 
     public static void main(String[] args) {
@@ -59,8 +59,8 @@ public class BacktrackingAlgorithm {
 
     private boolean isValid(int[][] board, int row, int column) {
         return rowConstraint(board, row) &&
-          columnConstraint(board, column) &&
-          subsectionConstraint(board, row, column);
+               columnConstraint(board, column) &&
+               subsectionConstraint(board, row, column);
     }
 
     private boolean subsectionConstraint(int[][] board, int row, int column) {
@@ -73,7 +73,9 @@ public class BacktrackingAlgorithm {
 
         for (int r = subsectionRowStart; r < subsectionRowEnd; r++) {
             for (int c = subsectionColumnStart; c < subsectionColumnEnd; c++) {
-                if (!checkConstraint(board, r, constraint, c)) return false;
+                if (!checkConstraint(board, r, constraint, c)) {
+                    return false;
+                }
             }
         }
         return true;
@@ -82,13 +84,13 @@ public class BacktrackingAlgorithm {
     private boolean columnConstraint(int[][] board, int column) {
         boolean[] constraint = new boolean[BOARD_SIZE];
         return IntStream.range(BOARD_START_INDEX, BOARD_SIZE)
-          .allMatch(row -> checkConstraint(board, row, constraint, column));
+                .allMatch(row -> checkConstraint(board, row, constraint, column));
     }
 
     private boolean rowConstraint(int[][] board, int row) {
         boolean[] constraint = new boolean[BOARD_SIZE];
         return IntStream.range(BOARD_START_INDEX, BOARD_SIZE)
-          .allMatch(column -> checkConstraint(board, row, constraint, column));
+                .allMatch(column -> checkConstraint(board, row, constraint, column));
     }
 
     private boolean checkConstraint(int[][] board, int row, boolean[] constraint, int column) {

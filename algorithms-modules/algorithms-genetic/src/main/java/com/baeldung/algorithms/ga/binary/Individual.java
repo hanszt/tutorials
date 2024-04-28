@@ -1,11 +1,9 @@
 package com.baeldung.algorithms.ga.binary;
 
-import lombok.Data;
 
-@Data
-public class Individual {
+public final class Individual {
 
-    protected int defaultGeneLength = 64;
+    final int defaultGeneLength = 64;
     private byte[] genes = new byte[defaultGeneLength];
     private int fitness = 0;
 
@@ -16,11 +14,11 @@ public class Individual {
         }
     }
 
-    protected byte getSingleGene(int index) {
+    byte getSingleGene(int index) {
         return genes[index];
     }
 
-    protected void setSingleGene(int index, byte value) {
+    void setSingleGene(int index, byte value) {
         genes[index] = value;
         fitness = 0;
     }
@@ -34,11 +32,11 @@ public class Individual {
 
     @Override
     public String toString() {
-        String geneString = "";
+        StringBuilder geneString = new StringBuilder();
         for (int i = 0; i < genes.length; i++) {
-            geneString += getSingleGene(i);
+            geneString.append(getSingleGene(i));
         }
-        return geneString;
+        return geneString.toString();
     }
 
 }

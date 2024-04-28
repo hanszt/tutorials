@@ -6,19 +6,19 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Computer {
+public final class Computer {
     private static final Logger LOG = LoggerFactory.getLogger(Computer.class);
 
-    private final SecureRandom rng = new SecureRandom();
+    private final SecureRandom secureRandom = new SecureRandom();
 
     public Board makeMove(Board input) {
         List<Cell> emptyCells = input.emptyCells();
         LOG.info("Number of empty cells: {}", emptyCells.size());
 
-        double numberToPlace = rng.nextDouble();
+        double numberToPlace = secureRandom.nextDouble();
         LOG.info("New number probability: {}", numberToPlace);
 
-        int indexToPlace = rng.nextInt(emptyCells.size());
+        int indexToPlace = secureRandom.nextInt(emptyCells.size());
         Cell cellToPlace = emptyCells.get(indexToPlace);
         LOG.info("Placing number into empty cell: {}", cellToPlace);
 

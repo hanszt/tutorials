@@ -11,12 +11,13 @@ public class SortingUtils {
     }
 
     public static int compare(int num1, int num2) {
-        if (num1 > num2)
+        if (num1 > num2) {
             return 1;
-        else if (num1 < num2)
+        } else if (num1 < num2) {
             return -1;
-        else
+        } else {
             return 0;
+        }
     }
 
     public static void printArray(int[] array) {

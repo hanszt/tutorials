@@ -5,13 +5,15 @@ public class MergeSort {
     public static void main(String[] args) {
         int[] a = { 5, 1, 6, 2, 3, 4 };
         mergeSort(a, a.length);
-        for (int i = 0; i < a.length; i++)
+        for (int i = 0; i < a.length; i++) {
             System.out.println(a[i]);
+        }
     }
 
     public static void mergeSort(int[] a, int n) {
-        if (n < 2)
+        if (n < 2) {
             return;
+        }
         int mid = n / 2;
         int[] l = new int[mid];
         int[] r = new int[n - mid];
@@ -34,17 +36,20 @@ public class MergeSort {
 
         while (i < left && j < right) {
 
-            if (l[i] <= r[j])
+            if (l[i] <= r[j]) {
                 a[k++] = l[i++];
-            else
+            } else {
                 a[k++] = r[j++];
+            }
 
         }
 
-        while (i < left)
+        while (i < left) {
             a[k++] = l[i++];
+        }
 
-        while (j < right)
+        while (j < right) {
             a[k++] = r[j++];
+        }
     }
 }

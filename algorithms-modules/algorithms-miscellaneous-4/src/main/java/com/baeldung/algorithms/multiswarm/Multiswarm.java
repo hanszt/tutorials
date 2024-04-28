@@ -187,29 +187,39 @@ public class Multiswarm {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
+		if (this == obj) {
+            return true;
+        }
+		if (obj == null) {
+            return false;
+        }
+		if (getClass() != obj.getClass()) {
+            return false;
+        }
 		Multiswarm other = (Multiswarm) obj;
-		if (Double.doubleToLongBits(bestFitness) != Double.doubleToLongBits(other.bestFitness))
-			return false;
-		if (!Arrays.equals(bestPosition, other.bestPosition))
-			return false;
+		if (Double.doubleToLongBits(bestFitness) != Double.doubleToLongBits(other.bestFitness)) {
+            return false;
+        }
+		if (!Arrays.equals(bestPosition, other.bestPosition)) {
+            return false;
+        }
 		if (fitnessFunction == null) {
-			if (other.fitnessFunction != null)
-				return false;
-		} else if (!fitnessFunction.equals(other.fitnessFunction))
-			return false;
+			if (other.fitnessFunction != null) {
+                return false;
+            }
+		} else if (!fitnessFunction.equals(other.fitnessFunction)) {
+            return false;
+        }
 		if (random == null) {
-			if (other.random != null)
-				return false;
-		} else if (!random.equals(other.random))
-			return false;
-		if (!Arrays.equals(swarms, other.swarms))
-			return false;
+			if (other.random != null) {
+                return false;
+            }
+		} else if (!random.equals(other.random)) {
+            return false;
+        }
+		if (!Arrays.equals(swarms, other.swarms)) {
+            return false;
+        }
 		return true;
 	}
 

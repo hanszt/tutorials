@@ -4,7 +4,9 @@ public class ThreeWayQuickSort {
 
     public static void threeWayQuickSort(int[] a, int begin, int end)
     {
-        if (end <= begin) return;
+        if (end <= begin) {
+            return;
+        }
 
         // partition
         int i = begin;

@@ -72,7 +72,9 @@ public class SkipList {
 
         if (current != null && current.value == value) {
             for (int i = 0; i <= level; i++) {
-                if (update[i].forward[i] != current) break;
+                if (update[i].forward[i] != current) {
+                    break;
+                }
                 update[i].forward[i] = current.forward[i];
             }
 
