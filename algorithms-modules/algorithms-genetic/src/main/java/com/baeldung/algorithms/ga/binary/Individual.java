@@ -1,15 +1,16 @@
 package com.baeldung.algorithms.ga.binary;
 
+import java.util.random.RandomGenerator;
 
 public final class Individual {
 
     final int defaultGeneLength = 64;
-    private byte[] genes = new byte[defaultGeneLength];
+    private final byte[] genes = new byte[defaultGeneLength];
     private int fitness = 0;
 
-    public Individual() {
+    public Individual(RandomGenerator randomGenerator) {
         for (int i = 0; i < genes.length; i++) {
-            byte gene = (byte) Math.round(Math.random());
+            byte gene = (byte) Math.round(randomGenerator.nextDouble());
             genes[i] = gene;
         }
     }
@@ -23,11 +24,11 @@ public final class Individual {
         fitness = 0;
     }
 
-    public int getFitness() {
-        if (fitness == 0) {
-            fitness = SimpleGeneticAlgorithm.getFitness(this);
+    public int updateIfZero(int fitness) {
+        if (this.fitness == 0) {
+            this.fitness = fitness;
         }
-        return fitness;
+        return this.fitness;
     }
 
     @Override

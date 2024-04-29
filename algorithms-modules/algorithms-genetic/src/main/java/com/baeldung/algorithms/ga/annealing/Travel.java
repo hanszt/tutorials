@@ -2,28 +2,26 @@ package com.baeldung.algorithms.ga.annealing;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
+import java.util.function.IntFunction;
+import java.util.function.IntUnaryOperator;
+import java.util.random.RandomGenerator;
+import java.util.stream.IntStream;
 
-public class Travel {
+public final class Travel {
 
-    private ArrayList<City> travel = new ArrayList<>();
-    private ArrayList<City> previousTravel = new ArrayList<>();
+    private List<City> travel = new ArrayList<>();
+    private List<City> previousTravel = new ArrayList<>();
 
-    public Travel(int numberOfCities) {
+    public Travel(int numberOfCities, IntFunction<City> generateCity) {
         for (int i = 0; i < numberOfCities; i++) {
-            travel.add(new City());
+            travel.add(generateCity.apply(i));
         }
     }
 
-    public void generateInitialTravel() {
-        if (travel.isEmpty()) {
-            new Travel(10);
-        }
-        Collections.shuffle(travel);
-    }
-
-    public void swapCities() {
-        int a = generateRandomIndex();
-        int b = generateRandomIndex();
+    public void swapCities(RandomGenerator randomGenerator) {
+        int a = randomGenerator.nextInt(travel.size());
+        int b = randomGenerator.nextInt(travel.size());
         previousTravel = new ArrayList<>(travel);
         City x = travel.get(a);
         City y = travel.get(b);
@@ -35,27 +33,20 @@ public class Travel {
         travel = previousTravel;
     }
 
-    private int generateRandomIndex() {
-        return (int) (Math.random() * travel.size());
-    }
-
     public City getCity(int index) {
         return travel.get(index);
     }
 
     public int getDistance() {
-        int distance = 0;
-        for (int index = 0; index < travel.size(); index++) {
-            City starting = getCity(index);
-            City destination;
-            if (index + 1 < travel.size()) {
-                destination = getCity(index + 1);
-            } else {
-                destination = getCity(0);
-            }
-            distance += starting.distanceToCity(destination);
-        }
-        return distance;
+        return IntStream.range(0, travel.size())
+                .map(this::getDistance)
+                .sum();
+    }
+
+    private int getDistance(int index) {
+        final City start = getCity(index);
+        final City destination = index + 1 < travel.size() ? getCity(index + 1) : getCity(0);
+        return (int) start.distanceToCity(destination);
     }
 
 }

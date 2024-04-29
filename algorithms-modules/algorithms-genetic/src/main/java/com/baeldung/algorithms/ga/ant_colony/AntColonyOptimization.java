@@ -4,35 +4,35 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.OptionalInt;
-import java.util.Random;
+import java.util.random.RandomGenerator;
 import java.util.stream.IntStream;
 
 public class AntColonyOptimization {
 
-    private double c = 1.0;
-    private double alpha = 1;
-    private double beta = 5;
-    private double evaporation = 0.5;
-    private double Q = 500;
-    private double antFactor = 0.8;
-    private double randomFactor = 0.01;
+    private static final double c = 1.0;
+    private static final double alpha = 1;
+    private static final double beta = 5;
+    private static final double evaporation = 0.5;
+    private static final double Q = 500;
+    private static final double antFactor = 0.8;
+    private static final double randomFactor = 0.01;
+    private static final int maxIterations = 1000;
 
-    private int maxIterations = 1000;
-
-    private int numberOfCities;
-    private int numberOfAnts;
-    private double graph[][];
-    private double trails[][];
-    private List<Ant> ants = new ArrayList<>();
-    private Random random = new Random();
-    private double probabilities[];
+    private final int numberOfCities;
+    private final int numberOfAnts;
+    private final double[][] graph;
+    private final double[][] trails;
+    private final List<Ant> ants = new ArrayList<>();
+    private final RandomGenerator random;
+    private final double[] probabilities;
 
     private int currentIndex;
 
     private int[] bestTourOrder;
     private double bestTourLength;
 
-    public AntColonyOptimization(int noOfCities) {
+    public AntColonyOptimization(int noOfCities, RandomGenerator random) {
+        this.random = random;
         graph = generateRandomMatrix(noOfCities);
         numberOfCities = graph.length;
         numberOfAnts = (int) (numberOfCities * antFactor);
@@ -47,11 +47,11 @@ public class AntColonyOptimization {
      * Generate initial solution
      */
     public double[][] generateRandomMatrix(int n) {
-        double[][] randomMatrix = new double[n][n];
-        IntStream.range(0, n)
-            .forEach(i -> IntStream.range(0, n)
-                .forEach(j -> randomMatrix[i][j] = Math.abs(random.nextInt(100) + 1)));
-        return randomMatrix;
+        return IntStream.range(0, n)
+                .mapToObj(i -> IntStream.range(0, n)
+                        .mapToDouble(j -> Math.abs(random.nextInt(100) + 1))
+                        .toArray())
+                .toArray(double[][]::new);
     }
 
     /**
@@ -79,7 +79,7 @@ public class AntColonyOptimization {
             });
         System.out.println("Best tour length: " + (bestTourLength - numberOfCities));
         System.out.println("Best tour order: " + Arrays.toString(bestTourOrder));
-        return bestTourOrder.clone();
+        return Arrays.copyOf(bestTourOrder, bestTourOrder.length);
     }
 
     /**
@@ -87,12 +87,10 @@ public class AntColonyOptimization {
      */
     private void setupAnts() {
         IntStream.range(0, numberOfAnts)
-            .forEach(i -> {
-                ants.forEach(ant -> {
-                    ant.clear();
-                    ant.visitCity(-1, random.nextInt(numberOfCities));
-                });
-            });
+            .forEach(i -> ants.forEach(ant -> {
+                ant.clear();
+                ant.visitCity(-1, random.nextInt(numberOfCities));
+            }));
         currentIndex = 0;
     }
 
@@ -134,7 +132,7 @@ public class AntColonyOptimization {
     }
 
     /**
-     * Calculate the next city picks probabilites
+     * Calculate the next city picks probabilities
      */
     public void calculateProbabilities(Ant ant) {
         int i = ant.trail[currentIndex];
@@ -177,8 +175,9 @@ public class AntColonyOptimization {
      */
     private void updateBest() {
         if (bestTourOrder == null) {
-            bestTourOrder = ants.get(0).trail;
-            bestTourLength = ants.get(0)
+            final var first = ants.getFirst();
+            bestTourOrder = first.trail;
+            bestTourLength = first
                 .trailLength(graph);
         }
         for (Ant a : ants) {
@@ -194,10 +193,8 @@ public class AntColonyOptimization {
      */
     private void clearTrails() {
         IntStream.range(0, numberOfCities)
-            .forEach(i -> {
-                IntStream.range(0, numberOfCities)
-                    .forEach(j -> trails[i][j] = c);
-            });
+            .forEach(i -> IntStream.range(0, numberOfCities)
+                .forEach(j -> trails[i][j] = c));
     }
 
 }
