@@ -1,25 +1,32 @@
 package com.baeldung.algorithms.ga.annealing;
 
-public class SimulatedAnnealing {
+import java.util.random.RandomGenerator;
 
-    private static Travel travel = new Travel(10);
+public final class SimulatedAnnealing {
 
-    public static double simulateAnnealing(double startingTemperature, int numberOfIterations, double coolingRate) {
+    private final RandomGenerator randomGenerator;
+    private final Travel travel;
+
+    public SimulatedAnnealing(RandomGenerator randomGenerator, Travel travel) {
+        this.randomGenerator = randomGenerator;
+        this.travel = travel;
+    }
+
+    public double simulateAnnealing(double startingTemperature, int numberOfIterations, double coolingRate) {
         System.out.println("Starting SA with temperature: " + startingTemperature + ", # of iterations: " + numberOfIterations + " and colling rate: " + coolingRate);
         double t = startingTemperature;
-        travel.generateInitialTravel();
+
         double bestDistance = travel.getDistance();
         System.out.println("Initial distance of travel: " + bestDistance);
-        Travel bestSolution = travel;
-        Travel currentSolution = bestSolution;
+        Travel currentSolution = travel;
 
         for (int i = 0; i < numberOfIterations; i++) {
             if (t > 0.1) {
-                currentSolution.swapCities();
+                currentSolution.swapCities(randomGenerator);
                 double currentDistance = currentSolution.getDistance();
                 if (currentDistance < bestDistance) {
                     bestDistance = currentDistance;
-                } else if (Math.exp((bestDistance - currentDistance) / t) < Math.random()) {
+                } else if (Math.exp((bestDistance - currentDistance) / t) < randomGenerator.nextDouble()) {
                     currentSolution.revertSwap();
                 }
                 t *= coolingRate;

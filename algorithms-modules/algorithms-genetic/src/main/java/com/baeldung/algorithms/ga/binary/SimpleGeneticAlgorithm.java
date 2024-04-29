@@ -1,40 +1,52 @@
 package com.baeldung.algorithms.ga.binary;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.random.RandomGenerator;
 
 public final class SimpleGeneticAlgorithm {
 
-    private static final double uniformRate = 0.5;
-    private static final double mutationRate = 0.025;
-    private static final int tournamentSize = 5;
-    private static final boolean elitism = true;
-    private static byte[] solution = new byte[64];
+    private static final double UNIFORM_RATE = 0.5;
+    private static final double MUTATION_RATE = 0.025;
+    private static final int TOURNAMENT_SIZE = 5;
+    private static final boolean ELITISM = true;
 
-    public boolean runAlgorithm(int populationSize, String solution) {
-        if (solution.length() != SimpleGeneticAlgorithm.solution.length) {
-            throw new RuntimeException("The solution needs to have " + SimpleGeneticAlgorithm.solution.length + " bytes");
-        }
-        setSolution(solution);
-        Population myPop = new Population(populationSize, true);
+    private final byte[] solution;
+    private final RandomGenerator randomGenerator;
 
+    public SimpleGeneticAlgorithm(RandomGenerator randomGenerator, String solution) {
+        this.solution = solutionAsBytes(solution);
+        this.randomGenerator = randomGenerator;
+    }
+
+    public List<String> runAlgorithm(int populationSize) {
+        Population myPop = new Population(populationSize, true, randomGenerator);
+
+        final var builder = new ArrayList<String>();
         int generationCount = 1;
-        while (myPop.getFittest().getFitness() < getMaxFitness()) {
-            System.out.println("Generation: " + generationCount + " Correct genes found: " + myPop.getFittest().getFitness());
+        while (true) {
+            final var fittest = myPop.getFittest(this::compareWithSolution);
+            if (!(fittest.updateIfZero(compareWithSolution(fittest)) < getMaxFitness())) {
+                break;
+            }
+            final var fittest1 = myPop.getFittest(this::compareWithSolution);
+            builder.add("Generation: " + generationCount + " Correct genes found: " + fittest1.updateIfZero(compareWithSolution(fittest1)));
             myPop = evolvePopulation(myPop);
             generationCount++;
         }
-        System.out.println("Solution found!");
-        System.out.println("Generation: " + generationCount);
-        System.out.println("Genes: ");
-        System.out.println(myPop.getFittest());
-        return true;
+        builder.add("Solution found!");
+        builder.add("Generation: " + generationCount);
+        builder.add("Genes:");
+        builder.add(myPop.getFittest(this::compareWithSolution).toString());
+        return builder;
     }
 
     public Population evolvePopulation(Population pop) {
-        int elitismOffset;
-        Population newPopulation = new Population(pop.individuals().size(), false);
+        Population newPopulation = new Population(pop.individuals().size(), false, randomGenerator);
 
-        if (elitism) {
-            newPopulation.individuals().addFirst(pop.getFittest());
+        final int elitismOffset;
+        if (ELITISM) {
+            newPopulation.individuals().addFirst(pop.getFittest(this::compareWithSolution));
             elitismOffset = 1;
         } else {
             elitismOffset = 0;
@@ -55,9 +67,9 @@ public final class SimpleGeneticAlgorithm {
     }
 
     private Individual crossover(Individual indiv1, Individual indiv2) {
-        Individual newSol = new Individual();
+        Individual newSol = new Individual(randomGenerator);
         for (int i = 0; i < newSol.defaultGeneLength; i++) {
-            if (Math.random() <= uniformRate) {
+            if (randomGenerator.nextDouble() <= UNIFORM_RATE) {
                 newSol.setSingleGene(i, indiv1.getSingleGene(i));
             } else {
                 newSol.setSingleGene(i, indiv2.getSingleGene(i));
@@ -66,26 +78,25 @@ public final class SimpleGeneticAlgorithm {
         return newSol;
     }
 
-    private void mutate(Individual indiv) {
-        for (int i = 0; i < indiv.defaultGeneLength; i++) {
-            if (Math.random() <= mutationRate) {
-                byte gene = (byte) Math.round(Math.random());
-                indiv.setSingleGene(i, gene);
+    private void mutate(Individual individual) {
+        for (int i = 0; i < individual.defaultGeneLength; i++) {
+            if (randomGenerator.nextDouble() <= MUTATION_RATE) {
+                byte gene = (byte) Math.round(randomGenerator.nextDouble());
+                individual.setSingleGene(i, gene);
             }
         }
     }
 
     private Individual tournamentSelection(Population pop) {
-        Population tournament = new Population(tournamentSize, false);
-        for (int i = 0; i < tournamentSize; i++) {
-            int randomId = (int) (Math.random() * pop.individuals().size());
+        Population tournament = new Population(TOURNAMENT_SIZE, false, randomGenerator);
+        for (int i = 0; i < TOURNAMENT_SIZE; i++) {
+            int randomId = (int) (randomGenerator.nextDouble() * pop.individuals().size());
             tournament.individuals().add(i, pop.getIndividual(randomId));
         }
-        Individual fittest = tournament.getFittest();
-        return fittest;
+        return tournament.getFittest(this::compareWithSolution);
     }
 
-    protected static int getFitness(Individual individual) {
+    int compareWithSolution(Individual individual) {
         int fitness = 0;
         for (int i = 0; i < individual.defaultGeneLength && i < solution.length; i++) {
             if (individual.getSingleGene(i) == solution[i]) {
@@ -95,21 +106,21 @@ public final class SimpleGeneticAlgorithm {
         return fitness;
     }
 
-    protected int getMaxFitness() {
-        int maxFitness = solution.length;
-        return maxFitness;
+    private int getMaxFitness() {
+        return solution.length;
     }
 
-    protected void setSolution(String newSolution) {
-        solution = new byte[newSolution.length()];
-        for (int i = 0; i < newSolution.length(); i++) {
-            String character = newSolution.substring(i, i + 1);
+    private static byte[] solutionAsBytes(String solution) {
+        final var bytes = new byte[solution.length()];
+        for (int i = 0; i < solution.length(); i++) {
+            String character = solution.substring(i, i + 1);
             if (character.contains("0") || character.contains("1")) {
-                solution[i] = Byte.parseByte(character);
+                bytes[i] = Byte.parseByte(character);
             } else {
-                solution[i] = 0;
+                bytes[i] = 0;
             }
         }
+        return bytes;
     }
 
 }
