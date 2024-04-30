@@ -10,7 +10,7 @@ public class Tree {
         return root;
     }
 
-    void setRoot(Node root) {
+    void setRoot(final Node root) {
         this.root = root;
     }
 }

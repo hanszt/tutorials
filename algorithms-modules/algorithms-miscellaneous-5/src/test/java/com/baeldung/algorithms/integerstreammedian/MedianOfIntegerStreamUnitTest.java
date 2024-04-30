@@ -30,7 +30,7 @@ class MedianOfIntegerStreamUnitTest {
     }
 
     private Map<Integer, Double> testcaseFixture() {
-        return new LinkedHashMap<Integer, Double>() {{
+        return new LinkedHashMap<>() {{
             put(1, 1d);
             put(7, 4d);
             put(5, 5d);

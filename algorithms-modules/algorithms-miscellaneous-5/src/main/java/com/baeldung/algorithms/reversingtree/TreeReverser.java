@@ -18,7 +18,7 @@ public class TreeReverser {
     }
 
     public void reverseIterative(TreeNode treeNode) {
-        LinkedList<TreeNode> queue = new LinkedList<TreeNode>();
+        LinkedList<TreeNode> queue = new LinkedList<>();
 
         if (treeNode != null) {
             queue.add(treeNode);

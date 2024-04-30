@@ -22,11 +22,11 @@ class LinkedListFindMiddleUnitTest {
 
     private static MyNode<String> createNodesList(int n) {
 
-        MyNode<String> head = new MyNode<String>("1");
+        MyNode<String> head = new MyNode<>("1");
         MyNode<String> current = head;
 
         for (int i = 2; i <= n; i++) {
-            MyNode<String> newNode = new MyNode<String>(String.valueOf(i));
+            MyNode<String> newNode = new MyNode<>(String.valueOf(i));
             current.setNext(newNode);
             current = newNode;
         }

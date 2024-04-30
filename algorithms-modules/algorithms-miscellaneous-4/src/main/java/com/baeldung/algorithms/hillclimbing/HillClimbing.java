@@ -7,22 +7,19 @@ import java.util.Optional;
 import java.util.Stack;
 
 public class HillClimbing {
-    public static void main(String[] args) {
-        HillClimbing hillClimbing = new HillClimbing();
-        String blockArr[] = { "B", "C", "D", "A" };
-        Stack<String> startState = hillClimbing.getStackWithValues(blockArr);
-        String goalBlockArr[] = { "A", "B", "C", "D" };
-        Stack<String> goalState = hillClimbing.getStackWithValues(goalBlockArr);
-        try {
-            List<State> solutionSequence = hillClimbing.getRouteWithHillClimbing(startState, goalState);
-            solutionSequence.forEach(HillClimbing::printEachStep);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+    public static void main(final String[] args) {
+        final var hillClimbing = new HillClimbing();
+        final var blockArr = new String[]{"B", "C", "D", "A"};
+        final var startState = hillClimbing.getStackWithValues(blockArr);
+        final var goalBlockArr = new String[]{"A", "B", "C", "D"};
+        final var goalState = hillClimbing.getStackWithValues(goalBlockArr);
+        final var solutionSequence = hillClimbing.getRouteWithHillClimbing(startState, goalState);
+        solutionSequence.forEach(HillClimbing::printEachStep);
     }
 
-    private static void printEachStep(State state) {
-        List<Stack<String>> stackList = state.getState();
+    private static void printEachStep(final State state) {
+        final var stackList = state.getState();
         System.out.println("----------------");
         stackList.forEach(stack -> {
             while (!stack.isEmpty()) {
@@ -32,9 +29,9 @@ public class HillClimbing {
         });
     }
 
-    private Stack<String> getStackWithValues(String[] blocks) {
-        Stack<String> stack = new Stack<>();
-        for (String block : blocks) {
+    private Stack<String> getStackWithValues(final String[] blocks) {
+        final var stack = new Stack<String>();
+        for (final var block : blocks) {
             stack.push(block);
         }
         return stack;
@@ -43,22 +40,22 @@ public class HillClimbing {
     /**
      * This method prepares path from init state to goal state
      */
-    public List<State> getRouteWithHillClimbing(Stack<String> initStateStack, Stack<String> goalStateStack) {
-        List<Stack<String>> initStateStackList = new ArrayList<>();
+    public List<State> getRouteWithHillClimbing(final Stack<String> initStateStack, final Stack<String> goalStateStack) {
+        final List<Stack<String>> initStateStackList = new ArrayList<>();
         initStateStackList.add(initStateStack);
-        int initStateHeuristics = getHeuristicsValue(initStateStackList, goalStateStack);
-        State initState = new State(initStateStackList, initStateHeuristics);
+        final var initStateHeuristics = getHeuristicsValue(initStateStackList, goalStateStack);
+        final var initState = new State(initStateStackList, initStateHeuristics);
 
-        List<State> resultPath = new ArrayList<>();
+        final List<State> resultPath = new ArrayList<>();
         resultPath.add(new State(initState));
 
-        State currentState = initState;
-        boolean noStateFound = false;
+        var currentState = initState;
+        var noStateFound = false;
         while (!currentState.getState()
-            .get(0)
-            .equals(goalStateStack) || noStateFound) {
+                .getFirst()
+                .equals(goalStateStack) || noStateFound) {
             noStateFound = true;
-            State nextState = findNextState(currentState, goalStateStack);
+            final var nextState = findNextState(currentState, goalStateStack);
             if (nextState != null) {
                 noStateFound = false;
                 currentState = nextState;
@@ -73,27 +70,25 @@ public class HillClimbing {
      * This method finds new state from current state based on goal and
      * heuristics
      */
-    public State findNextState(State currentState, Stack<String> goalStateStack) {
-        List<Stack<String>> listOfStacks = currentState.getState();
-        int currentStateHeuristics = currentState.getHeuristics();
+    public State findNextState(final State currentState, final Stack<String> goalStateStack) {
+        final var listOfStacks = currentState.getState();
+        final var currentStateHeuristics = currentState.getHeuristics();
 
         return listOfStacks.stream()
-            .map(stack -> {
-                return applyOperationsOnState(listOfStacks, stack, currentStateHeuristics, goalStateStack);
-            })
-            .filter(Objects::nonNull)
-            .findFirst()
-          .orElse(null);
+                .map(stack -> applyOperationsOnState(listOfStacks, stack, currentStateHeuristics, goalStateStack))
+                .filter(Objects::nonNull)
+                .findFirst()
+                .orElse(null);
     }
 
     /**
      * This method applies operations on the current state to get a new state
      */
-    public State applyOperationsOnState(List<Stack<String>> listOfStacks, Stack<String> stack, int currentStateHeuristics, Stack<String> goalStateStack) {
+    public State applyOperationsOnState(final List<Stack<String>> listOfStacks, final Stack<String> stack, final int currentStateHeuristics, final Stack<String> goalStateStack) {
         State tempState;
-        List<Stack<String>> tempStackList = new ArrayList<>(listOfStacks);
-        String block = stack.pop();
-        if (stack.size() == 0) {
+        final List<Stack<String>> tempStackList = new ArrayList<>(listOfStacks);
+        final var block = stack.pop();
+        if (stack.isEmpty()) {
             tempStackList.remove(stack);
         }
         tempState = pushElementToNewStack(tempStackList, block, currentStateHeuristics, goalStateStack);
@@ -105,18 +100,18 @@ public class HillClimbing {
         }
         return tempState;
     }
-    
+
     /**
      * Operation to be applied on a state in order to find new states. This
      * operation pushes an element into a new stack
      */
-    private State pushElementToNewStack(List<Stack<String>> currentStackList, String block, int currentStateHeuristics, Stack<String> goalStateStack) {
+    private State pushElementToNewStack(final List<Stack<String>> currentStackList, final String block, final int currentStateHeuristics, final Stack<String> goalStateStack) {
         State newState = null;
-        Stack<String> newStack = new Stack<>();
+        final var newStack = new Stack<String>();
         newStack.push(block);
 
         currentStackList.add(newStack);
-        int newStateHeuristics = getHeuristicsValue(currentStackList, goalStateStack);
+        final var newStateHeuristics = getHeuristicsValue(currentStackList, goalStateStack);
         if (newStateHeuristics > currentStateHeuristics) {
             newState = new State(currentStackList, newStateHeuristics);
         } else {
@@ -130,25 +125,23 @@ public class HillClimbing {
      * operation pushes an element into one of the other stacks to explore new
      * states
      */
-    private State pushElementToExistingStacks(Stack currentStack, List<Stack<String>> currentStackList, String block, int currentStateHeuristics, Stack<String> goalStateStack) {
+    private State pushElementToExistingStacks(final Stack<String> currentStack, final List<Stack<String>> currentStackList, final String block, final int currentStateHeuristics, final Stack<String> goalStateStack) {
 
-        Optional<State> newState = currentStackList.stream()
-            .filter(stack -> stack != currentStack)
-            .map(stack -> {
-                return pushElementToStack(stack, block, currentStackList, currentStateHeuristics, goalStateStack);
-            })
-            .filter(Objects::nonNull)
-            .findFirst();
+        final var newState = currentStackList.stream()
+                .filter(stack -> stack != currentStack)
+                .map(stack -> pushElementToStack(stack, block, currentStackList, currentStateHeuristics, goalStateStack))
+                .filter(Objects::nonNull)
+                .findFirst();
 
         return newState.orElse(null);
     }
-    
+
     /**
-     * This method pushes a block to the stack and returns new state if its closer to goal
+     * This method pushes a block to the stack and returns new state if it's closer to goal
      */
-    private State pushElementToStack(Stack stack, String block, List<Stack<String>> currentStackList, int currentStateHeuristics, Stack<String> goalStateStack) {
+    private State pushElementToStack(final Stack<String> stack, final String block, final List<Stack<String>> currentStackList, final int currentStateHeuristics, final Stack<String> goalStateStack) {
         stack.push(block);
-        int newStateHeuristics = getHeuristicsValue(currentStackList, goalStateStack);
+        final var newStateHeuristics = getHeuristicsValue(currentStackList, goalStateStack);
         if (newStateHeuristics > currentStateHeuristics) {
             return new State(currentStackList, newStateHeuristics);
         }
@@ -160,24 +153,20 @@ public class HillClimbing {
      * This method returns heuristics value for given state with respect to goal
      * state
      */
-    public int getHeuristicsValue(List<Stack<String>> currentState, Stack<String> goalStateStack) {
-        Integer heuristicValue;
-        heuristicValue = currentState.stream()
-            .mapToInt(stack -> {
-                return getHeuristicsValueForStack(stack, currentState, goalStateStack);
-            })
-            .sum();
-        return heuristicValue;
+    public int getHeuristicsValue(final List<Stack<String>> currentState, final Stack<String> goalStateStack) {
+        return currentState.stream()
+                .mapToInt(stack -> getHeuristicsValueForStack(stack, goalStateStack))
+                .sum();
     }
-    
+
     /**
      * This method returns heuristics value for a particular stack
      */
-    public int getHeuristicsValueForStack(Stack<String> stack, List<Stack<String>> currentState, Stack<String> goalStateStack) {
-        int stackHeuristics = 0;
-        boolean isPositioneCorrect = true;
-        int goalStartIndex = 0;
-        for (String currentBlock : stack) {
+    public int getHeuristicsValueForStack(final Stack<String> stack, final Stack<String> goalStateStack) {
+        var stackHeuristics = 0;
+        var isPositioneCorrect = true;
+        var goalStartIndex = 0;
+        for (final var currentBlock : stack) {
             if (isPositioneCorrect && currentBlock.equals(goalStateStack.get(goalStartIndex))) {
                 stackHeuristics += goalStartIndex;
             } else {

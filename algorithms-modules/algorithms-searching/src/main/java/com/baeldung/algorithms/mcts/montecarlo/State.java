@@ -1,10 +1,11 @@
 package com.baeldung.algorithms.mcts.montecarlo;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.baeldung.algorithms.mcts.tictactoe.Board;
 import com.baeldung.algorithms.mcts.tictactoe.Position;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.random.RandomGenerator;
 
 public class State {
     private Board board;
@@ -51,10 +52,6 @@ public class State {
         return visitCount;
     }
 
-    public void setVisitCount(int visitCount) {
-        this.visitCount = visitCount;
-    }
-
     double getWinScore() {
         return winScore;
     }
@@ -66,12 +63,12 @@ public class State {
     public List<State> getAllPossibleStates() {
         List<State> possibleStates = new ArrayList<>();
         List<Position> availablePositions = this.board.getEmptyPositions();
-        availablePositions.forEach(p -> {
+        for (Position p : availablePositions) {
             State newState = new State(this.board);
             newState.setPlayerNo(3 - this.playerNo);
             newState.getBoard().performMove(newState.getPlayerNo(), p);
             possibleStates.add(newState);
-        });
+        }
         return possibleStates;
     }
 
@@ -85,14 +82,24 @@ public class State {
         }
     }
 
-    void randomPlay() {
+    void randomPlay(RandomGenerator random) {
         List<Position> availablePositions = this.board.getEmptyPositions();
         int totalPossibilities = availablePositions.size();
-        int selectRandom = (int) (Math.random() * totalPossibilities);
+        int selectRandom = random.nextInt(totalPossibilities);
         this.board.performMove(this.playerNo, availablePositions.get(selectRandom));
     }
 
     void togglePlayer() {
         this.playerNo = 3 - this.playerNo;
+    }
+
+    @Override
+    public String toString() {
+        return "State{" +
+               "board=" + board.boardAsString() +
+               ", playerNo=" + playerNo +
+               ", visitCount=" + visitCount +
+               ", winScore=" + winScore +
+               '}';
     }
 }

@@ -6,13 +6,15 @@ import org.junit.Test;
 
 import com.baeldung.algorithms.support.MayFailRule;
 
+import java.util.Random;
+
 /**
- * Test for {@link Multiswarm}.
+ * Test for {@link MultiSwarm}.
  * 
  * @author Donato Rimenti
  * 
  */
-public class MultiswarmUnitTest {
+public class MultiSwarmUnitTest {
 
 	/**
 	 * Rule for handling expected failures. We use this since this test may
@@ -37,7 +39,7 @@ public class MultiswarmUnitTest {
 	 */
 	@Test
 	public void givenMultiswarm_whenThousandIteration_thenSolutionFound() {
-		Multiswarm multiswarm = new Multiswarm(50, 1000, new LolFitnessFunction());
+		MultiSwarm multiswarm = new MultiSwarm(50, 1000, new LolFitnessFunction(), new Random(0));
 
 		// Iterates 1000 times through the main loop and prints the result.
 		for (int i = 0; i < 1000; i++) {

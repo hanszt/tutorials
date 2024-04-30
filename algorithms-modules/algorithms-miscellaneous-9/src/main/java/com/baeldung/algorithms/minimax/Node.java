@@ -9,7 +9,7 @@ public class Node {
     private int score;
     private List<Node> children;
 
-    public Node(int noOfBones, boolean isMaxPlayer) {
+    public Node(final int noOfBones, final boolean isMaxPlayer) {
         this.noOfBones = noOfBones;
         this.isMaxPlayer = isMaxPlayer;
         children = new ArrayList<>();
@@ -27,7 +27,7 @@ public class Node {
         return score;
     }
 
-    void setScore(int score) {
+    void setScore(final int score) {
         this.score = score;
     }
 
@@ -35,7 +35,7 @@ public class Node {
         return children;
     }
 
-    void addChild(Node newNode) {
+    void addChild(final Node newNode) {
         children.add(newNode);
     }
 

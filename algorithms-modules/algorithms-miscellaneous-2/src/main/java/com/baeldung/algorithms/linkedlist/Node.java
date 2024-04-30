@@ -5,7 +5,7 @@ public class Node<T> {
     Node<T> next;
 
     public static <T> Node<T> createNewNode(T data, Node<T> next) {
-        Node<T> node = new Node<T>();
+        Node<T> node = new Node<>();
         node.data = data;
         node.next = next;
         return node;

@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 
 import java.util.*;
+import java.util.random.RandomGenerator;
 
 import static com.baeldung.algorithms.kthsmallest.KthSmallest.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -115,49 +116,49 @@ class KthSmallestUnitTest {
 
         @Test
         public void and_kth_element_is_in_first_list() {
-            int[] list1 = new int[]{1,2,3,4};
-            int[] list2 = new int[]{1,3,4,5};
-            int result = findKthSmallestElement(3,  list1, list2);
+            int[] list1 = new int[]{1, 2, 3, 4};
+            int[] list2 = new int[]{1, 3, 4, 5};
+            int result = findKthSmallestElement(3, list1, list2);
             assertEquals(2, result);
         }
 
         @Test
         public void and_kth_is_in_second_list() {
-            int[] list1 = new int[]{1,3,4,4};
-            int[] list2 = new int[]{1,2,4,5};
-            int result = findKthSmallestElement(3,  list1, list2);
+            int[] list1 = new int[]{1, 3, 4, 4};
+            int[] list2 = new int[]{1, 2, 4, 5};
+            int result = findKthSmallestElement(3, list1, list2);
             assertEquals(2, result);
         }
 
         @Test
         public void and_elements_in_first_list_are_all_smaller_than_second_list() {
-            int[] list1 = new int[]{1,3,7,9};
-            int[] list2 = new int[]{11,12,14,15};
-            int result = findKthSmallestElement(3,  list1, list2);
+            int[] list1 = new int[]{1, 3, 7, 9};
+            int[] list2 = new int[]{11, 12, 14, 15};
+            int result = findKthSmallestElement(3, list1, list2);
             assertEquals(7, result);
         }
 
         @Test
         public void and_elements_in_first_list_are_all_smaller_than_second_list2() {
-            int[] list1 = new int[]{1,3,7,9};
-            int[] list2 = new int[]{11,12,14,15};
-            int result = findKthSmallestElement(4,  list1, list2);
+            int[] list1 = new int[]{1, 3, 7, 9};
+            int[] list2 = new int[]{11, 12, 14, 15};
+            int result = findKthSmallestElement(4, list1, list2);
             assertEquals(9, result);
         }
 
         @Test
         public void and_only_elements_from_second_list_are_part_of_result() {
-            int[] list1 = new int[]{11,12,14,15};
-            int[] list2 = new int[]{1,3,7,9};
-            int result = findKthSmallestElement(3,  list1, list2);
+            int[] list1 = new int[]{11, 12, 14, 15};
+            int[] list2 = new int[]{1, 3, 7, 9};
+            int result = findKthSmallestElement(3, list1, list2);
             assertEquals(7, result);
         }
 
         @Test
         public void and_only_elements_from_second_list_are_part_of_result2() {
-            int[] list1 = new int[]{11,12,14,15};
-            int[] list2 = new int[]{1,3,7,9};
-            int result = findKthSmallestElement(4,  list1, list2);
+            int[] list1 = new int[]{11, 12, 14, 15};
+            int[] list2 = new int[]{1, 3, 7, 9};
+            int result = findKthSmallestElement(4, list1, list2);
             assertEquals(9, result);
         }
     }
@@ -254,23 +255,20 @@ class KthSmallestUnitTest {
         }
     }
 
-//    @Test
-//    public void randomTests() {
-//        IntStream.range(1, 100000).forEach(i -> random());
-//    }
 
-    private void random() {
+    @Test
+    void random() {
 
-        Random random = new Random();
+        Random random = new Random(0);
         int length1 = (Math.abs(random.nextInt())) % 1000 + 1;
         int length2 = (Math.abs(random.nextInt())) % 1000 + 1;
 
-        int[] list1 = sortedRandomIntArrayOfLength(length1);
-        int[] list2 = sortedRandomIntArrayOfLength(length2);
+        int[] list1 = sortedRandomIntArrayOfLength(length1, random);
+        int[] list2 = sortedRandomIntArrayOfLength(length2, random);
 
-        int k = (Math.abs(random.nextInt()) % (length1 + length2)) + 1 ;
+        int k = (Math.abs(random.nextInt()) % (length1 + length2)) + 1;
 
-        int result = findKthSmallestElement(k,  list1, list2);
+        int result = findKthSmallestElement(k, list1, list2);
 
         int result2 = getKthElementSorted(list1, list2, k);
 
@@ -280,9 +278,9 @@ class KthSmallestUnitTest {
         assertEquals(result2, result3);
     }
 
-    private int[] sortedRandomIntArrayOfLength(int length) {
-        int[] intArray = new Random().ints(length).toArray();
-        Arrays.sort(intArray);
-        return intArray;
+    private int[] sortedRandomIntArrayOfLength(int length, RandomGenerator random) {
+        return random.ints(length)
+                .sorted()
+                .toArray();
     }
 }

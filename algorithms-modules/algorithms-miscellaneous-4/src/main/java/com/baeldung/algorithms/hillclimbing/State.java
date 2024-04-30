@@ -4,29 +4,27 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-public class State {
-    private List<Stack<String>> state;
+import static java.util.stream.Collectors.toCollection;
+
+public final class State {
+    private final List<Stack<String>> state;
     private int heuristics;
 
-    public State(List<Stack<String>> state) {
+    public State(final List<Stack<String>> state) {
         this.state = state;
     }
 
-    State(List<Stack<String>> state, int heuristics) {
+    State(final List<Stack<String>> state, final int heuristics) {
         this.state = state;
         this.heuristics = heuristics;
     }
 
-    State(State state) {
-        if (state != null) {
-            this.state = new ArrayList<>();
-            for (Stack s : state.getState()) {
-                Stack s1;
-                s1 = (Stack) s.clone();
-                this.state.add(s1);
-            }
-            this.heuristics = state.getHeuristics();
+    State(final State state) {
+        this.state = new ArrayList<>();
+        for (final Stack<String> s : state.getState()) {
+            this.state.add(s.stream().collect(toCollection(Stack::new)));
         }
+        this.heuristics = state.getHeuristics();
     }
 
     public List<Stack<String>> getState() {
@@ -37,7 +35,7 @@ public class State {
         return heuristics;
     }
 
-    public void setHeuristics(int heuristics) {
+    public void setHeuristics(final int heuristics) {
         this.heuristics = heuristics;
     }
 }

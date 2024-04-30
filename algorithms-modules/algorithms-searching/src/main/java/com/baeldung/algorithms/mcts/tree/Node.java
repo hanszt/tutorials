@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.random.RandomGenerator;
 
 import com.baeldung.algorithms.mcts.montecarlo.State;
 
@@ -64,16 +65,14 @@ public class Node {
         this.childArray = childArray;
     }
 
-    public Node getRandomChildNode() {
+    public Node getRandomChildNode(RandomGenerator random) {
         int noOfPossibleMoves = this.childArray.size();
-        int selectRandom = (int) (Math.random() * noOfPossibleMoves);
+        int selectRandom = random.nextInt(noOfPossibleMoves);
         return this.childArray.get(selectRandom);
     }
 
     public Node getChildWithMaxScore() {
-        return Collections.max(this.childArray, Comparator.comparing(c -> {
-            return c.getState().getVisitCount();
-        }));
+        return Collections.max(this.childArray, Comparator.comparing(c -> c.getState().getVisitCount()));
     }
 
 }

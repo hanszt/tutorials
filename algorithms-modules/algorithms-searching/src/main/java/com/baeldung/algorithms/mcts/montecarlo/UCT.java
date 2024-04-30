@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.baeldung.algorithms.mcts.tree.Node;
 
-public class UCT {
+public final class UCT {
 
     public static double uctValue(int totalVisit, double nodeWinScore, int nodeVisit) {
         if (nodeVisit == 0) {

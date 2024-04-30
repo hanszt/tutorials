@@ -12,7 +12,7 @@ public class SubstringPalindromeUnitTest {
     private static final String INPUT_INDEED = "indeed";
     private static final String INPUT_ABABAC = "ababac";
 
-    Set<String> EXPECTED_PALINDROME_BUBBLE = new HashSet<String>() {
+    Set<String> EXPECTED_PALINDROME_BUBBLE = new HashSet<>() {
         {
             add("b");
             add("u");
@@ -23,7 +23,7 @@ public class SubstringPalindromeUnitTest {
         }
     };
 
-    Set<String> EXPECTED_PALINDROME_CIVIC = new HashSet<String>() {
+    Set<String> EXPECTED_PALINDROME_CIVIC = new HashSet<>() {
         {
             add("civic");
             add("ivi");
@@ -33,7 +33,7 @@ public class SubstringPalindromeUnitTest {
         }
     };
 
-    Set<String> EXPECTED_PALINDROME_INDEED = new HashSet<String>() {
+    Set<String> EXPECTED_PALINDROME_INDEED = new HashSet<>() {
         {
             add("i");
             add("n");
@@ -44,7 +44,7 @@ public class SubstringPalindromeUnitTest {
         }
     };
 
-    Set<String> EXPECTED_PALINDROME_ABABAC = new HashSet<String>() {
+    Set<String> EXPECTED_PALINDROME_ABABAC = new HashSet<>() {
         {
             add("a");
             add("b");

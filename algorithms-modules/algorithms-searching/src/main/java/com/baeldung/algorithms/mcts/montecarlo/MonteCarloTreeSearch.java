@@ -1,27 +1,30 @@
 package com.baeldung.algorithms.mcts.montecarlo;
 
+import java.time.InstantSource;
 import java.util.List;
+import java.util.random.RandomGenerator;
 
 import com.baeldung.algorithms.mcts.tictactoe.Board;
 import com.baeldung.algorithms.mcts.tree.Node;
 import com.baeldung.algorithms.mcts.tree.Tree;
 
-public class MonteCarloTreeSearch {
+public final class MonteCarloTreeSearch {
 
     private static final int WIN_SCORE = 10;
-    private int level;
+    private final int level;
     private int opponent;
 
-    public MonteCarloTreeSearch() {
-        this.level = 3;
+    private final RandomGenerator random;
+    private final InstantSource instantSource;
+
+    public MonteCarloTreeSearch(int level, RandomGenerator random, InstantSource instantSource) {
+        this.random = random;
+        this.instantSource = instantSource;
+        this.level = level;
     }
 
     public int getLevel() {
         return level;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
     }
 
     private int getMillisForCurrentLevel() {
@@ -29,8 +32,8 @@ public class MonteCarloTreeSearch {
     }
 
     public Board findNextMove(Board board, int playerNo) {
-        long start = System.currentTimeMillis();
-        long end = start + 60 * getMillisForCurrentLevel();
+        long start = instantSource.millis();
+        long end = start + 60L * getMillisForCurrentLevel();
 
         opponent = 3 - playerNo;
         Tree tree = new Tree();
@@ -38,7 +41,7 @@ public class MonteCarloTreeSearch {
         rootNode.getState().setBoard(board);
         rootNode.getState().setPlayerNo(opponent);
 
-        while (System.currentTimeMillis() < end) {
+        while (instantSource.millis() < end) {
             // Phase 1 - Selection
             Node promisingNode = selectPromisingNode(rootNode);
             // Phase 2 - Expansion
@@ -48,12 +51,12 @@ public class MonteCarloTreeSearch {
 
             // Phase 3 - Simulation
             Node nodeToExplore = promisingNode;
-            if (promisingNode.getChildArray().size() > 0) {
-                nodeToExplore = promisingNode.getRandomChildNode();
+            if (!promisingNode.getChildArray().isEmpty()) {
+                nodeToExplore = promisingNode.getRandomChildNode(random);
             }
-            int playoutResult = simulateRandomPlayout(nodeToExplore);
+            int playoutResult = simulateRandomPlayOut(nodeToExplore);
             // Phase 4 - Update
-            backPropogation(nodeToExplore, playoutResult);
+            backPropagation(nodeToExplore, playoutResult);
         }
 
         Node winnerNode = rootNode.getChildWithMaxScore();
@@ -63,7 +66,7 @@ public class MonteCarloTreeSearch {
 
     private Node selectPromisingNode(Node rootNode) {
         Node node = rootNode;
-        while (node.getChildArray().size() != 0) {
+        while (!node.getChildArray().isEmpty()) {
             node = UCT.findBestNodeWithUCT(node);
         }
         return node;
@@ -79,7 +82,7 @@ public class MonteCarloTreeSearch {
         });
     }
 
-    private void backPropogation(Node nodeToExplore, int playerNo) {
+    private void backPropagation(Node nodeToExplore, int playerNo) {
         Node tempNode = nodeToExplore;
         while (tempNode != null) {
             tempNode.getState().incrementVisit();
@@ -90,7 +93,7 @@ public class MonteCarloTreeSearch {
         }
     }
 
-    private int simulateRandomPlayout(Node node) {
+    private int simulateRandomPlayOut(Node node) {
         Node tempNode = new Node(node);
         State tempState = tempNode.getState();
         int boardStatus = tempState.getBoard().checkStatus();
@@ -101,7 +104,7 @@ public class MonteCarloTreeSearch {
         }
         while (boardStatus == Board.IN_PROGRESS) {
             tempState.togglePlayer();
-            tempState.randomPlay();
+            tempState.randomPlay(random);
             boardStatus = tempState.getBoard().checkStatus();
         }
 

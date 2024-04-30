@@ -15,7 +15,7 @@ public final class RtTransition implements Transition {
      *  in order to get to the next state.  
      * @param next Next state.
      */
-    public RtTransition (String rule, State next) {
+    public RtTransition (final String rule, final State next) {
         this.rule = rule;
         this.next = next;
     }
@@ -24,7 +24,7 @@ public final class RtTransition implements Transition {
         return this.next;
     }
 
-    public boolean isPossible(CharSequence c) {
+    public boolean isPossible(final CharSequence c) {
         return this.rule.equalsIgnoreCase(String.valueOf(c));
     }
 

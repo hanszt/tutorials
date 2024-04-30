@@ -12,7 +12,7 @@ import java.util.stream.IntStream;
  * @author A.Shcherbakov
  *
  */
-public class FoldingHash {
+public final class FoldingHash {
 
     /**
      * Calculate the hash value of a given string.
@@ -27,7 +27,7 @@ public class FoldingHash {
         return IntStream.range(0, str.length())
             .filter(i -> i % groupSize == 0)
             .mapToObj(i -> extract(codes, i, groupSize))
-            .map(block -> concatenate(block))
+            .map(this::concatenate)
             .reduce(0, (a, b) -> (a + b) % maxValue);
     }
 
@@ -72,7 +72,6 @@ public class FoldingHash {
      * @return
      */
     private int[] toAsciiCodes(String str) {
-        return str.chars()
-            .toArray();
+        return str.chars().toArray();
     }
 }
