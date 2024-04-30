@@ -22,9 +22,10 @@ class CompleteGraphUnitTest {
     @BeforeEach
     public void createCompleteGraph() {
         completeGraph = new SimpleWeightedGraph<>(DefaultEdge.class);
-        CompleteGraphGenerator<String, DefaultEdge> completeGenerator = new CompleteGraphGenerator<String, DefaultEdge>(size);
-        VertexFactory<String> vFactory = new VertexFactory<String>() {
+        CompleteGraphGenerator<String, DefaultEdge> completeGenerator = new CompleteGraphGenerator<>(size);
+        VertexFactory<String> vFactory = new VertexFactory<>() {
             private int id = 0;
+
             public String createVertex() {
                 return "v" + id++;
             }

@@ -14,15 +14,15 @@ import org.jenetics.SinglePointCrossover;
 import org.jenetics.TournamentSelector;
 import org.jenetics.engine.Engine;
 import org.jenetics.engine.EvolutionStatistics;
+import org.jenetics.util.RandomRegistry;
 
-//The main class.
-public class Knapsack {
+public final class Knapsack {
 
     public static void main(String[] args) {
         int nItems = 15;
         double ksSize = nItems * 100.0 / 3.0;
 
-        KnapsackFF ff = new KnapsackFF(Stream.generate(KnapsackItem::random)
+        KnapsackFF ff = new KnapsackFF(Stream.generate(() -> KnapsackItem.random(RandomRegistry.getRandom()))
             .limit(nItems)
             .toArray(KnapsackItem[]::new), ksSize);
 

@@ -3,8 +3,6 @@ package com.baeldung.algorithms.ga.jenetics;
 import java.util.Random;
 import java.util.stream.Collector;
 
-import org.jenetics.util.RandomRegistry;
-
 public class KnapsackItem {
 
     public double size;
@@ -15,8 +13,7 @@ public class KnapsackItem {
         this.value = value;
     }
 
-    protected static KnapsackItem random() {
-        Random r = RandomRegistry.getRandom();
+    protected static KnapsackItem random(Random r) {
         return new KnapsackItem(r.nextDouble() * 100, r.nextDouble() * 100);
     }
 

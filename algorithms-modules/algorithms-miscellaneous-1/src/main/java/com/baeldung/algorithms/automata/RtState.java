@@ -34,7 +34,7 @@ public final class RtState implements State {
     }
 
     @Override
-    public State with(Transition tr) {
+    public State with(final Transition tr) {
         this.transitions.add(tr);
         return this;
     }

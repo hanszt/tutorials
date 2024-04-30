@@ -5,23 +5,29 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.random.RandomGenerator;
 
-public class InputData {
+public final class InputData {
 
-    protected static List<Item> items = List.of(new Item("Candy"), new Item("Drink"), new Item("Soda"), new Item("Popcorn"), new Item("Snacks"));
+    static final List<Item> items = List.of(
+            new Item("Candy"),
+            new Item("Drink"),
+            new Item("Soda"),
+            new Item("Popcorn"),
+            new Item("Snacks")
+    );
 
-    public static Map<User, HashMap<Item, Double>> initializeData(int numberOfUsers) {
-        Map<User, HashMap<Item, Double>> data = new HashMap<>();
-        HashMap<Item, Double> newUser;
-        Set<Item> newRecommendationSet;
+    public static Map<User, Map<Item, Double>> initializeData(int numberOfUsers, RandomGenerator random) {
+        final Map<User, Map<Item, Double>> data = new HashMap<>();
+
         for (int i = 0; i < numberOfUsers; i++) {
-            newUser = new HashMap<Item, Double>();
-            newRecommendationSet = new HashSet<>();
+            Map<Item, Double> newUser = new HashMap<>();
+            Set<Item> newRecommendationSet = new HashSet<>();
             for (int j = 0; j < 3; j++) {
-                newRecommendationSet.add(items.get((int) (Math.random() * 5)));
+                newRecommendationSet.add(items.get(random.nextInt(items.size())));
             }
             for (Item item : newRecommendationSet) {
-                newUser.put(item, Math.random());
+                newUser.put(item, random.nextDouble());
             }
             data.put(new User("User " + i), newUser);
         }

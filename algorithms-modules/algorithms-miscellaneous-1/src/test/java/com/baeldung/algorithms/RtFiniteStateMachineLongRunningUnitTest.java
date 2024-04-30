@@ -11,9 +11,9 @@ class RtFiniteStateMachineLongRunningUnitTest {
 
     @Test
     void acceptsSimplePair() {
-        String json = "{\"key\":\"value\"}";
-        FiniteStateMachine machine = this.buildJsonStateMachine();
-        for (int i = 0; i < json.length(); i++) {
+        final var json = "{\"key\":\"value\"}";
+        var machine = this.buildJsonStateMachine();
+        for (var i = 0; i < json.length(); i++) {
             machine = machine.switchState(String.valueOf(json.charAt(i)));
         }
         assertTrue(machine.canStop());
@@ -21,9 +21,9 @@ class RtFiniteStateMachineLongRunningUnitTest {
 
     @Test
     void acceptsMorePairs() {
-        String json = "{\"key1\":\"value1\",\"key2\":\"value2\"}";
-        FiniteStateMachine machine = this.buildJsonStateMachine();
-        for (int i = 0; i < json.length(); i++) {
+        final var json = "{\"key1\":\"value1\",\"key2\":\"value2\"}";
+        var machine = this.buildJsonStateMachine();
+        for (var i = 0; i < json.length(); i++) {
             machine = machine.switchState(String.valueOf(json.charAt(i)));
         }
         assertTrue(machine.canStop());
@@ -31,10 +31,10 @@ class RtFiniteStateMachineLongRunningUnitTest {
 
     @Test
     void missingColon() {
-        String json = "{\"key\"\"value\"}";
+        final var json = "{\"key\"\"value\"}";
         assertThrows(IllegalArgumentException.class, () -> {
-            FiniteStateMachine machine = this.buildJsonStateMachine();
-            for (int i = 0; i < json.length(); i++) {
+            var machine = this.buildJsonStateMachine();
+            for (var i = 0; i < json.length(); i++) {
                 machine = machine.switchState(String.valueOf(json.charAt(i)));
             }
         });
@@ -46,19 +46,19 @@ class RtFiniteStateMachineLongRunningUnitTest {
      * @return
      */
     private FiniteStateMachine buildJsonStateMachine() {
-        State first = new RtState();
-        State second = new RtState();
+        final State first = new RtState();
+        final State second = new RtState();
         State third = new RtState();
-        State fourth = new RtState();
-        State fifth = new RtState();
+        final State fourth = new RtState();
+        final State fifth = new RtState();
         State sixth = new RtState();
-        State seventh = new RtState();
-        State eighth = new RtState(true);
+        final State seventh = new RtState();
+        final State eighth = new RtState(true);
 
         first.with(new RtTransition("{", second));
         second.with(new RtTransition("\"", third));
         //Add transitions with chars 0-9 and a-z
-        for (int i = 0; i < 26; i++) {
+        for (var i = 0; i < 26; i++) {
             if (i < 10) {
                 third = third.with(new RtTransition(String.valueOf(i), third));
                 sixth = sixth.with(new RtTransition(String.valueOf(i), sixth));

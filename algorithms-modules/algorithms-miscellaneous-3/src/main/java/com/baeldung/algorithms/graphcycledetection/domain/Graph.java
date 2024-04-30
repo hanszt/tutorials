@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Graph {
 
-    private List<Vertex> vertices;
+    private final List<Vertex> vertices;
 
     public Graph() {
         this.vertices = new ArrayList<>();

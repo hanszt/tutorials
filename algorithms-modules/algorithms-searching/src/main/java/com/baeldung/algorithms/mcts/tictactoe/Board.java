@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Board {
-    int[][] boardValues;
+import static java.lang.System.lineSeparator;
+import static java.util.stream.Collectors.joining;
+
+public final class Board {
+    private final int[][] boardValues;
     int totalMoves;
 
     public static final int DEFAULT_BOARD_SIZE = 3;
@@ -54,10 +57,6 @@ public class Board {
         return boardValues;
     }
 
-    public void setBoardValues(int[][] boardValues) {
-        this.boardValues = boardValues;
-    }
-
     public int checkStatus() {
         int boardSize = boardValues.length;
         int maxIndex = boardSize - 1;
@@ -95,7 +94,7 @@ public class Board {
             return checkDiag2ForWin;
         }
         
-        if (getEmptyPositions().size() > 0) {
+        if (!getEmptyPositions().isEmpty()) {
             return IN_PROGRESS;
         } else {
             return DRAW;
@@ -103,31 +102,20 @@ public class Board {
     }
 
     private int checkForWin(int[] row) {
-        boolean isEqual = true;
-        int size = row.length;
         int previous = row[0];
-        for (int i = 0; i < size; i++) {
-            if (previous != row[i]) {
-                isEqual = false;
-                break;
+        for (final int j : row) {
+            if (previous != j) {
+                return 0;
             }
-            previous = row[i];
+            previous = j;
         }
-        if(isEqual) {
-            return previous;
-        } else {
-            return 0;
-        }
+        return previous;
     }
 
-    public void printBoard() {
-        int size = this.boardValues.length;
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                System.out.print(boardValues[i][j] + " ");
-            }
-            System.out.println();
-        }
+    public String boardAsString() {
+        return Arrays.stream(boardValues)
+                .map(Arrays::toString)
+                .collect(joining(lineSeparator()));
     }
 
     public List<Position> getEmptyPositions() {

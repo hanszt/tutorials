@@ -7,8 +7,8 @@ import org.jenetics.BitGene;
 import org.jenetics.Genotype;
 
 public class KnapsackFF implements Function<Genotype<BitGene>, Double> {
-    private KnapsackItem[] items;
-    private double size;
+    private final KnapsackItem[] items;
+    private final double size;
 
     public KnapsackFF(KnapsackItem[] items, double size) {
         this.items = items;

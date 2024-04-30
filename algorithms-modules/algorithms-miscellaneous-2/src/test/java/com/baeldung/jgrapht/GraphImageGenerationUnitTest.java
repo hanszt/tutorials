@@ -29,7 +29,7 @@ class GraphImageGenerationUnitTest {
     public void createGraph() throws IOException {
         File imgFile = new File("src/test/resources/graph1.png");
         imgFile.createNewFile();
-        g = new DefaultDirectedGraph<String, DefaultEdge>(DefaultEdge.class);
+        g = new DefaultDirectedGraph<>(DefaultEdge.class);
         String x1 = "x1";
         String x2 = "x2";
         String x3 = "x3";
@@ -49,7 +49,7 @@ class GraphImageGenerationUnitTest {
 
     @Test
     void givenAdaptedGraph_whenWriteBufferedImage_ThenFileShouldExist() throws IOException {
-        JGraphXAdapter<String, DefaultEdge> graphAdapter = new JGraphXAdapter<String, DefaultEdge>(g);
+        JGraphXAdapter<String, DefaultEdge> graphAdapter = new JGraphXAdapter<>(g);
         mxIGraphLayout layout = new mxCircleLayout(graphAdapter);
         layout.execute(graphAdapter.getDefaultParent());
         File imgFile = new File("src/test/resources/graph1.png");

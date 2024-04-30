@@ -7,15 +7,15 @@ package com.baeldung.algorithms.multiswarm;
  * @author Donato Rimenti
  *
  */
+@FunctionalInterface
 public interface FitnessFunction {
 
 	/**
 	 * Returns the fitness of a particle given its position.
 	 * 
-	 * @param particlePosition
-	 *            the position of the particle
+	 * @param particlePosition the position of the particle
 	 * @return the fitness of the particle
 	 */
-	public double getFitness(long[] particlePosition);
+    double getFitness(long[] particlePosition);
 
 }

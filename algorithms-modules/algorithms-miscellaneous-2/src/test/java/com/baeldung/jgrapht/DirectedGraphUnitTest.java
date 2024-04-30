@@ -31,7 +31,7 @@ class DirectedGraphUnitTest {
 
     @BeforeEach
     public void createDirectedGraph() {
-        directedGraph = new DefaultDirectedGraph<String, DefaultEdge>(DefaultEdge.class);
+        directedGraph = new DefaultDirectedGraph<>(DefaultEdge.class);
         IntStream.range(1, 10).forEach(i -> {
             directedGraph.addVertex("v" + i);
         });
@@ -63,7 +63,7 @@ class DirectedGraphUnitTest {
 
     @Test
     void givenDirectedGraphWithCycle_whenCheckCycles_thenDetectCycles() {
-        CycleDetector<String, DefaultEdge> cycleDetector = new CycleDetector<String, DefaultEdge>(directedGraph);
+        CycleDetector<String, DefaultEdge> cycleDetector = new CycleDetector<>(directedGraph);
         assertTrue(cycleDetector.detectCycles());
         Set<String> cycleVertices = cycleDetector.findCycles();
         assertTrue(cycleVertices.size() > 0);

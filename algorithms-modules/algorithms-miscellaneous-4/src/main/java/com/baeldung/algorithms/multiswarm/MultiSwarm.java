@@ -2,6 +2,7 @@ package com.baeldung.algorithms.multiswarm;
 
 import java.util.Arrays;
 import java.util.Random;
+import java.util.random.RandomGenerator;
 
 /**
  * Represents a collection of {@link Swarm}.
@@ -9,12 +10,12 @@ import java.util.Random;
  * @author Donato Rimenti
  *
  */
-public class Multiswarm {
+public final class MultiSwarm {
 
 	/**
 	 * The swarms managed by this multiswarm.
 	 */
-	private Swarm[] swarms;
+	private final Swarm[] swarms;
 
 	/**
 	 * The best position found within all the {@link #swarms}.
@@ -29,12 +30,12 @@ public class Multiswarm {
 	/**
 	 * A random generator.
 	 */
-	private Random random = new Random();
+	private final RandomGenerator random;
 
 	/**
 	 * The fitness function used to determine how good is a particle.
 	 */
-	private FitnessFunction fitnessFunction;
+	private final FitnessFunction fitnessFunction;
 
 	/**
 	 * Instantiates a new Multiswarm.
@@ -46,8 +47,9 @@ public class Multiswarm {
 	 * @param fitnessFunction
 	 *            the {@link #fitnessFunction}
 	 */
-	public Multiswarm(int numSwarms, int particlesPerSwarm, FitnessFunction fitnessFunction) {
-		this.fitnessFunction = fitnessFunction;
+	public MultiSwarm(int numSwarms, int particlesPerSwarm, FitnessFunction fitnessFunction, RandomGenerator random) {
+        this.random = random;
+        this.fitnessFunction = fitnessFunction;
 		this.swarms = new Swarm[numSwarms];
 		for (int i = 0; i < numSwarms; i++) {
 			swarms[i] = new Swarm(particlesPerSwarm);
@@ -135,8 +137,7 @@ public class Multiswarm {
 	/**
 	 * Returns a random number between 0 and the value passed as argument.
 	 *
-	 * @param value
-	 *            the value to randomize
+	 * @param value the value to randomize
 	 * @return a random value between 0 and the one passed as argument
 	 */
 	private double randomizePercentage(double value) {
@@ -161,11 +162,6 @@ public class Multiswarm {
 		return bestFitness;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#hashCode()
-	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -175,16 +171,11 @@ public class Multiswarm {
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + Arrays.hashCode(bestPosition);
 		result = prime * result + ((fitnessFunction == null) ? 0 : fitnessFunction.hashCode());
-		result = prime * result + ((random == null) ? 0 : random.hashCode());
+		result = prime * result + random.hashCode();
 		result = prime * result + Arrays.hashCode(swarms);
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -196,7 +187,7 @@ public class Multiswarm {
 		if (getClass() != obj.getClass()) {
             return false;
         }
-		Multiswarm other = (Multiswarm) obj;
+		MultiSwarm other = (MultiSwarm) obj;
 		if (Double.doubleToLongBits(bestFitness) != Double.doubleToLongBits(other.bestFitness)) {
             return false;
         }
@@ -210,24 +201,15 @@ public class Multiswarm {
 		} else if (!fitnessFunction.equals(other.fitnessFunction)) {
             return false;
         }
-		if (random == null) {
-			if (other.random != null) {
-                return false;
-            }
-		} else if (!random.equals(other.random)) {
-            return false;
-        }
+        if (!random.equals(other.random)) {
+return false;
+}
 		if (!Arrays.equals(swarms, other.swarms)) {
             return false;
         }
 		return true;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
 		return "Multiswarm [swarms=" + Arrays.toString(swarms) + ", bestPosition=" + Arrays.toString(bestPosition)

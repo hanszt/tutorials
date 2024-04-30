@@ -52,7 +52,7 @@ public class QuadTree {
     public List<Point> search(Region searchRegion, List<Point> matches, String depthIndicator) {
         searchTraversePath = new StringBuilder();
         if (matches == null) {
-            matches = new ArrayList<Point>();
+            matches = new ArrayList<>();
             searchTraversePath.append(depthIndicator)
                 .append("Search Boundary =")
                 .append(searchRegion)

@@ -12,7 +12,7 @@ public class Graph {
     private Map<Integer, List<Integer>> adjVertices;
 
     public Graph() {
-        this.adjVertices = new HashMap<Integer, List<Integer>>();
+        this.adjVertices = new HashMap<>();
     }
 
     public void addVertex(int vertex) {
@@ -24,7 +24,7 @@ public class Graph {
     }
 
     public boolean[] dfsWithoutRecursion(int start) {
-        Stack<Integer> stack = new Stack<Integer>();
+        Stack<Integer> stack = new Stack<>();
         boolean[] isVisited = new boolean[adjVertices.size()];
         stack.push(start);
         while (!stack.isEmpty()) {
@@ -59,7 +59,7 @@ public class Graph {
     }
 
     public List<Integer> topologicalSort(int start) {
-        LinkedList<Integer> result = new LinkedList<Integer>();
+        LinkedList<Integer> result = new LinkedList<>();
         boolean[] isVisited = new boolean[adjVertices.size()];
         topologicalSortRecursive(start, isVisited, result);
         return result;
