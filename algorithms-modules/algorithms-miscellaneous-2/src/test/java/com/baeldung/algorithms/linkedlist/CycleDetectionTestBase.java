@@ -18,10 +18,10 @@ public class CycleDetectionTestBase {
     }
 
     public static Node<Integer> createList() {
-        Node<Integer> root = Node.createNewNode(10, null);
+        var root = Node.createNewNode(10, null);
 
-        for (int i = 9; i >= 1; --i) {
-            Node<Integer> current = Node.createNewNode(i, root);
+        for (var i = 9; i >= 1; --i) {
+            var current = Node.createNewNode(i, root);
             root = current;
         }
 
@@ -29,30 +29,30 @@ public class CycleDetectionTestBase {
     }
 
     public static Node<Integer> createListWithLoop() {
-        Node<Integer> node = createList();
+        var node = createList();
         createLoop(node);
         return node;
     }
 
     public static Node<Integer> createListWithFullCycle() {
-        Node<Integer> head = createList();
-        Node<Integer> tail = Node.getTail(head);
+        var head = createList();
+        var tail = Node.getTail(head);
         tail.next = head;
         return head;
     }
 
     public static Node<Integer> createListWithSingleNodeInCycle() {
-        Node<Integer> head = createList();
-        Node<Integer> tail = Node.getTail(head);
+        var head = createList();
+        var tail = Node.getTail(head);
         tail.next = tail;
         return head;
     }
 
     public static void createLoop(Node<Integer> root) {
-        Node<Integer> tail = Node.getTail(root);
+        var tail = Node.getTail(root);
 
-        Node<Integer> middle = root;
-        for (int i = 1; i <= 4; i++) {
+        var middle = root;
+        for (var i = 1; i <= 4; i++) {
             middle = middle.next;
         }
 

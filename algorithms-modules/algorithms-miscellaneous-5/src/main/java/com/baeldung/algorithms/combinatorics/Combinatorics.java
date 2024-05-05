@@ -17,7 +17,7 @@ public class Combinatorics {
             results.add(new ArrayList<>(sequence));
         }
 
-        for (int i = index; i < sequence.size(); i++) {
+        for (var i = index; i < sequence.size(); i++) {
             swap(sequence, i, index);
             permutationsInternal(sequence, results, index + 1);
             swap(sequence, i, index);
@@ -32,8 +32,8 @@ public class Combinatorics {
 
     private static void combinationsInternal(
       List<Integer> inputSet, int k, List<List<Integer>> results, ArrayList<Integer> accumulator, int index) {
-        int leftToAccumulate = k - accumulator.size();
-        int possibleToAcculumate = inputSet.size() - index;
+        var leftToAccumulate = k - accumulator.size();
+        var possibleToAcculumate = inputSet.size() - index;
 
         if (accumulator.size() == k) {
             results.add(new ArrayList<>(accumulator));

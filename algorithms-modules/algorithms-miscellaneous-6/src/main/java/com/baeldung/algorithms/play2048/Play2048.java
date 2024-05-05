@@ -6,14 +6,14 @@ public final class Play2048 {
 
     public static void main(String[] args) {
         // The board and players
-        Board board = new Board(SIZE);
-        Computer computer = new Computer();
-        Human human = new Human();
+        var board = new Board(SIZE);
+        var computer = new Computer();
+        var human = new Human();
 
         // The computer has two moves first
         System.out.println("Setup");
         System.out.println("=====");
-        for (int i = 0; i < INITIAL_NUMBERS; ++i) {
+        for (var i = 0; i < INITIAL_NUMBERS; ++i) {
             board = computer.makeMove(board);
         }
 
@@ -35,9 +35,9 @@ public final class Play2048 {
     }
 
     private static void printBoard(Board board) {
-        StringBuilder topLines = new StringBuilder();
-        StringBuilder midLines = new StringBuilder();
-        for (int x = 0; x < board.getSize(); ++x) {
+        var topLines = new StringBuilder();
+        var midLines = new StringBuilder();
+        for (var x = 0; x < board.getSize(); ++x) {
             topLines.append("+--------");
             midLines.append("|        ");
         }
@@ -45,16 +45,16 @@ public final class Play2048 {
         midLines.append("|");
 
 
-        for (int y = 0; y < board.getSize(); ++y) {
+        for (var y = 0; y < board.getSize(); ++y) {
             System.out.println(topLines);
             System.out.println(midLines);
-            for (int x = 0; x < board.getSize(); ++x) {
-                Cell cell = new Cell(x, y);
+            for (var x = 0; x < board.getSize(); ++x) {
+                var cell = new Cell(x, y);
                 System.out.print("|");
                 if (board.isEmpty(cell)) {
                     System.out.print("        ");
                 } else {
-                    StringBuilder output = new StringBuilder(Integer.toString(board.getCell(cell)));
+                    var output = new StringBuilder(Integer.toString(board.getCell(cell)));
                     while (output.length() < 8) {
                         output.append(" ");
                         if (output.length() < 8) {

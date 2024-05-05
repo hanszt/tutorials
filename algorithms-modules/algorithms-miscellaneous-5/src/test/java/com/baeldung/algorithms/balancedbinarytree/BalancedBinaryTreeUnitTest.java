@@ -9,14 +9,14 @@ class BalancedBinaryTreeUnitTest extends BinaryTreeDataProvider {
 
     @Test
     void givenBalancedTrees_whenCallingIsBalanced_ShouldReturnTrue() {
-        for (Tree tree : balancedTrees()) {
+        for (var tree : balancedTrees()) {
             assertTrue(BalancedBinaryTree.isBalanced(tree), toString(tree) + " should be balanced");
         }
     }
 
     @Test
     void givenUnbalancedTrees_whenCallingIsBalanced_ShouldReturnFalse() {
-        for (Tree tree : unbalancedTrees()) {
+        for (var tree : unbalancedTrees()) {
             assertFalse(BalancedBinaryTree.isBalanced(tree), toString(tree) + " should not be balanced");
         }
     }

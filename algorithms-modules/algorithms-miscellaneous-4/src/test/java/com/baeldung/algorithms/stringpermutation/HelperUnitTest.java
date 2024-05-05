@@ -14,14 +14,14 @@ class HelperUnitTest {
     @ParameterizedTest
     @MethodSource("stringProvider")
     void toListTest(String value, List<Character> expected) {
-        final List<Character> actual = Helper.toCharacterList(value);
+        final var actual = Helper.toCharacterList(value);
         assertThat(expected).isEqualTo(actual);
     }
 
     @ParameterizedTest
     @MethodSource("stringProvider")
     void toStringTest(String expected, List<Character> value) {
-        final String actual = Helper.toString(value);
+        final var actual = Helper.toString(value);
         assertThat(expected).isEqualTo(actual);
     }
 

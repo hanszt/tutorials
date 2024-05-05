@@ -15,16 +15,16 @@ public class NonGreedyAlgorithm {
     }
       
     public long findMostFollowersPath(String account) {
-        List<SocialUser> followers = tc.getFollowers(account);
+        var followers = tc.getFollowers(account);
         long total = currentLevel > 0 ? followers.size() : 0;
 
         if (currentLevel < maxLevel ) {
             currentLevel++;
 
-            long[] count = new long[followers.size()];
-            int i = 0;
-            for (SocialUser el : followers) {
-                NonGreedyAlgorithm sub = new NonGreedyAlgorithm(tc, currentLevel);
+            var count = new long[followers.size()];
+            var i = 0;
+            for (var el : followers) {
+                var sub = new NonGreedyAlgorithm(tc, currentLevel);
                 count[i] = sub.findMostFollowersPath(el.getUsername());
                 i++;
             }

@@ -10,7 +10,7 @@ class GradientDescentUnitTest {
 
     @Test
     void givenFunction_whenStartingPointIsOne_thenLocalMinimumIsFound() {
-        double res = GradientDescent.findLocalMinimum(x -> abs(pow(x, 3)) - (3 * pow(x, 2)) + x, 1);
+        var res = GradientDescent.findLocalMinimum(x -> abs(pow(x, 3)) - (3 * pow(x, 2)) + x, 1);
 
         assertTrue(res > 1.78);
         assertTrue(res < 1.84);

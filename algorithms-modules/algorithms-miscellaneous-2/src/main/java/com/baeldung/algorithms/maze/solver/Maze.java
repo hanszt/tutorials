@@ -13,49 +13,50 @@ public class Maze {
     private static final int EXIT = 3;
     private static final int PATH = 4;
 
-    private int[][] maze;
-    private boolean[][] visited;
-    private Coordinate start;
-    private Coordinate end;
+    private final int[][] maze;
+    private final boolean[][] visited;
+    private final Coordinate start;
+    private final Coordinate end;
 
     public Maze(File maze) throws FileNotFoundException {
-        String fileText = "";
-        try (Scanner input = new Scanner(maze)) {
+        StringBuilder fileText = new StringBuilder();
+        try (var input = new Scanner(maze)) {
             while (input.hasNextLine()) {
-                fileText += input.nextLine() + "\n";
+                fileText.append(input.nextLine()).append("\n");
             }
         }
-        initializeMaze(fileText);
-    }
-
-    private void initializeMaze(String text) {
-        if (text == null || (text = text.trim()).length() == 0) {
+        String text = fileText.toString();
+        if ((text = text.trim()).isEmpty()) {
             throw new IllegalArgumentException("empty lines data");
         }
 
-        String[] lines = text.split("[\r]?\n");
-        maze = new int[lines.length][lines[0].length()];
+        var lines = text.split("[\r]?\n");
+        this.maze = new int[lines.length][lines[0].length()];
         visited = new boolean[lines.length][lines[0].length()];
-
-        for (int row = 0; row < getHeight(); row++) {
+        Coordinate start = null;
+        Coordinate end = null;
+        for (var row = 0; row < getHeight(); row++) {
             if (lines[row].length() != getWidth()) {
                 throw new IllegalArgumentException("line " + (row + 1) + " wrong length (was " + lines[row].length() + " but should be " + getWidth() + ")");
             }
 
-            for (int col = 0; col < getWidth(); col++) {
-                if (lines[row].charAt(col) == '#') {
-                    maze[row][col] = WALL;
-                } else if (lines[row].charAt(col) == 'S') {
-                    maze[row][col] = START;
-                    start = new Coordinate(row, col);
-                } else if (lines[row].charAt(col) == 'E') {
-                    maze[row][col] = EXIT;
-                    end = new Coordinate(row, col);
-                } else {
-                    maze[row][col] = ROAD;
+            for (var col = 0; col < getWidth(); col++) {
+                switch (lines[row].charAt(col)) {
+                    case '#' -> this.maze[row][col] = WALL;
+                    case 'S' -> {
+                        this.maze[row][col] = START;
+                        start = new Coordinate(row, col);
+                    }
+                    case 'E' -> {
+                        this.maze[row][col] = EXIT;
+                        end = new Coordinate(row, col);
+                    }
+                    default -> this.maze[row][col] = ROAD;
                 }
             }
         }
+        this.start = start;
+        this.end = end;
     }
 
     public int getHeight() {
@@ -94,18 +95,15 @@ public class Maze {
         visited[row][col] = value;
     }
 
-    public boolean isValidLocation(int row, int col) {
-        if (row < 0 || row >= getHeight() || col < 0 || col >= getWidth()) {
-            return false;
-        }
-        return true;
+    public boolean isInvalidLocation(int row, int col) {
+        return row < 0 || row >= getHeight() || col < 0 || col >= getWidth();
     }
 
     public void printPath(List<Coordinate> path) {
-        int[][] tempMaze = Arrays.stream(maze)
+        var tempMaze = Arrays.stream(maze)
             .map(int[]::clone)
             .toArray(int[][]::new);
-        for (Coordinate coordinate : path) {
+        for (var coordinate : path) {
             if (isStart(coordinate.getX(), coordinate.getY()) || isExit(coordinate.getX(), coordinate.getY())) {
                 continue;
             }
@@ -115,19 +113,15 @@ public class Maze {
     }
 
     public String toString(int[][] maze) {
-        StringBuilder result = new StringBuilder(getWidth() * (getHeight() + 1));
-        for (int row = 0; row < getHeight(); row++) {
-            for (int col = 0; col < getWidth(); col++) {
-                if (maze[row][col] == ROAD) {
-                    result.append(' ');
-                } else if (maze[row][col] == WALL) {
-                    result.append('#');
-                } else if (maze[row][col] == START) {
-                    result.append('S');
-                } else if (maze[row][col] == EXIT) {
-                    result.append('E');
-                } else {
-                    result.append('.');
+        var result = new StringBuilder(getWidth() * (getHeight() + 1));
+        for (var row = 0; row < getHeight(); row++) {
+            for (var col = 0; col < getWidth(); col++) {
+                switch (maze[row][col]) {
+                    case ROAD -> result.append(' ');
+                    case WALL -> result.append('#');
+                    case START -> result.append('S');
+                    case EXIT -> result.append('E');
+                    default -> result.append('.');
                 }
             }
             result.append('\n');
@@ -136,8 +130,6 @@ public class Maze {
     }
 
     public void reset() {
-        for (int i = 0; i < visited.length; i++) {
-            Arrays.fill(visited[i], false);
-        }
+        Arrays.stream(visited).forEach(booleans -> Arrays.fill(booleans, false));
     }
 }

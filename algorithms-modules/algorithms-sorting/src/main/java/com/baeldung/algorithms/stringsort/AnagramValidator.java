@@ -8,14 +8,14 @@ public class AnagramValidator {
         text = prepare(text);
         anagram = prepare(anagram);
 
-        String sortedText = sort(text);
-        String sortedAnagram = sort(anagram);
+        var sortedText = sort(text);
+        var sortedAnagram = sort(anagram);
 
         return sortedText.equals(sortedAnagram);
     }
 
     private static String sort(String text) {
-        char[] chars = prepare(text).toCharArray();
+        var chars = prepare(text).toCharArray();
 
         Arrays.sort(chars);
         return new String(chars);

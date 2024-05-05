@@ -4,10 +4,10 @@ public class SortedArrays {
 
     public static int[] merge(int[] foo, int[] bar) {
 
-        int fooLength = foo.length;
-        int barLength = bar.length;
+        var fooLength = foo.length;
+        var barLength = bar.length;
 
-        int[] merged = new int[fooLength + barLength];
+        var merged = new int[fooLength + barLength];
 
         int fooPosition, barPosition, mergedPosition;
         fooPosition = barPosition = mergedPosition = 0;

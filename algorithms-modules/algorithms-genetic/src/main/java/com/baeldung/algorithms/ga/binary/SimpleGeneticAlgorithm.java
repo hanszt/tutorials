@@ -20,10 +20,10 @@ public final class SimpleGeneticAlgorithm {
     }
 
     public List<String> runAlgorithm(int populationSize) {
-        Population myPop = new Population(populationSize, true, randomGenerator);
+        var myPop = new Population(populationSize, true, randomGenerator);
 
         final var builder = new ArrayList<String>();
-        int generationCount = 1;
+        var generationCount = 1;
         while (true) {
             final var fittest = myPop.getFittest(this::compareWithSolution);
             if (!(fittest.updateIfZero(compareWithSolution(fittest)) < getMaxFitness())) {
@@ -42,7 +42,7 @@ public final class SimpleGeneticAlgorithm {
     }
 
     public Population evolvePopulation(Population pop) {
-        Population newPopulation = new Population(pop.individuals().size(), false, randomGenerator);
+        var newPopulation = new Population(pop.individuals().size(), false, randomGenerator);
 
         final int elitismOffset;
         if (ELITISM) {
@@ -52,14 +52,14 @@ public final class SimpleGeneticAlgorithm {
             elitismOffset = 0;
         }
 
-        for (int i = elitismOffset; i < pop.individuals().size(); i++) {
-            Individual indiv1 = tournamentSelection(pop);
-            Individual indiv2 = tournamentSelection(pop);
-            Individual newIndiv = crossover(indiv1, indiv2);
+        for (var i = elitismOffset; i < pop.individuals().size(); i++) {
+            var indiv1 = tournamentSelection(pop);
+            var indiv2 = tournamentSelection(pop);
+            var newIndiv = crossover(indiv1, indiv2);
             newPopulation.individuals().add(i, newIndiv);
         }
 
-        for (int i = elitismOffset; i < newPopulation.individuals().size(); i++) {
+        for (var i = elitismOffset; i < newPopulation.individuals().size(); i++) {
             mutate(newPopulation.getIndividual(i));
         }
 
@@ -67,8 +67,8 @@ public final class SimpleGeneticAlgorithm {
     }
 
     private Individual crossover(Individual indiv1, Individual indiv2) {
-        Individual newSol = new Individual(randomGenerator);
-        for (int i = 0; i < newSol.defaultGeneLength; i++) {
+        var newSol = new Individual(randomGenerator);
+        for (var i = 0; i < newSol.defaultGeneLength; i++) {
             if (randomGenerator.nextDouble() <= UNIFORM_RATE) {
                 newSol.setSingleGene(i, indiv1.getSingleGene(i));
             } else {
@@ -79,26 +79,26 @@ public final class SimpleGeneticAlgorithm {
     }
 
     private void mutate(Individual individual) {
-        for (int i = 0; i < individual.defaultGeneLength; i++) {
+        for (var i = 0; i < individual.defaultGeneLength; i++) {
             if (randomGenerator.nextDouble() <= MUTATION_RATE) {
-                byte gene = (byte) Math.round(randomGenerator.nextDouble());
+                var gene = (byte) Math.round(randomGenerator.nextDouble());
                 individual.setSingleGene(i, gene);
             }
         }
     }
 
     private Individual tournamentSelection(Population pop) {
-        Population tournament = new Population(TOURNAMENT_SIZE, false, randomGenerator);
-        for (int i = 0; i < TOURNAMENT_SIZE; i++) {
-            int randomId = (int) (randomGenerator.nextDouble() * pop.individuals().size());
+        var tournament = new Population(TOURNAMENT_SIZE, false, randomGenerator);
+        for (var i = 0; i < TOURNAMENT_SIZE; i++) {
+            var randomId = (int) (randomGenerator.nextDouble() * pop.individuals().size());
             tournament.individuals().add(i, pop.getIndividual(randomId));
         }
         return tournament.getFittest(this::compareWithSolution);
     }
 
     int compareWithSolution(Individual individual) {
-        int fitness = 0;
-        for (int i = 0; i < individual.defaultGeneLength && i < solution.length; i++) {
+        var fitness = 0;
+        for (var i = 0; i < individual.defaultGeneLength && i < solution.length; i++) {
             if (individual.getSingleGene(i) == solution[i]) {
                 fitness++;
             }
@@ -112,8 +112,8 @@ public final class SimpleGeneticAlgorithm {
 
     private static byte[] solutionAsBytes(String solution) {
         final var bytes = new byte[solution.length()];
-        for (int i = 0; i < solution.length(); i++) {
-            String character = solution.substring(i, i + 1);
+        for (var i = 0; i < solution.length(); i++) {
+            var character = solution.substring(i, i + 1);
             if (character.contains("0") || character.contains("1")) {
                 bytes[i] = Byte.parseByte(character);
             } else {

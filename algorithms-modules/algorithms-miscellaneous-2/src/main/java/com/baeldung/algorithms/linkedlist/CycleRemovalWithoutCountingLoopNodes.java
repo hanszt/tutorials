@@ -3,7 +3,7 @@ package com.baeldung.algorithms.linkedlist;
 public class CycleRemovalWithoutCountingLoopNodes {
 
     public static <T> boolean detectAndRemoveCycle(Node<T> head) {
-        CycleDetectionResult<T> result = CycleDetectionByFastAndSlowIterators.detectCycle(head);
+        var result = CycleDetectionByFastAndSlowIterators.detectCycle(head);
 
         if (result.cycleExists) {
             removeCycle(result.node, head);
@@ -13,8 +13,8 @@ public class CycleRemovalWithoutCountingLoopNodes {
     }
 
     private static <T> void removeCycle(Node<T> meetingPointParam, Node<T> head) {
-        Node<T> loopNode = meetingPointParam;
-        Node<T> it = head;
+        var loopNode = meetingPointParam;
+        var it = head;
 
         while (loopNode.next != it.next) {
             it = it.next;

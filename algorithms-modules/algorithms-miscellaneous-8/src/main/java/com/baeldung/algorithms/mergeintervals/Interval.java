@@ -28,7 +28,7 @@ public class Interval {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Interval interval = (Interval) o;
+        var interval = (Interval) o;
         return start == interval.start && end == interval.end;
     }
 

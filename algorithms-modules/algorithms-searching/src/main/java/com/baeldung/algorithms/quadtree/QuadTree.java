@@ -31,7 +31,7 @@ public class QuadTree {
 
     private boolean addPointToOneQuadrant(Point point) {
         boolean isPointAdded;
-        for (int i = 0; i < 4; i++) {
+        for (var i = 0; i < 4; i++) {
             isPointAdded = this.quadTrees.get(i)
                 .addPoint(point);
             if (isPointAdded) {
@@ -43,7 +43,7 @@ public class QuadTree {
 
     private void createQuadrants() {
         Region region;
-        for (int i = 0; i < 4; i++) {
+        for (var i = 0; i < 4; i++) {
             region = this.area.getQuadrant(i);
             quadTrees.add(new QuadTree(region));
         }
@@ -61,7 +61,7 @@ public class QuadTree {
         if (!this.area.doesOverlap(searchRegion)) {
             return matches;
         } else {
-            for (Point point : points) {
+            for (var point : points) {
                 if (searchRegion.containsPoint(point)) {
                     searchTraversePath.append(depthIndicator)
                     .append("Found match " + point)
@@ -70,7 +70,7 @@ public class QuadTree {
                 }
             }
             if (this.quadTrees.size() > 0) {
-                for (int i = 0; i < 4; i++) {
+                for (var i = 0; i < 4; i++) {
                     searchTraversePath.append(depthIndicator)
                         .append("Q")
                         .append(i)
@@ -88,15 +88,15 @@ public class QuadTree {
     }
 
     public String printTree(String depthIndicator) {
-        String str = "";
+        var str = "";
         if (depthIndicator == "") {
             str += "Root-->" + area.toString() + "\n";
         }
 
-        for (Point point : points) {
+        for (var point : points) {
             str += depthIndicator + point.toString() + "\n";
         }
-        for (int i = 0; i < quadTrees.size(); i++) {
+        for (var i = 0; i < quadTrees.size(); i++) {
             str += depthIndicator + "Q" + String.valueOf(i) + "-->" + quadTrees.get(i).area.toString() + "\n";
             str += quadTrees.get(i)
                 .printTree(depthIndicator + "\t");

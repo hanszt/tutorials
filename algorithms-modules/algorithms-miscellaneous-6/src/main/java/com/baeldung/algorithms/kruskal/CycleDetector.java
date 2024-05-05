@@ -12,8 +12,8 @@ public final class CycleDetector {
     }
 
     public boolean detectCycle(Integer u, Integer v) {
-        Integer rootU = pathCompressionFind(u);
-        Integer rootV = pathCompressionFind(v);
+        var rootU = pathCompressionFind(u);
+        var rootV = pathCompressionFind(v);
         if (rootU.equals(rootV)) {
             return true;
         }
@@ -23,13 +23,13 @@ public final class CycleDetector {
 
     private void initDisjointSets(int totalNodes) {
         nodes = new ArrayList<>(totalNodes);
-        for (int i = 0; i < totalNodes; i++) {
+        for (var i = 0; i < totalNodes; i++) {
             nodes.add(new DisjointSetInfo(i));
         }
     }
 
     private Integer find(Integer node) {
-        Integer parent = nodes.get(node).getParentNode();
+        var parent = nodes.get(node).getParentNode();
         if (parent.equals(node)) {
             return node;
         } else {
@@ -38,27 +38,27 @@ public final class CycleDetector {
     }
 
     private Integer pathCompressionFind(Integer node) {
-        DisjointSetInfo setInfo = nodes.get(node);
-        Integer parent = setInfo.getParentNode();
+        var setInfo = nodes.get(node);
+        var parent = setInfo.getParentNode();
         if (parent.equals(node)) {
             return node;
         } else {
-            Integer parentNode = find(parent);
+            var parentNode = find(parent);
             setInfo.setParentNode(parentNode);
             return parentNode;
         }
     }
 
     private void union(Integer rootU, Integer rootV) {
-        DisjointSetInfo setInfoU = nodes.get(rootU);
+        var setInfoU = nodes.get(rootU);
         setInfoU.setParentNode(rootV);
     }
 
     private void unionByRank(int rootU, int rootV) {
-        DisjointSetInfo setInfoU = nodes.get(rootU);
-        DisjointSetInfo setInfoV = nodes.get(rootV);
-        int rankU = setInfoU.getRank();
-        int rankV = setInfoV.getRank();
+        var setInfoU = nodes.get(rootU);
+        var setInfoV = nodes.get(rootV);
+        var rankU = setInfoU.getRank();
+        var rankV = setInfoV.getRank();
         if (rankU < rankV) {
             setInfoU.setParentNode(rootV);
         } else {

@@ -23,7 +23,7 @@ public class MovingAverageByCircularBuffer {
             return Double.NaN;
         }
         double sum = 0;
-        for (int i = 0; i < count; i++) {
+        for (var i = 0; i < count; i++) {
             sum += buffer[i];
         }
         return sum / count;

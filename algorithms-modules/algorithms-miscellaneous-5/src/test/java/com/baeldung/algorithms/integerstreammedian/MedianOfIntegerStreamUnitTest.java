@@ -13,8 +13,8 @@ class MedianOfIntegerStreamUnitTest {
 
     @Test
     void givenStreamOfIntegers_whenAnElementIsRead_thenMedianChangesWithApproach1() {
-        MedianOfIntegerStream mis = new MedianOfIntegerStream();
-        for (Map.Entry<Integer, Double> e : testcaseFixture().entrySet()) {
+        var mis = new MedianOfIntegerStream();
+        for (var e : testcaseFixture().entrySet()) {
             mis.add(e.getKey());
             assertEquals(e.getValue(), (Double) mis.getMedian());
         }
@@ -22,8 +22,8 @@ class MedianOfIntegerStreamUnitTest {
 
     @Test
     void givenStreamOfIntegers_whenAnElementIsRead_thenMedianChangesWithApproach2() {
-        MedianOfIntegerStream2 mis = new MedianOfIntegerStream2();
-        for (Map.Entry<Integer, Double> e : testcaseFixture().entrySet()) {
+        var mis = new MedianOfIntegerStream2();
+        for (var e : testcaseFixture().entrySet()) {
             mis.add(e.getKey());
             assertEquals(e.getValue(), (Double) mis.getMedian());
         }

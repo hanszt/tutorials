@@ -8,8 +8,8 @@ class MergeSortUnitTest {
 
     @Test
     void positiveTest() {
-        int[] actual = { 5, 1, 6, 2, 3, 4 };
-        int[] expected = { 1, 2, 3, 4, 5, 6 };
+        var actual = new int[]{5, 1, 6, 2, 3, 4};
+        var expected = new int[]{1, 2, 3, 4, 5, 6};
         MergeSort.mergeSort(actual, actual.length);
         assertArrayEquals(expected, actual);
     }

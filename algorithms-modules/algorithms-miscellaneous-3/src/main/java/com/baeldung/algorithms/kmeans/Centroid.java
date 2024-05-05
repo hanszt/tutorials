@@ -29,7 +29,7 @@ public class Centroid {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Centroid centroid = (Centroid) o;
+        var centroid = (Centroid) o;
         return Objects.equals(getCoordinates(), centroid.getCoordinates());
     }
 

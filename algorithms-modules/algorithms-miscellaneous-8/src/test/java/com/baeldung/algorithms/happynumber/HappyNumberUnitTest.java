@@ -25,8 +25,8 @@ class HappyNumberDecider {
     }
 
     public static boolean isHappyNumberFloyd(int n) {
-        int slow = n;
-        int fast = n;
+        var slow = n;
+        var fast = n;
         do {
             slow = sumDigitsSquare(slow);
             fast = sumDigitsSquare(sumDigitsSquare(fast));
@@ -36,7 +36,7 @@ class HappyNumberDecider {
     }
 
     private static int sumDigitsSquare(int n) {
-        int squareSum = 0;
+        var squareSum = 0;
         while (n != 0) {
             squareSum += (n % 10) * (n % 10);
             n /= 10;

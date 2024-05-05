@@ -8,9 +8,9 @@ class TreeReverserUnitTest {
 
     @Test
     void givenTreeWhenReversingRecursivelyThenReversed() {
-        TreeReverser reverser = new TreeReverser();
+        var reverser = new TreeReverser();
 
-        TreeNode treeNode = createBinaryTree();
+        var treeNode = createBinaryTree();
 
         reverser.reverseRecursive(treeNode);
 
@@ -20,9 +20,9 @@ class TreeReverserUnitTest {
 
     @Test
     void givenTreeWhenReversingIterativelyThenReversed() {
-        TreeReverser reverser = new TreeReverser();
+        var reverser = new TreeReverser();
 
-        TreeNode treeNode = createBinaryTree();
+        var treeNode = createBinaryTree();
 
         reverser.reverseIterative(treeNode);
 
@@ -32,15 +32,15 @@ class TreeReverserUnitTest {
 
     private TreeNode createBinaryTree() {
 
-        TreeNode leaf1 = new TreeNode(1);
-        TreeNode leaf2 = new TreeNode(3);
-        TreeNode leaf3 = new TreeNode(6);
-        TreeNode leaf4 = new TreeNode(9);
+        var leaf1 = new TreeNode(1);
+        var leaf2 = new TreeNode(3);
+        var leaf3 = new TreeNode(6);
+        var leaf4 = new TreeNode(9);
 
-        TreeNode nodeRight = new TreeNode(7, leaf3, leaf4);
-        TreeNode nodeLeft = new TreeNode(2, leaf1, leaf2);
+        var nodeRight = new TreeNode(7, leaf3, leaf4);
+        var nodeLeft = new TreeNode(2, leaf1, leaf2);
 
-        TreeNode root = new TreeNode(4, nodeLeft, nodeRight);
+        var root = new TreeNode(4, nodeLeft, nodeRight);
 
         return root;
     }

@@ -26,16 +26,16 @@ public class FindMissingNumberUnitTest {
 
     @Test
     void givenIntegersArray_whenUseArithmeticSumToFindMissingNumber_thenGetMissingNumber() {
-        int expectedSum = (N * (N + 1)) / 2;
-        int actualSum = Arrays.stream(numbers).sum();
+        var expectedSum = (N * (N + 1)) / 2;
+        var actualSum = Arrays.stream(numbers).sum();
 
-        int missingNumber = expectedSum - actualSum;
+        var missingNumber = expectedSum - actualSum;
         assertEquals(3, missingNumber);
     }
 
     @Test
     void givenIntegersArray_whenUseXorToFindMissingNumber_thenGetMissingNumber() {
-        int xorValue = IntStream.rangeClosed(1, N).reduce(0, (a, b) -> a ^ b);
+        var xorValue = IntStream.rangeClosed(1, N).reduce(0, (a, b) -> a ^ b);
 
         xorValue = Arrays.stream(numbers).reduce(xorValue, (x, y) -> x ^ y);
 
@@ -46,8 +46,8 @@ public class FindMissingNumberUnitTest {
     void givenIntegersArray_whenUseSortingToFindMissingNumber_thenGetMissingNumber() {
         Arrays.sort(numbers);
 
-        int missingNumber = -1;
-        for (int index = 0; index < numbers.length; index++) {
+        var missingNumber = -1;
+        for (var index = 0; index < numbers.length; index++) {
             if (numbers[index] != index + 1) {
                 missingNumber = index + 1;
                 break;
@@ -59,12 +59,12 @@ public class FindMissingNumberUnitTest {
 
     @Test
     void givenIntegersArray_whenTrackUsingBooleanArrayToFindMissingNumber_thenGetMissingNumber() {
-        boolean[] present = new boolean[N];
+        var present = new boolean[N];
 
-        int missingNumber = -1;
+        var missingNumber = -1;
         Arrays.stream(numbers).forEach(number -> present[number - 1] = true);
 
-        for (int index = 0; index < present.length; index++) {
+        for (var index = 0; index < present.length; index++) {
             if (!present[index]) {
                 missingNumber = index + 1;
                 break;
@@ -76,12 +76,12 @@ public class FindMissingNumberUnitTest {
 
     @Test
     void givenIntegersArray_whenUseBitSetToFindMissingNumber_thenGetMissingNumber() {
-        BitSet bitSet = new BitSet(N);
-        for (int num : numbers) {
+        var bitSet = new BitSet(N);
+        for (var num : numbers) {
             bitSet.set(num);
         }
 
-        int missingNumber = bitSet.nextClearBit(1);
+        var missingNumber = bitSet.nextClearBit(1);
 
         assertEquals(3, missingNumber);
     }

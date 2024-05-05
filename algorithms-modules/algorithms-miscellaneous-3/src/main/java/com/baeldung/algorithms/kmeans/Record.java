@@ -39,7 +39,7 @@ public class Record {
 
     @Override
     public String toString() {
-        String prefix = description == null || description
+        var prefix = description == null || description
           .trim()
           .isEmpty() ? "Record" : description;
 
@@ -54,7 +54,7 @@ public class Record {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Record record = (Record) o;
+        var record = (Record) o;
         return Objects.equals(getDescription(), record.getDescription()) && Objects.equals(getFeatures(), record.getFeatures());
     }
 

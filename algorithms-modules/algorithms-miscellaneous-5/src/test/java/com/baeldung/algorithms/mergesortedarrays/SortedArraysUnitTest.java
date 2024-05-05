@@ -10,9 +10,9 @@ class SortedArraysUnitTest {
     @Test
     void givenTwoSortedArrays_whenMerged_thenReturnMergedSortedArray() {
 
-        int[] foo = { 3, 7 };
-        int[] bar = { 4, 8, 11 };
-        int[] merged = { 3, 4, 7, 8, 11 };
+        var foo = new int[]{3, 7};
+        var bar = new int[]{4, 8, 11};
+        var merged = new int[]{3, 4, 7, 8, 11};
 
         assertArrayEquals(merged, SortedArrays.merge(foo, bar));
     }
@@ -20,9 +20,9 @@ class SortedArraysUnitTest {
     @Test
     void givenTwoSortedArraysWithDuplicates_whenMerged_thenReturnMergedSortedArray() {
 
-        int[] foo = { 3, 3, 7 };
-        int[] bar = { 4, 8, 8, 11 };
-        int[] merged = { 3, 3, 4, 7, 8, 8, 11 };
+        var foo = new int[]{3, 3, 7};
+        var bar = new int[]{4, 8, 8, 11};
+        var merged = new int[]{3, 3, 4, 7, 8, 8, 11};
 
         assertArrayEquals(merged, SortedArrays.merge(foo, bar));
     }

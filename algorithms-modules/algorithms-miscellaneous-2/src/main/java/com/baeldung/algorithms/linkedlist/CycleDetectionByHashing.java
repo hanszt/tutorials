@@ -11,7 +11,7 @@ public class CycleDetectionByHashing {
         }
 
         Set<Node<T>> set = new HashSet<>();
-        Node<T> node = head;
+        var node = head;
 
         while (node != null) {
             if (set.contains(node)) {

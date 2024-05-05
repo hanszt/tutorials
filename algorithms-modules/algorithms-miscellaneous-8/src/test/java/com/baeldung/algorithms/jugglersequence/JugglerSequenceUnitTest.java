@@ -15,10 +15,10 @@ class JugglerSequenceGenerator {
             throw new IllegalArgumentException("The initial integer must be greater than zero.");
         }
         List<Integer> seq = new ArrayList<>();
-        int current = n;
+        var current = n;
         seq.add(current);
         while (current != 1) {
-            int next = (int) (Math.sqrt(current) * (current % 2 == 0 ? 1 : current));
+            var next = (int) (Math.sqrt(current) * (current % 2 == 0 ? 1 : current));
             seq.add(next);
             current = next;
         }
@@ -39,7 +39,7 @@ class JugglerSequenceGenerator {
         if (current == 1) {
             return;
         }
-        int next = (int) (Math.sqrt(current) * (current % 2 == 0 ? 1 : current));
+        var next = (int) (Math.sqrt(current) * (current % 2 == 0 ? 1 : current));
         fillSeqRecursively(next, result);
     }
 }

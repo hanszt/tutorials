@@ -45,13 +45,13 @@ public interface LastFmService {
 
         @Override
         public Response intercept(Chain chain) throws IOException {
-            HttpUrl url = chain
+            var url = chain
               .request()
               .url()
               .newBuilder()
               .addQueryParameter("api_key", apiKey)
               .build();
-            Request request = chain
+            var request = chain
               .request()
               .newBuilder()
               .url(url)
@@ -68,7 +68,7 @@ public interface LastFmService {
 
         @SuppressWarnings("unchecked")
         public Set<String> all() {
-            List<Map<String, Object>> topTags = (List<Map<String, Object>>) tags.get("tag");
+            var topTags = (List<Map<String, Object>>) tags.get("tag");
             return topTags
               .stream()
               .map(e -> ((String) e.get("name")))
@@ -85,8 +85,8 @@ public interface LastFmService {
         public Map<String, Double> all() {
             try {
                 Map<String, Double> all = new HashMap<>();
-                List<Map<String, Object>> tags = (List<Map<String, Object>>) topTags.get("tag");
-                for (Map<String, Object> tag : tags) {
+                var tags = (List<Map<String, Object>>) topTags.get("tag");
+                for (var tag : tags) {
                     all.put(((String) tag.get("name")), ((Integer) tag.get("count")).doubleValue());
                 }
 
@@ -105,7 +105,7 @@ public interface LastFmService {
         @SuppressWarnings("unchecked")
         public List<String> all() {
             try {
-                List<Map<String, Object>> artists = (List<Map<String, Object>>) this.artists.get("artist");
+                var artists = (List<Map<String, Object>>) this.artists.get("artist");
                 return artists
                   .stream()
                   .map(e -> ((String) e.get("name")))

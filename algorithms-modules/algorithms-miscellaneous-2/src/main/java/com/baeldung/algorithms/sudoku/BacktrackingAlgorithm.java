@@ -25,14 +25,14 @@ public final class BacktrackingAlgorithm {
     };
 
     public static void main(String[] args) {
-        BacktrackingAlgorithm solver = new BacktrackingAlgorithm();
+        var solver = new BacktrackingAlgorithm();
         solver.solve(board);
         solver.printBoard();
     }
 
     private void printBoard() {
-        for (int row = BOARD_START_INDEX; row < BOARD_SIZE; row++) {
-            for (int column = BOARD_START_INDEX; column < BOARD_SIZE; column++) {
+        for (var row = BOARD_START_INDEX; row < BOARD_SIZE; row++) {
+            for (var column = BOARD_START_INDEX; column < BOARD_SIZE; column++) {
                 System.out.print(board[row][column] + " ");
             }
             System.out.println();
@@ -40,10 +40,10 @@ public final class BacktrackingAlgorithm {
     }
 
     public boolean solve(int[][] board) {
-        for (int row = BOARD_START_INDEX; row < BOARD_SIZE; row++) {
-            for (int column = BOARD_START_INDEX; column < BOARD_SIZE; column++) {
+        for (var row = BOARD_START_INDEX; row < BOARD_SIZE; row++) {
+            for (var column = BOARD_START_INDEX; column < BOARD_SIZE; column++) {
                 if (board[row][column] == NO_VALUE) {
-                    for (int k = MIN_VALUE; k <= MAX_VALUE; k++) {
+                    for (var k = MIN_VALUE; k <= MAX_VALUE; k++) {
                         board[row][column] = k;
                         if (isValid(board, row, column) && solve(board)) {
                             return true;
@@ -64,15 +64,15 @@ public final class BacktrackingAlgorithm {
     }
 
     private boolean subsectionConstraint(int[][] board, int row, int column) {
-        boolean[] constraint = new boolean[BOARD_SIZE];
-        int subsectionRowStart = (row / SUBSECTION_SIZE) * SUBSECTION_SIZE;
-        int subsectionRowEnd = subsectionRowStart + SUBSECTION_SIZE;
+        var constraint = new boolean[BOARD_SIZE];
+        var subsectionRowStart = (row / SUBSECTION_SIZE) * SUBSECTION_SIZE;
+        var subsectionRowEnd = subsectionRowStart + SUBSECTION_SIZE;
 
-        int subsectionColumnStart = (column / SUBSECTION_SIZE) * SUBSECTION_SIZE;
-        int subsectionColumnEnd = subsectionColumnStart + SUBSECTION_SIZE;
+        var subsectionColumnStart = (column / SUBSECTION_SIZE) * SUBSECTION_SIZE;
+        var subsectionColumnEnd = subsectionColumnStart + SUBSECTION_SIZE;
 
-        for (int r = subsectionRowStart; r < subsectionRowEnd; r++) {
-            for (int c = subsectionColumnStart; c < subsectionColumnEnd; c++) {
+        for (var r = subsectionRowStart; r < subsectionRowEnd; r++) {
+            for (var c = subsectionColumnStart; c < subsectionColumnEnd; c++) {
                 if (!checkConstraint(board, r, constraint, c)) {
                     return false;
                 }
@@ -82,7 +82,7 @@ public final class BacktrackingAlgorithm {
     }
 
     private boolean columnConstraint(int[][] board, int column) {
-        boolean[] constraint = new boolean[BOARD_SIZE];
+        var constraint = new boolean[BOARD_SIZE];
         for (int row = BOARD_START_INDEX; row < BOARD_SIZE; row++) {
             if (!checkConstraint(board, row, constraint, column)) {
                 return false;
@@ -92,7 +92,7 @@ public final class BacktrackingAlgorithm {
     }
 
     private boolean rowConstraint(int[][] board, int row) {
-        boolean[] constraint = new boolean[BOARD_SIZE];
+        var constraint = new boolean[BOARD_SIZE];
         for (int column = BOARD_START_INDEX; column < BOARD_SIZE; column++) {
             if (!checkConstraint(board, row, constraint, column)) {
                 return false;

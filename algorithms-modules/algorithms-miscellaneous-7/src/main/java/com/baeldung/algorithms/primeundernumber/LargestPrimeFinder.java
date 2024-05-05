@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class LargestPrimeFinder {
 
     public static int findByBruteForce(int n) {
-        for (int i = n - 1; i >= 2; i--) {
+        for (var i = n - 1; i >= 2; i--) {
             if (isPrime(i)) {
                 return i;
             }
@@ -14,7 +14,7 @@ public class LargestPrimeFinder {
     }
 
     public static boolean isPrime(int number) {
-        for (int i = 2; i <= Math.sqrt(number); i++) {
+        for (var i = 2; i <= Math.sqrt(number); i++) {
             if (number % i == 0) {
                 return false;
             }
@@ -23,17 +23,17 @@ public class LargestPrimeFinder {
     }
 
     public static int findBySieveOfEratosthenes(int n) {
-        boolean[] isPrime = new boolean[n];
+        var isPrime = new boolean[n];
         Arrays.fill(isPrime, true);
-        for (int p = 2; p*p < n; p++) {
+        for (var p = 2; p * p < n; p++) {
             if (isPrime[p]) {
-                for (int i = p * p; i < n; i += p) {
+                for (var i = p * p; i < n; i += p) {
                     isPrime[i] = false;
                 }
             }
         }
 
-        for (int i = n - 1; i >= 2; i--) {
+        for (var i = n - 1; i >= 2; i--) {
             if (isPrime[i]) {
                 return i;
             }

@@ -9,8 +9,8 @@ public final class Individual {
     private int fitness = 0;
 
     public Individual(RandomGenerator randomGenerator) {
-        for (int i = 0; i < genes.length; i++) {
-            byte gene = (byte) Math.round(randomGenerator.nextDouble());
+        for (var i = 0; i < genes.length; i++) {
+            var gene = (byte) Math.round(randomGenerator.nextDouble());
             genes[i] = gene;
         }
     }
@@ -33,8 +33,8 @@ public final class Individual {
 
     @Override
     public String toString() {
-        StringBuilder geneString = new StringBuilder();
-        for (int i = 0; i < genes.length; i++) {
+        var geneString = new StringBuilder();
+        for (var i = 0; i < genes.length; i++) {
             geneString.append(getSingleGene(i));
         }
         return geneString.toString();

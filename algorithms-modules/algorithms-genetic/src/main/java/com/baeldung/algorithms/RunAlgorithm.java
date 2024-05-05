@@ -14,12 +14,12 @@ public final class RunAlgorithm {
 	public static final Random RANDOM_GENERATOR = new Random();
 
 	public static void main(String[] args) {
-		try (Scanner in = new Scanner(System.in)) {
+		try (var in = new Scanner(System.in)) {
 			System.out.println("Run algorithm:");
 			System.out.println("1 - Simulated Annealing");
 			System.out.println("2 - Simple Genetic Algorithm");
 			System.out.println("3 - Ant Colony");
-			int decision = in.nextInt();
+            var decision = in.nextInt();
 			switch (decision) {
 				case 1:
 					final var startingTemperature = 10;
@@ -36,13 +36,13 @@ public final class RunAlgorithm {
 					break;
 				case 2:
 					final var target = "1011000100000100010000100000100111001000000100000100000000001111";
-					SimpleGeneticAlgorithm ga = new SimpleGeneticAlgorithm(RANDOM_GENERATOR, target);
+                    var ga = new SimpleGeneticAlgorithm(RANDOM_GENERATOR, target);
 					final var result = ga.runAlgorithm(50);
 					System.out.println(String.join("\n", result));
 					break;
 				case 3:
 					final var nrOfCities = 21;
-					AntColonyOptimization antColony = new AntColonyOptimization(nrOfCities, RANDOM_GENERATOR);
+                    var antColony = new AntColonyOptimization(nrOfCities, RANDOM_GENERATOR);
 					antColony.startAntOptimization();
 					break;
 				default:

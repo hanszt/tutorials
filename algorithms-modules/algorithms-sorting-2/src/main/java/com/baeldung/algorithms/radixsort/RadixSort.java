@@ -5,11 +5,11 @@ import java.util.Arrays;
 public class RadixSort {
 
     public static void sort(int numbers[]) {
-        int maximumNumber = findMaximumNumberIn(numbers);
+        var maximumNumber = findMaximumNumberIn(numbers);
 
-        int numberOfDigits = calculateNumberOfDigitsIn(maximumNumber);
+        var numberOfDigits = calculateNumberOfDigitsIn(maximumNumber);
 
-        int placeValue = 1;
+        var placeValue = 1;
 
         while (numberOfDigits-- > 0) {
             applyCountingSortOn(numbers, placeValue);
@@ -18,23 +18,23 @@ public class RadixSort {
     }
 
     private static void applyCountingSortOn(int[] numbers, int placeValue) {
-        int range = 10; // radix or the base
+        var range = 10; // radix or the base
 
-        int length = numbers.length;
-        int[] frequency = new int[range];
-        int[] sortedValues = new int[length];
+        var length = numbers.length;
+        var frequency = new int[range];
+        var sortedValues = new int[length];
 
-        for (int i = 0; i < length; i++) {
-            int digit = (numbers[i] / placeValue) % range;
+        for (var i = 0; i < length; i++) {
+            var digit = (numbers[i] / placeValue) % range;
             frequency[digit]++;
         }
 
-        for (int i = 1; i < range; i++) {
+        for (var i = 1; i < range; i++) {
             frequency[i] += frequency[i - 1];
         }
 
-        for (int i = length - 1; i >= 0; i--) {
-            int digit = (numbers[i] / placeValue) % range;
+        for (var i = length - 1; i >= 0; i--) {
+            var digit = (numbers[i] / placeValue) % range;
             sortedValues[frequency[digit] - 1] = numbers[i];
             frequency[digit]--;
         }

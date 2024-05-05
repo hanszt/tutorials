@@ -14,7 +14,7 @@ public class SubstringPalindrome {
             palindromes.add(input);
             return palindromes;
         }
-        for (int i = 0; i < input.length(); i++) {
+        for (var i = 0; i < input.length(); i++) {
             palindromes.addAll(findPalindromes(input, i, i + 1));
             palindromes.addAll(findPalindromes(input, i, i));
         }
@@ -40,8 +40,8 @@ public class SubstringPalindrome {
             palindromes.add(input);
             return palindromes;
         }
-        for (int i = 0; i < input.length(); i++) {
-            for (int j = i + 1; j <= input.length(); j++) {
+        for (var i = 0; i < input.length(); i++) {
+            for (var j = i + 1; j <= input.length(); j++) {
                 if (isPalindrome(input.substring(i, j))) {
                     palindromes.add(input.substring(i, j));
                 }
@@ -51,27 +51,27 @@ public class SubstringPalindrome {
     }
 
     private boolean isPalindrome(String input) {
-        StringBuilder plain = new StringBuilder(input);
-        StringBuilder reverse = plain.reverse();
+        var plain = new StringBuilder(input);
+        var reverse = plain.reverse();
         return (reverse.toString()).equals(input);
     }
 
     public Set<String> findAllPalindromesUsingManachersAlgorithm(String input) {
         Set<String> palindromes = new HashSet<>();
-        String formattedInput = "@" + input + "#";
+        var formattedInput = "@" + input + "#";
         char inputCharArr[] = formattedInput.toCharArray();
         int max;
         int radius[][] = new int[2][input.length() + 1];
-        for (int j = 0; j <= 1; j++) {
+        for (var j = 0; j <= 1; j++) {
             radius[j][0] = max = 0;
-            int i = 1;
+            var i = 1;
             while (i <= input.length()) {
                 palindromes.add(Character.toString(inputCharArr[i]));
                 while (inputCharArr[i - max - 1] == inputCharArr[i + j + max]) {
                     max++;
                 }
                 radius[j][i] = max;
-                int k = 1;
+                var k = 1;
                 while ((radius[j][i - k] != max - k) && (k < max)) {
                     radius[j][i + k] = Math.min(radius[j][i - k], max - k);
                     k++;
@@ -80,8 +80,8 @@ public class SubstringPalindrome {
                 i += k;
             }
         }
-        for (int i = 1; i <= input.length(); i++) {
-            for (int j = 0; j <= 1; j++) {
+        for (var i = 1; i <= input.length(); i++) {
+            for (var j = 0; j <= 1; j++) {
                 for (max = radius[j][i]; max > 0; max--) {
                     palindromes.add(input.substring(i - max - 1, max + j + i - 1));
                 }

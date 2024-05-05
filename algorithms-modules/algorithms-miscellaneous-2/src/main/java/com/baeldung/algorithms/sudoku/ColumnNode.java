@@ -13,8 +13,8 @@ class ColumnNode extends DancingNode {
 
     void cover() {
         unlinkLR();
-        for (DancingNode i = this.D; i != this; i = i.D) {
-            for (DancingNode j = i.R; j != i; j = j.R) {
+        for (var i = this.D; i != this; i = i.D) {
+            for (var j = i.R; j != i; j = j.R) {
                 j.unlinkUD();
                 j.C.size--;
             }
@@ -22,8 +22,8 @@ class ColumnNode extends DancingNode {
     }
 
     void uncover() {
-        for (DancingNode i = this.U; i != this; i = i.U) {
-            for (DancingNode j = i.L; j != i; j = j.L) {
+        for (var i = this.U; i != this; i = i.U) {
+            for (var j = i.L; j != i; j = j.L) {
                 j.C.size++;
                 j.relinkUD();
             }

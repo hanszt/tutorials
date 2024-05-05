@@ -25,7 +25,7 @@ class AnalysisRunnerLiveTest {
     void whenLogarithmicComplexity_thenLogarithmicRuntime() {
         // Logarithmic Time
         System.out.println("**** Logarithmic Time ****");
-        for (int i = 1; i < n; i = i * 2) {
+        for (var i = 1; i < n; i = i * 2) {
             // System.out.println("Hey - I'm busy looking at: " + i);
             total++;
         }
@@ -37,7 +37,7 @@ class AnalysisRunnerLiveTest {
     void whenLinearComplexity_thenLinearRuntime() {
         // Linear Time
         System.out.println("**** Linear Time ****");
-        for (int i = 0; i < n; i++) {
+        for (var i = 0; i < n; i++) {
             // System.out.println("Hey - I'm busy looking at: " + i);
             total++;
         }
@@ -53,8 +53,8 @@ class AnalysisRunnerLiveTest {
         total = 0;
         for (
 
-            int i = 1; i <= n; i++) {
-            for (int j = 1; j < n; j = j * 2) {
+                var i = 1; i <= n; i++) {
+            for (var j = 1; j < n; j = j * 2) {
                 // System.out.println("Hey - I'm busy looking at: " + i + " and " + j);
                 total++;
             }
@@ -70,8 +70,8 @@ class AnalysisRunnerLiveTest {
         total = 0;
         for (
 
-            int i = 1; i <= n; i++) {
-            for (int j = 1; j <= n; j++) {
+                var i = 1; i <= n; i++) {
+            for (var j = 1; j <= n; j++) {
                 // System.out.println("Hey - I'm busy looking at: " + i + " and " + j);
                 total++;
             }
@@ -87,9 +87,9 @@ class AnalysisRunnerLiveTest {
         total = 0;
         for (
 
-            int i = 1; i <= n; i++) {
-            for (int j = 1; j <= n; j++) {
-                for (int k = 1; k <= n; k++) {
+                var i = 1; i <= n; i++) {
+            for (var j = 1; j <= n; j++) {
+                for (var k = 1; k <= n; k++) {
                     // System.out.println("Hey - I'm busy looking at: " + i + " and " + j + " and " + k);
                     total++;
                 }
@@ -106,7 +106,7 @@ class AnalysisRunnerLiveTest {
         total = 0;
         for (
 
-            int i = 1; i <= Math.pow(2, n); i++) {
+                var i = 1; i <= Math.pow(2, n); i++) {
             // System.out.println("Hey - I'm busy looking at: " + i);
             total++;
         }
@@ -121,9 +121,9 @@ class AnalysisRunnerLiveTest {
         total = 0;
         for (
 
-            int i = 1; i <=
+                var i = 1; i <=
 
-            factorial(n); i++) {
+                           factorial(n); i++) {
             // System.out.println("Hey - I'm busy looking at: " + i);
             total++;
         }

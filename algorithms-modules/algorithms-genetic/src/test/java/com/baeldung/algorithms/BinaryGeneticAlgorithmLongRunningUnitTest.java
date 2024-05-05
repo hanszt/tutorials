@@ -14,7 +14,7 @@ class BinaryGeneticAlgorithmLongRunningUnitTest {
     void testGA() {
         final var random = new Random(0);
         final var target = "1011000100000100010000100000100111001000000100000100000000001111";
-        SimpleGeneticAlgorithm ga = new SimpleGeneticAlgorithm(random, target);
+        var ga = new SimpleGeneticAlgorithm(random, target);
 
         final var solution = ga.runAlgorithm(50);
 

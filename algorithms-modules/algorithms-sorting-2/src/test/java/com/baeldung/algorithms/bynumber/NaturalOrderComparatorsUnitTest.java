@@ -13,7 +13,7 @@ class NaturalOrderComparatorsUnitTest {
 
     @Test
     void givenSimpleStringsContainingIntsAndDoubles_whenSortedByRegex_checkSortingCorrect() {
-        List<String> testStrings = Stream.of("a1", "b3", "c4", "d2.2", "d2.4", "d2.3d")
+        var testStrings = Stream.of("a1", "b3", "c4", "d2.2", "d2.4", "d2.3d")
                 .sorted(comparingByNumbersInString)
                 .toList();
 
@@ -24,7 +24,7 @@ class NaturalOrderComparatorsUnitTest {
 
     @Test
     void givenSimpleStringsContainingIntsAndDoublesWithAnInvalidNumber_whenSortedByRegex_checkSortingCorrect() {
-        List<String> testStrings = Stream.of("a1", "b3", "c4", "d2.2", "d2.4", "d2.3.3d")
+        var testStrings = Stream.of("a1", "b3", "c4", "d2.2", "d2.4", "d2.3.3d")
                 .sorted(comparingByNumbersInString)
                 .toList();
 
@@ -35,7 +35,7 @@ class NaturalOrderComparatorsUnitTest {
 
     @Test
     void givenAllForseenProblems_whenSortedByRegex_checkSortingCorrect() {
-        List<String> testStrings = Stream.of("a1", "b3", "c4", "d2.2", "d2.f4", "d2.3.3d")
+        var testStrings = Stream.of("a1", "b3", "c4", "d2.2", "d2.f4", "d2.3.3d")
                 .sorted(comparingByNumbersInString)
                 .toList();
 
@@ -46,7 +46,7 @@ class NaturalOrderComparatorsUnitTest {
 
     @Test
     void givenComplexStringsContainingSeparatedNumbers_whenSortedByRegex_checkNumbersCondensedAndSorted() {
-        List<String> testStrings = Stream.of("a1b2c5", "b3ght3.2", "something65.thensomething5") //125, 33.2, 65.5
+        var testStrings = Stream.of("a1b2c5", "b3ght3.2", "something65.thensomething5") //125, 33.2, 65.5
                 .sorted(comparingByNumbersInString)
                 .toList();
 
@@ -58,7 +58,7 @@ class NaturalOrderComparatorsUnitTest {
     void givenStringsNotContainingNumbers_whenSortedByRegex_checkOrderNotChanged() {
         final var input = List.of("c", "a", "d", "e");
 
-        List<String> testStrings = input.stream()
+        var testStrings = input.stream()
                 .sorted(comparingByNumbersInString)
                 .toList();
 

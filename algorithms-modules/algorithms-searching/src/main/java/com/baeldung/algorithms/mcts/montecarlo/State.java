@@ -62,9 +62,9 @@ public class State {
 
     public List<State> getAllPossibleStates() {
         List<State> possibleStates = new ArrayList<>();
-        List<Position> availablePositions = this.board.getEmptyPositions();
-        for (Position p : availablePositions) {
-            State newState = new State(this.board);
+        var availablePositions = this.board.getEmptyPositions();
+        for (var p : availablePositions) {
+            var newState = new State(this.board);
             newState.setPlayerNo(3 - this.playerNo);
             newState.getBoard().performMove(newState.getPlayerNo(), p);
             possibleStates.add(newState);
@@ -83,9 +83,9 @@ public class State {
     }
 
     void randomPlay(RandomGenerator random) {
-        List<Position> availablePositions = this.board.getEmptyPositions();
-        int totalPossibilities = availablePositions.size();
-        int selectRandom = random.nextInt(totalPossibilities);
+        var availablePositions = this.board.getEmptyPositions();
+        var totalPossibilities = availablePositions.size();
+        var selectRandom = random.nextInt(totalPossibilities);
         this.board.performMove(this.playerNo, availablePositions.get(selectRandom));
     }
 

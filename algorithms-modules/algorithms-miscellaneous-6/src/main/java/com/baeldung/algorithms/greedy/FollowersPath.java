@@ -30,8 +30,8 @@ public class FollowersPath {
     
     @Override
     public String toString() {
-        String details = "";
-        for(Follower a : accounts) {
+        var details = "";
+        for(var a : accounts) {
             details+=a.toString() + ", ";
         }
         

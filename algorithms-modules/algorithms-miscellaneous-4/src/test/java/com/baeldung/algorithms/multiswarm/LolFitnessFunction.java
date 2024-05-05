@@ -20,8 +20,8 @@ public class LolFitnessFunction implements FitnessFunction {
 	@Override
 	public double getFitness(long[] particlePosition) {
 
-		long health = particlePosition[0];
-		long armor = particlePosition[1];
+        var health = particlePosition[0];
+        var armor = particlePosition[1];
 
 		// No negatives values accepted.
 		if (health < 0 && armor < 0) {
@@ -33,12 +33,12 @@ public class LolFitnessFunction implements FitnessFunction {
 		}
 
 		// Checks if the solution is actually feasible provided our gold.
-		double cost = (health * 2.5) + (armor * 18);
+        var cost = (health * 2.5) + (armor * 18);
 		if (cost > 3600) {
 			return 3600 - cost;
 		} else {
 			// Check how good is the solution.
-			long fitness = (health * (100 + armor)) / 100;
+            var fitness = (health * (100 + armor)) / 100;
 			return fitness;
 		}
 	}

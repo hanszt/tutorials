@@ -12,7 +12,7 @@ public class GameBoard {
         this.rows = rows;
         this.columns = new ArrayList<>();
 
-        for (int i = 0; i < columns; ++i) {
+        for (var i = 0; i < columns; ++i) {
             this.columns.add(new ArrayList<>());
         }
     }
@@ -29,19 +29,15 @@ public class GameBoard {
         assert(x >= 0 && x < getColumns());
         assert(y >= 0 && y < getRows());
 
-        List<Piece> column = columns.get(x);
+        var column = columns.get(x);
 
-        if (column.size() > y) {
-            return column.get(y);
-        } else {
-            return null;
-        }
+        return column.size() > y ? column.get(y) : null;
     }
 
     public boolean move(int x, Piece player) {
         assert(x >= 0 && x < getColumns());
 
-        List<Piece> column = columns.get(x);
+        var column = columns.get(x);
 
         if (column.size() >= this.rows) {
             throw new IllegalArgumentException("That column is full");
@@ -58,7 +54,7 @@ public class GameBoard {
             return true;
         }
 
-        for (int offset = 0; offset < 4; ++offset) {
+        for (var offset = 0; offset < 4; ++offset) {
             // Horizontal line
             if (checkLine(x - 3 + offset, y, 1, 0, player)) {
                 return true;
@@ -79,9 +75,9 @@ public class GameBoard {
     }
 
     private boolean checkLine(int x1, int y1, int xDiff, int yDiff, Piece player) {
-        for (int i = 0; i < 4; ++i) {
-            int x = x1 + (xDiff * i);
-            int y = y1 + (yDiff * i);
+        for (var i = 0; i < 4; ++i) {
+            var x = x1 + (xDiff * i);
+            var y = y1 + (yDiff * i);
 
             if (x < 0 || x > columns.size() - 1) {
                 return false;
@@ -101,11 +97,11 @@ public class GameBoard {
 
     @Override
     public String toString() {
-        StringBuilder result = new StringBuilder();
+        var result = new StringBuilder();
 
-        for (int y = getRows() - 1; y >= 0; --y) {
-            for (int x = 0; x < getColumns(); ++x) {
-                Piece piece = getCell(x, y);
+        for (var y = getRows() - 1; y >= 0; --y) {
+            for (var x = 0; x < getColumns(); ++x) {
+                var piece = getCell(x, y);
 
                 result.append("|");
                 if (piece == null) {
@@ -118,9 +114,7 @@ public class GameBoard {
             }
 
             result.append("|\n");
-            for (int i = 0; i < getColumns(); ++i) {
-                result.append("+-");
-            }
+            result.append("+-".repeat(Math.max(0, getColumns())));
             result.append("+\n");
         }
 

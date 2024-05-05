@@ -11,7 +11,7 @@ class LinkedListFindMiddleUnitTest {
     @Test
     void givenLinkedListOfMyNodes_whenLinkedListFindMiddle_thenCorrect() {
 
-        MyNode<String> head = createNodesList(8);
+        var head = createNodesList(8);
 
         assertThat(linkedListFindMiddle.findMiddle(head)).isEqualTo("4");
 
@@ -22,11 +22,11 @@ class LinkedListFindMiddleUnitTest {
 
     private static MyNode<String> createNodesList(int n) {
 
-        MyNode<String> head = new MyNode<>("1");
-        MyNode<String> current = head;
+        var head = new MyNode<String>("1");
+        var current = head;
 
-        for (int i = 2; i <= n; i++) {
-            MyNode<String> newNode = new MyNode<>(String.valueOf(i));
+        for (var i = 2; i <= n; i++) {
+            var newNode = new MyNode<String>(String.valueOf(i));
             current.setNext(newNode);
             current = newNode;
         }

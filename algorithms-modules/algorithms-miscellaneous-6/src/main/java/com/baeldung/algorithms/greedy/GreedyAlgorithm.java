@@ -18,10 +18,10 @@ public class GreedyAlgorithm {
     public long findMostFollowersPath(String account) {
         long max = 0;
         SocialUser toFollow = null;
-        
-        List<SocialUser> followers = sc.getFollowers(account);
-        for (SocialUser el : followers) {
-            long followersCount = el.getFollowersCount();
+
+        var followers = sc.getFollowers(account);
+        for (var el : followers) {
+            var followersCount = el.getFollowersCount();
             if (followersCount > max) {
                 toFollow = el;
                 max = followersCount;

@@ -20,7 +20,7 @@ public class SortedListChecker {
             return true;
         }
 
-        Iterator<String> iter = listOfStrings.iterator();
+        var iter = listOfStrings.iterator();
         String current, previous = iter.next();
         while (iter.hasNext()) {
             current = iter.next();
@@ -37,7 +37,7 @@ public class SortedListChecker {
             return true;
         }
 
-        Iterator<Employee> iter = employees.iterator();
+        var iter = employees.iterator();
         Employee current, previous = iter.next();
         while (iter.hasNext()) {
             current = iter.next();

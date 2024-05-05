@@ -12,18 +12,18 @@ public class VigenereCipher {
     }
 
     public String encode(String input, String key) {
-        String result = "";
+        var result = "";
 
-        int keyPosition = 0;
-        for (char c : input.toCharArray()) {
-            char k = key.charAt(keyPosition % key.length());
+        var keyPosition = 0;
+        for (var c : input.toCharArray()) {
+            var k = key.charAt(keyPosition % key.length());
 
-            int charIndex = characters.indexOf(c);
-            int keyIndex = characters.indexOf(k);
+            var charIndex = characters.indexOf(c);
+            var keyIndex = characters.indexOf(k);
 
             if (charIndex >= 0) {
                 if (keyIndex >= 0) {
-                    int newCharIndex = (charIndex + keyIndex + 1) % characters.length();
+                    var newCharIndex = (charIndex + keyIndex + 1) % characters.length();
                     c = characters.charAt(newCharIndex);
 
                 }
@@ -38,18 +38,18 @@ public class VigenereCipher {
     }
 
     public String decode(String input, String key) {
-        String result = "";
+        var result = "";
 
-        int keyPosition = 0;
-        for (char c : input.toCharArray()) {
-            char k = key.charAt(keyPosition % key.length());
+        var keyPosition = 0;
+        for (var c : input.toCharArray()) {
+            var k = key.charAt(keyPosition % key.length());
 
-            int charIndex = characters.indexOf(c);
-            int keyIndex = characters.indexOf(k);
+            var charIndex = characters.indexOf(c);
+            var keyIndex = characters.indexOf(k);
 
             if (charIndex >= 0) {
                 if (keyIndex >= 0) {
-                    int newCharIndex = charIndex - keyIndex - 1;
+                    var newCharIndex = charIndex - keyIndex - 1;
                     if (newCharIndex < 0) {
                         newCharIndex = characters.length() + newCharIndex;
                     }

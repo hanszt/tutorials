@@ -23,9 +23,9 @@ public class CounterStatistics {
 
     static {
         CounterUtil.COUNTRY_NAMES = new String[10000];
-        final String prefix = "NewString";
-        Random random = new Random();
-        for (int i = 0; i < 10000; i++) {
+        final var prefix = "NewString";
+        var random = new Random();
+        for (var i = 0; i < 10000; i++) {
             CounterUtil.COUNTRY_NAMES[i] = prefix + random.nextInt(1000);
         }
     }

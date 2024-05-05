@@ -5,15 +5,15 @@ import java.util.List;
 class RomanArabicConverter {
 
     public static int romanToArabic(String input) {
-        String romanNumeral = input.toUpperCase();
-        int result = 0;
-        
-        List<RomanNumeral> romanNumerals = RomanNumeral.getReverseSortedValues();
+        var romanNumeral = input.toUpperCase();
+        var result = 0;
 
-        int i = 0;
+        var romanNumerals = RomanNumeral.getReverseSortedValues();
+
+        var i = 0;
 
         while ((romanNumeral.length() > 0) && (i < romanNumerals.size())) {
-            RomanNumeral symbol = romanNumerals.get(i);
+            var symbol = romanNumerals.get(i);
             if (romanNumeral.startsWith(symbol.name())) {
                 result += symbol.getValue();
                 romanNumeral = romanNumeral.substring(symbol.name().length());
@@ -33,13 +33,13 @@ class RomanArabicConverter {
             throw new IllegalArgumentException(number + " is not in range (0,4000]");
         }
 
-        List<RomanNumeral> romanNumerals = RomanNumeral.getReverseSortedValues();
+        var romanNumerals = RomanNumeral.getReverseSortedValues();
 
-        int i = 0;
-        StringBuilder sb = new StringBuilder();
+        var i = 0;
+        var sb = new StringBuilder();
 
         while (number > 0 && i < romanNumerals.size()) {
-            RomanNumeral currentSymbol = romanNumerals.get(i);
+            var currentSymbol = romanNumerals.get(i);
             if (currentSymbol.getValue() <= number) {
                 sb.append(currentSymbol.name());
                 number -= currentSymbol.getValue();

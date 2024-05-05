@@ -6,11 +6,11 @@ public final class BubbleSort {
     }
 
     static void bubbleSort(Integer[] arr) {
-        int n = arr.length;
-        int boundOuter = n - 1;
-        for (int i = 0; i < boundOuter; i++) {
-            int bound = n - i;
-            for (int j = 1; j < bound; j++) {
+        var n = arr.length;
+        var boundOuter = n - 1;
+        for (var i = 0; i < boundOuter; i++) {
+            var bound = n - i;
+            for (var j = 1; j < bound; j++) {
                 if (arr[j - 1] > arr[j]) {
                     int temp = arr[j];
                     arr[j] = arr[j - 1];
@@ -26,7 +26,7 @@ public final class BubbleSort {
         boolean swapNeeded;
         while (i < n - 1) {
             swapNeeded = false;
-            for (int j = 1; j < n - i; j++) {
+            for (var j = 1; j < n - i; j++) {
                 if (arr[j - 1] > arr[j]) {
 
                     int temp = arr[j - 1];

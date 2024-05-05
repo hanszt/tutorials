@@ -8,12 +8,12 @@ import java.util.Set;
 public class LongestSubstringNonRepeatingCharacters {
 
     public static String getUniqueCharacterSubstringBruteForce(String input) {
-        String output = "";
-        for (int start = 0; start < input.length(); start++) {
+        var output = "";
+        for (var start = 0; start < input.length(); start++) {
             Set<Character> visited = new HashSet<>();
-            int end = start;
+            var end = start;
             for (; end < input.length(); end++) {
-                char currChar = input.charAt(end);
+                var currChar = input.charAt(end);
                 if (visited.contains(currChar)) {
                     break;
                 } else {
@@ -29,9 +29,9 @@ public class LongestSubstringNonRepeatingCharacters {
 
     public static String getUniqueCharacterSubstring(String input) {
         Map<Character, Integer> visited = new HashMap<>();
-        String output = "";
+        var output = "";
         for (int start = 0, end = 0; end < input.length(); end++) {
-            char currChar = input.charAt(end);
+            var currChar = input.charAt(end);
             if (visited.containsKey(currChar)) {
                 start = Math.max(visited.get(currChar) + 1, start);
             }

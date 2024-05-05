@@ -41,7 +41,6 @@ class RtFiniteStateMachineLongRunningUnitTest {
     /**
      * Builds a finite state machine to validate a simple
      * Json object.
-     * @return
      */
     private FiniteStateMachine buildJsonStateMachine() {
         final State first = new RtState();

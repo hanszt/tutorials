@@ -14,17 +14,17 @@ public final class Travel {
     private List<City> previousTravel = new ArrayList<>();
 
     public Travel(int numberOfCities, IntFunction<City> generateCity) {
-        for (int i = 0; i < numberOfCities; i++) {
+        for (var i = 0; i < numberOfCities; i++) {
             travel.add(generateCity.apply(i));
         }
     }
 
     public void swapCities(RandomGenerator randomGenerator) {
-        int a = randomGenerator.nextInt(travel.size());
-        int b = randomGenerator.nextInt(travel.size());
+        var a = randomGenerator.nextInt(travel.size());
+        var b = randomGenerator.nextInt(travel.size());
         previousTravel = new ArrayList<>(travel);
-        City x = travel.get(a);
-        City y = travel.get(b);
+        var x = travel.get(a);
+        var y = travel.get(b);
         travel.set(a, y);
         travel.set(b, x);
     }
@@ -44,8 +44,8 @@ public final class Travel {
     }
 
     private int getDistance(int index) {
-        final City start = getCity(index);
-        final City destination = index + 1 < travel.size() ? getCity(index + 1) : getCity(0);
+        final var start = getCity(index);
+        final var destination = index + 1 < travel.size() ? getCity(index + 1) : getCity(0);
         return (int) start.distanceToCity(destination);
     }
 

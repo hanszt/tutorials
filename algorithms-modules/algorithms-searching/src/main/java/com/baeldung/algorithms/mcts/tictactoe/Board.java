@@ -36,13 +36,13 @@ public final class Board {
     }
 
     public Board(Board board) {
-        int boardLength = board.getBoardValues().length;
+        var boardLength = board.getBoardValues().length;
         this.boardValues = new int[boardLength][boardLength];
-        int[][] boardValues = board.getBoardValues();
-        int n = boardValues.length;
-        for (int i = 0; i < n; i++) {
-            int m = boardValues[i].length;
-            for (int j = 0; j < m; j++) {
+        var boardValues = board.getBoardValues();
+        var n = boardValues.length;
+        for (var i = 0; i < n; i++) {
+            var m = boardValues[i].length;
+            for (var j = 0; j < m; j++) {
                 this.boardValues[i][j] = boardValues[i][j];
             }
         }
@@ -58,24 +58,24 @@ public final class Board {
     }
 
     public int checkStatus() {
-        int boardSize = boardValues.length;
-        int maxIndex = boardSize - 1;
-        int[] diag1 = new int[boardSize];
-        int[] diag2 = new int[boardSize];
+        var boardSize = boardValues.length;
+        var maxIndex = boardSize - 1;
+        var diag1 = new int[boardSize];
+        var diag2 = new int[boardSize];
         
-        for (int i = 0; i < boardSize; i++) {
-            int[] row = boardValues[i];
-            int[] col = new int[boardSize];
-            for (int j = 0; j < boardSize; j++) {
+        for (var i = 0; i < boardSize; i++) {
+            var row = boardValues[i];
+            var col = new int[boardSize];
+            for (var j = 0; j < boardSize; j++) {
                 col[j] = boardValues[j][i];
             }
-            
-            int checkRowForWin = checkForWin(row);
+
+            var checkRowForWin = checkForWin(row);
             if(checkRowForWin!=0) {
                 return checkRowForWin;
             }
-            
-            int checkColForWin = checkForWin(col);
+
+            var checkColForWin = checkForWin(col);
             if(checkColForWin!=0) {
                 return checkColForWin;
             }
@@ -84,12 +84,12 @@ public final class Board {
             diag2[i] = boardValues[maxIndex - i][i];
         }
 
-        int checkDia1gForWin = checkForWin(diag1);
+        var checkDia1gForWin = checkForWin(diag1);
         if(checkDia1gForWin!=0) {
             return checkDia1gForWin;
         }
-        
-        int checkDiag2ForWin = checkForWin(diag2);
+
+        var checkDiag2ForWin = checkForWin(diag2);
         if(checkDiag2ForWin!=0) {
             return checkDiag2ForWin;
         }
@@ -102,8 +102,8 @@ public final class Board {
     }
 
     private int checkForWin(int[] row) {
-        int previous = row[0];
-        for (final int j : row) {
+        var previous = row[0];
+        for (final var j : row) {
             if (previous != j) {
                 return 0;
             }
@@ -119,10 +119,10 @@ public final class Board {
     }
 
     public List<Position> getEmptyPositions() {
-        int size = this.boardValues.length;
+        var size = this.boardValues.length;
         List<Position> emptyPositions = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
+        for (var i = 0; i < size; i++) {
+            for (var j = 0; j < size; j++) {
                 if (boardValues[i][j] == 0) {
                     emptyPositions.add(new Position(i, j));
                 }

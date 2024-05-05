@@ -10,7 +10,7 @@ public final class MinHeap {
     }
 
     void heapifyFromLastLeafsParent() {
-        int lastLeafsParentIndex = getParentNodeIndex(heapNodes.length);
+        var lastLeafsParentIndex = getParentNodeIndex(heapNodes.length);
         while (lastLeafsParentIndex >= 0) {
             heapify(lastLeafsParentIndex);
             lastLeafsParentIndex--;
@@ -18,9 +18,9 @@ public final class MinHeap {
     }
 
     void heapify(int index) {
-        int leftNodeIndex = getLeftNodeIndex(index);
-        int rightNodeIndex = getRightNodeIndex(index);
-        int smallestElementIndex = index;
+        var leftNodeIndex = getLeftNodeIndex(index);
+        var rightNodeIndex = getRightNodeIndex(index);
+        var smallestElementIndex = index;
         if (leftNodeIndex < heapNodes.length && heapNodes[leftNodeIndex].element < heapNodes[index].element) {
             smallestElementIndex = leftNodeIndex;
         }
@@ -54,26 +54,26 @@ public final class MinHeap {
     }
 
     void swap(int i, int j) {
-        HeapNode temp = heapNodes[i];
+        var temp = heapNodes[i];
         heapNodes[i] = heapNodes[j];
         heapNodes[j] = temp;
     }
     
     static int[] merge(int[][] array) {
-        HeapNode[] heapNodes = new HeapNode[array.length];
-        int resultingArraySize = 0;
+        var heapNodes = new HeapNode[array.length];
+        var resultingArraySize = 0;
 
-        for (int i = 0; i < array.length; i++) {
-            HeapNode node = new HeapNode(array[i][0], i);
+        for (var i = 0; i < array.length; i++) {
+            var node = new HeapNode(array[i][0], i);
             heapNodes[i] = node;
             resultingArraySize += array[i].length;
         }
-        
-        MinHeap minHeap = new MinHeap(heapNodes);
-        int[] resultingArray = new int[resultingArraySize];
 
-        for (int i = 0; i < resultingArraySize; i++) {
-            HeapNode root = minHeap.getRootNode();
+        var minHeap = new MinHeap(heapNodes);
+        var resultingArray = new int[resultingArraySize];
+
+        for (var i = 0; i < resultingArraySize; i++) {
+            var root = minHeap.getRootNode();
             resultingArray[i] = root.element;
 
             if (root.nextElementIndex < array[root.arrayIndex].length) {

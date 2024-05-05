@@ -10,11 +10,11 @@ public class MergeOverlappingIntervals {
 
     public List<Interval> doMerge(List<Interval> intervals) {
         intervals.sort(Comparator.comparingInt(interval -> interval.start));
-        ArrayList<Interval> merged = new ArrayList<>();
+        var merged = new ArrayList<Interval>();
         merged.add(intervals.get(0));
 
         intervals.forEach(interval -> {
-            Interval lastMerged = merged.get(merged.size() - 1);
+            var lastMerged = merged.get(merged.size() - 1);
             if (interval.start <= lastMerged.end){
                 lastMerged.setEnd(max(interval.end, lastMerged.end));
             } else {

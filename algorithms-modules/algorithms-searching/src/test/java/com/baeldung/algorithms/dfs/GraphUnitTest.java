@@ -10,10 +10,10 @@ class GraphUnitTest {
 
     @Test
     void givenDirectedGraph_whenDFS_thenPrintAllValues() {
-        Graph graph = createDirectedGraph();
+        var graph = createDirectedGraph();
         boolean[] visited;
         visited = graph.dfs(0);
-        boolean[] expected = new boolean[]{true, true, true, true, true, true};
+        var expected = new boolean[]{true, true, true, true, true, true};
         Assert.assertArrayEquals(expected, visited);
         visited = graph.dfsWithoutRecursion(0);
         Assert.assertArrayEquals(expected, visited);
@@ -21,15 +21,15 @@ class GraphUnitTest {
 
     @Test
     void givenDirectedGraph_whenGetTopologicalSort_thenPrintValuesSorted() {
-        Graph graph = createDirectedGraph();
-        List<Integer> list = graph.topologicalSort(0);
+        var graph = createDirectedGraph();
+        var list = graph.topologicalSort(0);
         System.out.println(list);
-        List<Integer> expected = Arrays.asList(0, 2, 1, 3, 4, 5);
+        var expected = Arrays.asList(0, 2, 1, 3, 4, 5);
         Assert.assertEquals(expected, list);
     }
 
     private Graph createDirectedGraph() {
-        Graph graph = new Graph();
+        var graph = new Graph();
         graph.addVertex(0);
         graph.addVertex(1);
         graph.addVertex(2);

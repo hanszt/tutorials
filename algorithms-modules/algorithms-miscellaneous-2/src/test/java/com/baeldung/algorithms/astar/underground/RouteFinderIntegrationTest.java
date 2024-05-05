@@ -644,7 +644,7 @@ class RouteFinderIntegrationTest {
 
     @Test
     void findRoute() {
-        List<Station> route = routeFinder.findRoute(underground.getNode("74"), underground.getNode("7"));
+        var route = routeFinder.findRoute(underground.getNode("74"), underground.getNode("7"));
         assertThat(route).size().isPositive();
 
         route.stream().map(Station::getName).toList().forEach(LOGGER::debug);

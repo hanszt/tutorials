@@ -24,24 +24,24 @@ public final class NumberWordConverter {
     };
 
     public static String getMoneyIntoWords(String input) {
-        MoneyConverters converter = MoneyConverters.ENGLISH_BANKING_MONEY_VALUE;
+        var converter = MoneyConverters.ENGLISH_BANKING_MONEY_VALUE;
         return converter.asWords(new BigDecimal(input));
     }
 
     public static String getMoneyIntoWords(final double money) {
-        long dollar = (long) money;
-        long cents = Math.round((money - dollar) * 100);
+        var dollar = (long) money;
+        var cents = Math.round((money - dollar) * 100);
         if (money == 0D) {
             return "";
         }
         if (money < 0) {
             return INVALID_INPUT_GIVEN;
         }
-        String dollarPart = "";
+        var dollarPart = "";
         if (dollar > 0) {
             dollarPart = convert(dollar) + " dollar" + (dollar == 1 ? "" : "s");
         }
-        String centsPart = "";
+        var centsPart = "";
         if (cents > 0) {
             if (!dollarPart.isEmpty()) {
                 centsPart = " and ";

@@ -24,16 +24,16 @@ public class KthSmallest {
 
         // swap lists if needed to make sure we take at least one element from list1
         if(k <= list2.length && list2[k-1] < list1[0]) {
-            int[] list1_ = list1;
+            var list1_ = list1;
             list1 = list2;
             list2 = list1_;
         }
 
         // correct left boundary if k is bigger than the size of list2
-        int left = k < list2.length ? 0 : k - list2.length - 1;
+        var left = k < list2.length ? 0 : k - list2.length - 1;
 
         // the inital right boundary cannot exceed the list1
-        int right = min(k-1, list1.length - 1);
+        var right = min(k - 1, list1.length - 1);
 
         int nElementsList1, nElementsList2;
 
@@ -95,7 +95,7 @@ public class KthSmallest {
     public static int getKthElementSorted(int[] list1, int[] list2, int k) {
 
         int length1 = list1.length, length2 = list2.length;
-        int[] combinedArray = new int[length1 + length2];
+        var combinedArray = new int[length1 + length2];
         System.arraycopy(list1, 0, combinedArray, 0, list1.length);
         System.arraycopy(list2, 0, combinedArray, list1.length, list2.length);
         Arrays.sort(combinedArray);

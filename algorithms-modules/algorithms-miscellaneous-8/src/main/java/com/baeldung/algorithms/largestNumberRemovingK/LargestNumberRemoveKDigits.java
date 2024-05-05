@@ -4,15 +4,15 @@ import java.util.Stack;
 
 public class LargestNumberRemoveKDigits {
     public static int findLargestNumberUsingArithmetic(int num, int k) {
-        for (int j = 0; j < k; j++) {
+        for (var j = 0; j < k; j++) {
 
-            int result = 0;
-            int i = 1;
+            var result = 0;
+            var i = 1;
 
             while (num / i > 0) {
-                int temp = (num / (i * 10))
-                        * i
-                        + (num % i);
+                var temp = (num / (i * 10))
+                           * i
+                           + (num % i);
                 i *= 10;
 
                 result = Math.max(result, temp);
@@ -24,17 +24,17 @@ public class LargestNumberRemoveKDigits {
     }
 
     public static int findLargestNumberUsingStack(int num, int k) {
-        String numStr = Integer.toString(num);
-        int length = numStr.length();
+        var numStr = Integer.toString(num);
+        var length = numStr.length();
 
         if (k == length) {
             return 0;
         }
 
-        Stack<Character> stack = new Stack<>();
+        var stack = new Stack<Character>();
 
-        for (int i = 0; i < length; i++) {
-            char digit = numStr.charAt(i);
+        for (var i = 0; i < length; i++) {
+            var digit = numStr.charAt(i);
 
             while (k > 0 && !stack.isEmpty() && stack.peek() < digit) {
                 stack.pop();
@@ -49,7 +49,7 @@ public class LargestNumberRemoveKDigits {
             k--;
         }
 
-        StringBuilder result = new StringBuilder();
+        var result = new StringBuilder();
         while (!stack.isEmpty()) {
             result.insert(0, stack.pop());
         }

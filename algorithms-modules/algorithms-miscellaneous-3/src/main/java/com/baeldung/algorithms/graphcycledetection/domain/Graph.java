@@ -24,7 +24,7 @@ public class Graph {
     }
 
     public boolean hasCycle() {
-        for (Vertex vertex : vertices) {
+        for (var vertex : vertices) {
             if (!vertex.isVisited() && hasCycle(vertex)) {
                 return true;
             }
@@ -35,7 +35,7 @@ public class Graph {
     public boolean hasCycle(Vertex sourceVertex) {
         sourceVertex.setBeingVisited(true);
 
-        for (Vertex neighbour : sourceVertex.getAdjacencyList()) {
+        for (var neighbour : sourceVertex.getAdjacencyList()) {
             if (neighbour.isBeingVisited()) {
                 // backward edge exists
                 return true;

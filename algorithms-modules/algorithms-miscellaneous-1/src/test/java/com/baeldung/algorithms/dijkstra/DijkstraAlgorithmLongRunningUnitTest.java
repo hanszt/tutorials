@@ -16,12 +16,12 @@ class DijkstraAlgorithmLongRunningUnitTest {
     @Test
     public void whenSPPSolved_thenCorrect() {
 
-        Node nodeA = new Node("A");
-        Node nodeB = new Node("B");
-        Node nodeC = new Node("C");
-        Node nodeD = new Node("D");
-        Node nodeE = new Node("E");
-        Node nodeF = new Node("F");
+        var nodeA = new Node("A");
+        var nodeB = new Node("B");
+        var nodeC = new Node("C");
+        var nodeD = new Node("D");
+        var nodeE = new Node("E");
+        var nodeF = new Node("F");
 
         nodeA.addDestination(nodeB, 10);
         nodeA.addDestination(nodeC, 15);
@@ -36,7 +36,7 @@ class DijkstraAlgorithmLongRunningUnitTest {
 
         nodeF.addDestination(nodeE, 5);
 
-        Graph graph = new Graph();
+        var graph = new Graph();
 
         graph.addNode(nodeA);
         graph.addNode(nodeB);
@@ -47,13 +47,13 @@ class DijkstraAlgorithmLongRunningUnitTest {
 
         graph = Dijkstra.calculateShortestPathFromSource(graph, nodeA);
 
-        List<Node> shortestPathForNodeB = Arrays.asList(nodeA);
-        List<Node> shortestPathForNodeC = Arrays.asList(nodeA);
-        List<Node> shortestPathForNodeD = Arrays.asList(nodeA, nodeB);
-        List<Node> shortestPathForNodeE = Arrays.asList(nodeA, nodeB, nodeD);
-        List<Node> shortestPathForNodeF = Arrays.asList(nodeA, nodeB, nodeD);
+        var shortestPathForNodeB = Arrays.asList(nodeA);
+        var shortestPathForNodeC = Arrays.asList(nodeA);
+        var shortestPathForNodeD = Arrays.asList(nodeA, nodeB);
+        var shortestPathForNodeE = Arrays.asList(nodeA, nodeB, nodeD);
+        var shortestPathForNodeF = Arrays.asList(nodeA, nodeB, nodeD);
 
-        for (Node node : graph.getNodes()) {
+        for (var node : graph.getNodes()) {
             switch (node.getName()) {
             case "B":
                 assertTrue(node

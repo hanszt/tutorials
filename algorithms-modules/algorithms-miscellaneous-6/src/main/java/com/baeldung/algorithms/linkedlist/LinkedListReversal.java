@@ -4,9 +4,9 @@ public class LinkedListReversal {
 
     ListNode reverseList(ListNode head) {
         ListNode previous = null;
-        ListNode current = head;
+        var current = head;
         while (current != null) {
-            ListNode nextElement = current.getNext();
+            var nextElement = current.getNext();
             current.setNext(previous);
             previous = current;
             current = nextElement;
@@ -21,7 +21,7 @@ public class LinkedListReversal {
         if (head.getNext() == null) {
             return head;
         }
-        ListNode node = reverseListRecursive(head.getNext());
+        var node = reverseListRecursive(head.getNext());
         head.getNext().setNext(head);
         head.setNext(null);
         return node;

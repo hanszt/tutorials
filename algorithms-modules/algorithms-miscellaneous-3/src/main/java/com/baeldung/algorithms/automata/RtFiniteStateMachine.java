@@ -9,7 +9,7 @@ public final class RtFiniteStateMachine implements FiniteStateMachine {
     /**
      * Current state.
      */
-    private State current;
+    private final State current;
 
     /**
      * Ctor.

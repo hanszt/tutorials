@@ -17,13 +17,13 @@ public class CaesarCipher {
     private static final double[] ENGLISH_LETTERS_PROBABILITIES = {0.073, 0.009, 0.030, 0.044, 0.130, 0.028, 0.016, 0.035, 0.074, 0.002, 0.003, 0.035, 0.025, 0.078, 0.074, 0.027, 0.003, 0.077, 0.063, 0.093, 0.027, 0.013, 0.016, 0.005, 0.019, 0.001};
 
     public String cipher(String message, int offset) {
-        StringBuilder result = new StringBuilder();
+        var result = new StringBuilder();
 
-        for (char character : message.toCharArray()) {
+        for (var character : message.toCharArray()) {
             if (character != ' ') {
-                int originalAlphabetPosition = character - LETTER_A;
-                int newAlphabetPosition = (originalAlphabetPosition + offset) % ALPHABET_SIZE;
-                char newCharacter = (char) (LETTER_A + newAlphabetPosition);
+                var originalAlphabetPosition = character - LETTER_A;
+                var newAlphabetPosition = (originalAlphabetPosition + offset) % ALPHABET_SIZE;
+                var newCharacter = (char) (LETTER_A + newAlphabetPosition);
                 result.append(newCharacter);
             } else {
                 result.append(character);
@@ -42,14 +42,14 @@ public class CaesarCipher {
     }
 
     private double[] chiSquares(String message) {
-        double[] expectedLettersFrequencies = expectedLettersFrequencies(message.length());
+        var expectedLettersFrequencies = expectedLettersFrequencies(message.length());
 
-        double[] chiSquares = new double[ALPHABET_SIZE];
+        var chiSquares = new double[ALPHABET_SIZE];
 
-        for (int offset = 0; offset < chiSquares.length; offset++) {
-            String decipheredMessage = decipher(message, offset);
-            long[] lettersFrequencies = observedLettersFrequencies(decipheredMessage);
-            double chiSquare = new ChiSquareTest().chiSquare(expectedLettersFrequencies, lettersFrequencies);
+        for (var offset = 0; offset < chiSquares.length; offset++) {
+            var decipheredMessage = decipher(message, offset);
+            var lettersFrequencies = observedLettersFrequencies(decipheredMessage);
+            var chiSquare = new ChiSquareTest().chiSquare(expectedLettersFrequencies, lettersFrequencies);
             chiSquares[offset] = chiSquare;
         }
 
@@ -75,8 +75,8 @@ public class CaesarCipher {
     }
 
     private int probableOffset(double[] chiSquares) {
-        int probableOffset = 0;
-        for (int offset = 0; offset < chiSquares.length; offset++) {
+        var probableOffset = 0;
+        for (var offset = 0; offset < chiSquares.length; offset++) {
             log.debug(String.format("Chi-Square for offset %d: %.2f", offset, chiSquares[offset]));
             if (chiSquares[offset] < chiSquares[probableOffset]) {
                 probableOffset = offset;

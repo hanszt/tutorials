@@ -3,10 +3,10 @@ package com.baeldung.algorithms.editdistance;
 public class EditDistanceDynamicProgramming extends EditDistanceBase {
 
     static int calculate(String x, String y) {
-        int[][] dp = new int[x.length() + 1][y.length() + 1];
+        var dp = new int[x.length() + 1][y.length() + 1];
 
-        for (int i = 0; i <= x.length(); i++) {
-            for (int j = 0; j <= y.length(); j++) {
+        for (var i = 0; i <= x.length(); i++) {
+            for (var j = 0; j <= y.length(); j++) {
                 if (i == 0) {
                     dp[i][j] = j;
                 } else if (j == 0) {

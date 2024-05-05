@@ -8,8 +8,8 @@ public class UniqueDigitCounter {
     public static int countWithSet(int number) {
         number = Math.abs(number);
         Set<Character> uniqueDigits = new HashSet<>();
-        String numberStr = String.valueOf(number);
-        for (char digit : numberStr.toCharArray()) {
+        var numberStr = String.valueOf(number);
+        for (var digit : numberStr.toCharArray()) {
             uniqueDigits.add(digit);
         }
         return uniqueDigits.size();
@@ -20,9 +20,9 @@ public class UniqueDigitCounter {
             return 1;
         }
         number = Math.abs(number);
-        int mask = 0;
+        var mask = 0;
         while (number > 0) {
-            int digit = number % 10;
+            var digit = number % 10;
             mask |= 1 << digit;
             number /= 10;
         }

@@ -24,13 +24,13 @@ public class DancingLinksAlgorithm {
     };
 
     public static void main(String[] args) {
-        DancingLinksAlgorithm solver = new DancingLinksAlgorithm();
+        var solver = new DancingLinksAlgorithm();
         solver.solve(board);
     }
 
     private void solve(int[][] board) {
-        boolean[][] cover = initializeExactCoverBoard(board);
-        DancingLinks dlx = new DancingLinks(cover);
+        var cover = initializeExactCoverBoard(board);
+        var dlx = new DancingLinks(cover);
         dlx.runSolver();
     }
 
@@ -39,9 +39,9 @@ public class DancingLinksAlgorithm {
     }
 
     private boolean[][] createExactCoverBoard() {
-        boolean[][] coverBoard = new boolean[BOARD_SIZE * BOARD_SIZE * MAX_VALUE][BOARD_SIZE * BOARD_SIZE * CONSTRAINTS];
+        var coverBoard = new boolean[BOARD_SIZE * BOARD_SIZE * MAX_VALUE][BOARD_SIZE * BOARD_SIZE * CONSTRAINTS];
 
-        int hBase = 0;
+        var hBase = 0;
         hBase = checkCellConstraint(coverBoard, hBase);
         hBase = checkRowConstraint(coverBoard, hBase);
         hBase = checkColumnConstraint(coverBoard, hBase);
@@ -51,12 +51,12 @@ public class DancingLinksAlgorithm {
     }
 
     private int checkSubsectionConstraint(boolean[][] coverBoard, int hBase) {
-        for (int row = COVER_START_INDEX; row <= BOARD_SIZE; row += SUBSECTION_SIZE) {
-            for (int column = COVER_START_INDEX; column <= BOARD_SIZE; column += SUBSECTION_SIZE) {
-                for (int n = COVER_START_INDEX; n <= BOARD_SIZE; n++, hBase++) {
-                    for (int rowDelta = 0; rowDelta < SUBSECTION_SIZE; rowDelta++) {
-                        for (int columnDelta = 0; columnDelta < SUBSECTION_SIZE; columnDelta++) {
-                            int index = getIndex(row + rowDelta, column + columnDelta, n);
+        for (var row = COVER_START_INDEX; row <= BOARD_SIZE; row += SUBSECTION_SIZE) {
+            for (var column = COVER_START_INDEX; column <= BOARD_SIZE; column += SUBSECTION_SIZE) {
+                for (var n = COVER_START_INDEX; n <= BOARD_SIZE; n++, hBase++) {
+                    for (var rowDelta = 0; rowDelta < SUBSECTION_SIZE; rowDelta++) {
+                        for (var columnDelta = 0; columnDelta < SUBSECTION_SIZE; columnDelta++) {
+                            var index = getIndex(row + rowDelta, column + columnDelta, n);
                             coverBoard[index][hBase] = true;
                         }
                     }
@@ -67,10 +67,10 @@ public class DancingLinksAlgorithm {
     }
 
     private int checkColumnConstraint(boolean[][] coverBoard, int hBase) {
-        for (int column = COVER_START_INDEX; column <= BOARD_SIZE; column++) {
-            for (int n = COVER_START_INDEX; n <= BOARD_SIZE; n++, hBase++) {
-                for (int row = COVER_START_INDEX; row <= BOARD_SIZE; row++) {
-                    int index = getIndex(row, column, n);
+        for (var column = COVER_START_INDEX; column <= BOARD_SIZE; column++) {
+            for (var n = COVER_START_INDEX; n <= BOARD_SIZE; n++, hBase++) {
+                for (var row = COVER_START_INDEX; row <= BOARD_SIZE; row++) {
+                    var index = getIndex(row, column, n);
                     coverBoard[index][hBase] = true;
                 }
             }
@@ -79,10 +79,10 @@ public class DancingLinksAlgorithm {
     }
 
     private int checkRowConstraint(boolean[][] coverBoard, int hBase) {
-        for (int row = COVER_START_INDEX; row <= BOARD_SIZE; row++) {
-            for (int n = COVER_START_INDEX; n <= BOARD_SIZE; n++, hBase++) {
-                for (int column = COVER_START_INDEX; column <= BOARD_SIZE; column++) {
-                    int index = getIndex(row, column, n);
+        for (var row = COVER_START_INDEX; row <= BOARD_SIZE; row++) {
+            for (var n = COVER_START_INDEX; n <= BOARD_SIZE; n++, hBase++) {
+                for (var column = COVER_START_INDEX; column <= BOARD_SIZE; column++) {
+                    var index = getIndex(row, column, n);
                     coverBoard[index][hBase] = true;
                 }
             }
@@ -91,10 +91,10 @@ public class DancingLinksAlgorithm {
     }
 
     private int checkCellConstraint(boolean[][] coverBoard, int hBase) {
-        for (int row = COVER_START_INDEX; row <= BOARD_SIZE; row++) {
-            for (int column = COVER_START_INDEX; column <= BOARD_SIZE; column++, hBase++) {
-                for (int n = COVER_START_INDEX; n <= BOARD_SIZE; n++) {
-                    int index = getIndex(row, column, n);
+        for (var row = COVER_START_INDEX; row <= BOARD_SIZE; row++) {
+            for (var column = COVER_START_INDEX; column <= BOARD_SIZE; column++, hBase++) {
+                for (var n = COVER_START_INDEX; n <= BOARD_SIZE; n++) {
+                    var index = getIndex(row, column, n);
                     coverBoard[index][hBase] = true;
                 }
             }
@@ -103,12 +103,12 @@ public class DancingLinksAlgorithm {
     }
 
     private boolean[][] initializeExactCoverBoard(int[][] board) {
-        boolean[][] coverBoard = createExactCoverBoard();
-        for (int row = COVER_START_INDEX; row <= BOARD_SIZE; row++) {
-            for (int column = COVER_START_INDEX; column <= BOARD_SIZE; column++) {
-                int n = board[row - 1][column - 1];
+        var coverBoard = createExactCoverBoard();
+        for (var row = COVER_START_INDEX; row <= BOARD_SIZE; row++) {
+            for (var column = COVER_START_INDEX; column <= BOARD_SIZE; column++) {
+                var n = board[row - 1][column - 1];
                 if (n != NO_VALUE) {
-                    for (int num = MIN_VALUE; num <= MAX_VALUE; num++) {
+                    for (var num = MIN_VALUE; num <= MAX_VALUE; num++) {
                         if (num != n) {
                             Arrays.fill(coverBoard[getIndex(row, column, num)], false);
                         }

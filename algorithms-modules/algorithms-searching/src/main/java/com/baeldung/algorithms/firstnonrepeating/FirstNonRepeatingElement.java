@@ -7,10 +7,10 @@ import java.util.Map;
 
 public class FirstNonRepeatingElement {
     public static Integer findFirstNonRepeatingUsingForLoop(List<Integer> list) {
-        for (int i = 0; i < list.size(); i++) {
+        for (var i = 0; i < list.size(); i++) {
             int current = list.get(i);
-            boolean isRepeating = false;
-            for (int j = 0; j < list.size(); j++) {
+            var isRepeating = false;
+            for (var j = 0; j < list.size(); j++) {
                 if (i != j && current == list.get(j)) {
                     isRepeating = true;
                     break;
@@ -24,7 +24,7 @@ public class FirstNonRepeatingElement {
     }
 
     public static Integer findFirstNonRepeatedElementUsingIndex(List<Integer> list) {
-        for (int i = 0; i < list.size(); i++) {
+        for (var i = 0; i < list.size(); i++) {
             if (list.indexOf(list.get(i)) == list.lastIndexOf(list.get(i))) {
                 return list.get(i);
             }
@@ -47,7 +47,7 @@ public class FirstNonRepeatingElement {
 
     public static Integer findFirstNonRepeatingUsingArray(List<Integer> list) {
         int maxElement = Collections.max(list);
-        int[] frequency = new int[maxElement + 1];
+        var frequency = new int[maxElement + 1];
         for (int num : list) {
             frequency[num]++;
         }

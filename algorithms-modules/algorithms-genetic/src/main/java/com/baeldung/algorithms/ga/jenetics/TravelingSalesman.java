@@ -23,11 +23,11 @@ public class TravelingSalesman {
     private static final double[][] ADJACENCE = matrix(STOPS);
 
     private static double[][] matrix(int stops) {
-        final double radius = 100.0;
-        double[][] matrix = new double[stops][stops];
+        final var radius = 100.0;
+        var matrix = new double[stops][stops];
 
-        for (int i = 0; i < stops; ++i) {
-            for (int j = 0; j < stops; ++j) {
+        for (var i = 0; i < stops; ++i) {
+            for (var j = 0; j < stops; ++j) {
                 matrix[i][j] = chord(stops, abs(i - j), radius);
             }
         }
@@ -45,7 +45,7 @@ public class TravelingSalesman {
     }
 
     public static void main(String[] args) {
-        final Engine<EnumGene<Integer>, Double> engine = Engine.builder(TravelingSalesman::dist, codecs.ofPermutation(STOPS))
+        final var engine = Engine.builder(TravelingSalesman::dist, codecs.ofPermutation(STOPS))
             .optimize(Optimize.MINIMUM)
             .maximalPhenotypeAge(11)
             .populationSize(500)
@@ -54,7 +54,7 @@ public class TravelingSalesman {
 
         final EvolutionStatistics<Double, ?> statistics = EvolutionStatistics.ofNumber();
 
-        final Phenotype<EnumGene<Integer>, Double> best = engine.stream()
+        final var best = engine.stream()
             .limit(bySteadyFitness(15))
             .limit(250)
             .peek(statistics)

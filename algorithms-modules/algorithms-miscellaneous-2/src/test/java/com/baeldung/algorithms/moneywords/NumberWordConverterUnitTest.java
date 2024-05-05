@@ -30,25 +30,25 @@ class NumberWordConverterUnitTest {
     
     @Test
     void whenAlmostAMillioDollarsGiven_thenReturnWords() {
-        String expectedResult = "nine hundred ninety nine thousand nine hundred ninety nine dollars";
+        var expectedResult = "nine hundred ninety nine thousand nine hundred ninety nine dollars";
         assertEquals(expectedResult, NumberWordConverter.getMoneyIntoWords(999_999));
     }
     
     @Test
     void whenThirtyMillionDollarsGiven_thenReturnWords() {
-        String expectedResult = "thirty three million three hundred forty eight thousand nine hundred seventy eight dollars";
+        var expectedResult = "thirty three million three hundred forty eight thousand nine hundred seventy eight dollars";
         assertEquals(expectedResult, NumberWordConverter.getMoneyIntoWords(33_348_978));
     }
     
     @Test
     void whenTwoBillionDollarsGiven_thenReturnWords() {
-        String expectedResult = "two billion one hundred thirty three million two hundred forty seven thousand eight hundred ten dollars";
+        var expectedResult = "two billion one hundred thirty three million two hundred forty seven thousand eight hundred ten dollars";
         assertEquals(expectedResult, NumberWordConverter.getMoneyIntoWords(2_133_247_810));
     }
 
     @Test
     void whenGivenDollarsAndCents_thenReturnWords() {
-        String expectedResult = "nine hundred twenty four dollars and sixty cents";
+        var expectedResult = "nine hundred twenty four dollars and sixty cents";
         assertEquals(expectedResult, NumberWordConverter.getMoneyIntoWords(924.6));
     }
 

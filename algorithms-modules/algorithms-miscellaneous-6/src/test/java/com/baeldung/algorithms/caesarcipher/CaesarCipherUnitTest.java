@@ -14,49 +14,49 @@ class CaesarCipherUnitTest {
 
     @Test
     void givenSentenceAndShiftThree_whenCipher_thenCipheredMessageWithoutOverflow() {
-        String cipheredSentence = algorithm.cipher(SENTENCE, 3);
+        var cipheredSentence = algorithm.cipher(SENTENCE, 3);
 
         assertThat(cipheredSentence).isEqualTo(SENTENCE_SHIFTED_THREE);
     }
 
     @Test
     void givenSentenceAndShiftTen_whenCipher_thenCipheredMessageWithOverflow() {
-        String cipheredSentence = algorithm.cipher(SENTENCE, 10);
+        var cipheredSentence = algorithm.cipher(SENTENCE, 10);
 
         assertThat(cipheredSentence).isEqualTo(SENTENCE_SHIFTED_TEN);
     }
 
     @Test
     void givenSentenceAndShiftThirtySix_whenCipher_thenCipheredLikeTenMessageWithOverflow() {
-        String cipheredSentence = algorithm.cipher(SENTENCE, 36);
+        var cipheredSentence = algorithm.cipher(SENTENCE, 36);
 
         assertThat(cipheredSentence).isEqualTo(SENTENCE_SHIFTED_TEN);
     }
 
     @Test
     void givenSentenceShiftedThreeAndShiftThree_whenDecipher_thenOriginalSentenceWithoutOverflow() {
-        String decipheredSentence = algorithm.decipher(SENTENCE_SHIFTED_THREE, 3);
+        var decipheredSentence = algorithm.decipher(SENTENCE_SHIFTED_THREE, 3);
 
         assertThat(decipheredSentence).isEqualTo(SENTENCE);
     }
 
     @Test
     void givenSentenceShiftedTenAndShiftTen_whenDecipher_thenOriginalSentenceWithOverflow() {
-        String decipheredSentence = algorithm.decipher(SENTENCE_SHIFTED_TEN, 10);
+        var decipheredSentence = algorithm.decipher(SENTENCE_SHIFTED_TEN, 10);
 
         assertThat(decipheredSentence).isEqualTo(SENTENCE);
     }
 
     @Test
     void givenSentenceShiftedTenAndShiftThirtySix_whenDecipher_thenOriginalSentenceWithOverflow() {
-        String decipheredSentence = algorithm.decipher(SENTENCE_SHIFTED_TEN, 36);
+        var decipheredSentence = algorithm.decipher(SENTENCE_SHIFTED_TEN, 36);
 
         assertThat(decipheredSentence).isEqualTo(SENTENCE);
     }
 
     @Test
     void givenSentenceShiftedThree_whenBreakCipher_thenOriginalSentence() {
-        int offset = algorithm.breakCipher(SENTENCE_SHIFTED_THREE);
+        var offset = algorithm.breakCipher(SENTENCE_SHIFTED_THREE);
 
         assertThat(offset).isEqualTo(3);
         assertThat(algorithm.decipher(SENTENCE_SHIFTED_THREE, offset)).isEqualTo(SENTENCE);
@@ -64,7 +64,7 @@ class CaesarCipherUnitTest {
 
     @Test
     void givenSentenceShiftedTen_whenBreakCipher_thenOriginalSentence() {
-        int offset = algorithm.breakCipher(SENTENCE_SHIFTED_TEN);
+        var offset = algorithm.breakCipher(SENTENCE_SHIFTED_TEN);
 
         assertThat(offset).isEqualTo(10);
         assertThat(algorithm.decipher(SENTENCE_SHIFTED_TEN, offset)).isEqualTo(SENTENCE);

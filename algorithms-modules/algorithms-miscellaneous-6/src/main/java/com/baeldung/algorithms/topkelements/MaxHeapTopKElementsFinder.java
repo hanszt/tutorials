@@ -8,7 +8,7 @@ import java.util.PriorityQueue;
 public class MaxHeapTopKElementsFinder implements TopKElementsFinder<Integer> {
 
     public List<Integer> findTopK(List<Integer> input, int k) {
-        PriorityQueue<Integer> maxHeap = new PriorityQueue<>();
+        var maxHeap = new PriorityQueue<Integer>();
 
         input.forEach(number -> {
             maxHeap.add(number);

@@ -7,10 +7,10 @@ public class DutchNationalFlagPartioning {
 
     public static Partition partition(int[] input, int begin, int end) {
         int lt = begin, current = begin, gt = end;
-        int partitioningValue = input[begin];
+        var partitioningValue = input[begin];
 
         while (current <= gt) {
-            int compareCurrent = compare(input[current], partitioningValue);
+            var compareCurrent = compare(input[current], partitioningValue);
             switch (compareCurrent) {
                 case -1:
                     swap(input, current++, lt++);
@@ -31,7 +31,7 @@ public class DutchNationalFlagPartioning {
             return;
         }
 
-        Partition middlePartition = partition(input, begin, end);
+        var middlePartition = partition(input, begin, end);
 
         quicksort(input, begin, middlePartition.getLeft() - 1);
         quicksort(input, middlePartition.getRight() + 1, end);

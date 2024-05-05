@@ -12,21 +12,21 @@ public class BoruvkaMST {
 
     public BoruvkaMST(MutableValueGraph<Integer, Integer> graph) {
 
-        int size = graph.nodes().size();
+        var size = graph.nodes().size();
 
-        UnionFind uf = new UnionFind(size);
+        var uf = new UnionFind(size);
 
         // repeat at most log N times or until we have N-1 edges
-        for (int t = 1; t < size && mst.edges().size() < size - 1; t = t + t) {
+        for (var t = 1; t < size && mst.edges().size() < size - 1; t = t + t) {
             
             EndpointPair<Integer>[] closestEdgeArray = new EndpointPair[size];
 
             // foreach tree in graph, find closest edge
-            for (EndpointPair<Integer> edge : graph.edges()) {
+            for (var edge : graph.edges()) {
                 int u = edge.nodeU();
                 int v = edge.nodeV();
-                int uParent = uf.find(u);
-                int vParent = uf.find(v);
+                var uParent = uf.find(u);
+                var vParent = uf.find(v);
                 if (uParent == vParent) {
                     continue; // same tree
                 }
@@ -52,8 +52,8 @@ public class BoruvkaMST {
             }
 
             // add newly discovered edges to MST
-            for (int i = 0; i < size; i++) {
-                EndpointPair<Integer> edge = closestEdgeArray[i];
+            for (var i = 0; i < size; i++) {
+                var edge = closestEdgeArray[i];
                 if (edge != null) {
                     int u = edge.nodeU();
                     int v = edge.nodeV();

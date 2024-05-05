@@ -30,8 +30,8 @@ class MergeIntervalsUnitTest {
 
     @Test
     void givenIntervals_whenMerging_thenReturnMergedIntervals() {
-        MergeOverlappingIntervals merger = new MergeOverlappingIntervals();
-        List<Interval> result = merger.doMerge(intervals);
+        var merger = new MergeOverlappingIntervals();
+        var result = merger.doMerge(intervals);
         assertEquals(intervalsMerged, result);
     }
 

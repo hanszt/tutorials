@@ -8,16 +8,16 @@ import org.junit.jupiter.api.Test;
 class LinkedListReversalUnitTest {
     @Test
     void givenLinkedList_whenIterativeReverse_thenOutputCorrectResult() {
-        ListNode head = constructLinkedList();
-        ListNode node = head;
-        for (int i = 1; i <= 5; i++) {
+        var head = constructLinkedList();
+        var node = head;
+        for (var i = 1; i <= 5; i++) {
             assertNotNull(node);
             assertEquals(i, node.getData());
             node = node.getNext();
         }
-        LinkedListReversal reversal = new LinkedListReversal();
+        var reversal = new LinkedListReversal();
         node = reversal.reverseList(head);
-        for (int i = 5; i >= 1; i--) {
+        for (var i = 5; i >= 1; i--) {
             assertNotNull(node);
             assertEquals(i, node.getData());
             node = node.getNext();
@@ -26,16 +26,16 @@ class LinkedListReversalUnitTest {
 
     @Test
     void givenLinkedList_whenRecursiveReverse_thenOutputCorrectResult() {
-        ListNode head = constructLinkedList();
-        ListNode node = head;
-        for (int i = 1; i <= 5; i++) {
+        var head = constructLinkedList();
+        var node = head;
+        for (var i = 1; i <= 5; i++) {
             assertNotNull(node);
             assertEquals(i, node.getData());
             node = node.getNext();
         }
-        LinkedListReversal reversal = new LinkedListReversal();
+        var reversal = new LinkedListReversal();
         node = reversal.reverseListRecursive(head);
-        for (int i = 5; i >= 1; i--) {
+        for (var i = 5; i >= 1; i--) {
             assertNotNull(node);
             assertEquals(i, node.getData());
             node = node.getNext();
@@ -45,8 +45,8 @@ class LinkedListReversalUnitTest {
     private ListNode constructLinkedList() {
         ListNode head = null;
         ListNode tail = null;
-        for (int i = 1; i <= 5; i++) {
-            ListNode node = new ListNode(i);
+        for (var i = 1; i <= 5; i++) {
+            var node = new ListNode(i);
             if (head == null) {
                 head = node;
             } else {

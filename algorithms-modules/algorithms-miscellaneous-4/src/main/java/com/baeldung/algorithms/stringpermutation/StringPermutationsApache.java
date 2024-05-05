@@ -9,7 +9,7 @@ import org.apache.commons.collections4.iterators.PermutationIterator;
 public class StringPermutationsApache {
 
     public List<String> eagerPermutationWithRepetitions(final String string) {
-        final List<Character> characters = Helper.toCharacterList(string);
+        final var characters = Helper.toCharacterList(string);
         return CollectionUtils.permutations(characters)
             .stream()
             .map(Helper::toString)
@@ -17,8 +17,8 @@ public class StringPermutationsApache {
     }
 
     public List<String> lazyPermutationWithoutRepetitions(final String string) {
-        final List<Character> characters = Helper.toCharacterList(string);
-        final PermutationIterator<Character> permutationIterator = new PermutationIterator<>(characters);
+        final var characters = Helper.toCharacterList(string);
+        final var permutationIterator = new PermutationIterator<Character>(characters);
         final List<String> result = new ArrayList<>();
         while (permutationIterator.hasNext()) {
             result.add(Helper.toString(permutationIterator.next()));

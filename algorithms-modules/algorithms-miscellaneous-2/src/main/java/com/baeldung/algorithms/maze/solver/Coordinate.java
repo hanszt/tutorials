@@ -1,9 +1,9 @@
 package com.baeldung.algorithms.maze.solver;
 
-public class Coordinate {
-    int x;
-    int y;
-    Coordinate parent;
+public final class Coordinate {
+    final int x;
+    final int y;
+    final Coordinate parent;
 
     public Coordinate(int x, int y) {
         this.x = x;

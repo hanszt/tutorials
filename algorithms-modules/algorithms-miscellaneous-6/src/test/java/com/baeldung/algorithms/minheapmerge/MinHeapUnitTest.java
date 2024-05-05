@@ -13,7 +13,7 @@ class MinHeapUnitTest {
 
     @Test
     void givenSortedArrays_whenMerged_thenShouldReturnASingleSortedarray() {
-        int[] resultArray = MinHeap.merge(inputArray);
+        var resultArray = MinHeap.merge(inputArray);
         
         assertThat(resultArray.length, is(equalTo(10)));
         assertThat(resultArray, is(equalTo(expectedArray)));

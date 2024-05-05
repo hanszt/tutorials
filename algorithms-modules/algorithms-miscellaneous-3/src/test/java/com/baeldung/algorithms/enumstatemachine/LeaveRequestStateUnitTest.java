@@ -8,7 +8,7 @@ class LeaveRequestStateUnitTest {
 
     @Test
     void givenLeaveRequest_whenStateEscalated_thenResponsibleIsTeamLeader() {
-        LeaveRequestState state = LeaveRequestState.Escalated;
+        var state = LeaveRequestState.Escalated;
 
         assertEquals( "Team Leader", state.responsiblePerson());
     }
@@ -16,14 +16,14 @@ class LeaveRequestStateUnitTest {
 
     @Test
     void givenLeaveRequest_whenStateApproved_thenResponsibleIsDepartmentManager() {
-        LeaveRequestState state = LeaveRequestState.Approved;
+        var state = LeaveRequestState.Approved;
 
         assertEquals( "Department Manager" , state.responsiblePerson());
     }
 
     @Test
     void givenLeaveRequest_whenNextStateIsCalled_thenStateIsChanged() {
-        LeaveRequestState state = LeaveRequestState.Submitted;
+        var state = LeaveRequestState.Submitted;
 
         state = state.nextState();
         assertEquals(LeaveRequestState.Escalated, state);

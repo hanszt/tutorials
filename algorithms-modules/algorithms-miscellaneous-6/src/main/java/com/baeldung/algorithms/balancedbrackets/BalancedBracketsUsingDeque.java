@@ -9,8 +9,8 @@ public class BalancedBracketsUsingDeque {
         if (null == str || ((str.length() % 2) != 0)) {
             return false;
         } else {
-            char[] ch = str.toCharArray();
-            for (char c : ch) {
+            var ch = str.toCharArray();
+            for (var c : ch) {
                 if (!(c == '{' || c == '[' || c == '(' || c == '}' || c == ']' || c == ')')) {
                     return false;
                 }
@@ -19,7 +19,7 @@ public class BalancedBracketsUsingDeque {
         }
 
         Deque<Character> deque = new LinkedList<>();
-        for (char ch : str.toCharArray()) {
+        for (var ch : str.toCharArray()) {
             if (ch == '{' || ch == '[' || ch == '(') {
                 deque.addFirst(ch);
             } else {

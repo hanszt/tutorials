@@ -13,9 +13,9 @@ class StringPermutationsGuavaUnitTest {
         "hello, 120",
         "aaaaaa, 720"})
     void testPermutationsWithRepetitions(String string, int numberOfPermutations) {
-        StringPermutationsGuava permutationGenerator = new StringPermutationsGuava();
-        final List<String> permutations = permutationGenerator.permutationWithRepetitions(string);
-        final int size = permutations.size();
+        var permutationGenerator = new StringPermutationsGuava();
+        final var permutations = permutationGenerator.permutationWithRepetitions(string);
+        final var size = permutations.size();
         assertThat(permutations)
             .as("\"%s\" should have %d permutation, but had %d", string, numberOfPermutations, size)
             .hasSize(numberOfPermutations);
@@ -26,9 +26,9 @@ class StringPermutationsGuavaUnitTest {
         "hello, 60",
         "aaaaaa, 1"})
     void testPermutationsWithoutRepetitions(String string, int numberOfPermutations) {
-        StringPermutationsGuava permutationGenerator = new StringPermutationsGuava();
-        final List<String> permutations = permutationGenerator.permutationWithoutRepetitions(string);
-        final int size = permutations.size();
+        var permutationGenerator = new StringPermutationsGuava();
+        final var permutations = permutationGenerator.permutationWithoutRepetitions(string);
+        final var size = permutations.size();
         assertThat(permutations)
             .as("\"%s\" should have %d permutation, but had %d", string, numberOfPermutations, size)
             .hasSize(numberOfPermutations);

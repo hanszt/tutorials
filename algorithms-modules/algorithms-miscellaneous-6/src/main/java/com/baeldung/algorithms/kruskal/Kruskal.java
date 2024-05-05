@@ -23,7 +23,7 @@ public class Kruskal {
     }
 
     private ValueGraph<Integer, Double> spanningTree(ValueGraph<Integer, Double> graph, boolean minSpanningTree) {
-        Set<EndpointPair<Integer>> edges = graph.edges();
+        var edges = graph.edges();
         List<EndpointPair<Integer>> edgeList = new ArrayList<>(edges);
 
         if (minSpanningTree) {
@@ -32,12 +32,12 @@ public class Kruskal {
             edgeList.sort(Collections.reverseOrder(Comparator.comparing(e -> graph.edgeValue(e).get())));
         }
 
-        int totalNodes = graph.nodes().size();
-        CycleDetector cycleDetector = new CycleDetector(totalNodes);
-        int edgeCount = 0;
+        var totalNodes = graph.nodes().size();
+        var cycleDetector = new CycleDetector(totalNodes);
+        var edgeCount = 0;
 
         MutableValueGraph<Integer, Double> spanningTree = ValueGraphBuilder.undirected().build();
-        for (EndpointPair<Integer> edge : edgeList) {
+        for (var edge : edgeList) {
             if (cycleDetector.detectCycle(edge.nodeU(), edge.nodeV())) {
                 continue;
             }

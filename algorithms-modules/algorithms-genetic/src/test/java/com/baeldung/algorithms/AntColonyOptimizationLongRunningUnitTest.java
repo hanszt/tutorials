@@ -15,7 +15,7 @@ class AntColonyOptimizationLongRunningUnitTest {
 
     @Test
     void testGenerateRandomMatrix() {
-        AntColonyOptimization antTSP = new AntColonyOptimization(5, new Random(0));
+        var antTSP = new AntColonyOptimization(5, new Random(0));
 
         final var matrix = Arrays.stream(antTSP.generateRandomMatrix(5))
                 .map(Arrays::toString)
@@ -33,7 +33,7 @@ class AntColonyOptimizationLongRunningUnitTest {
 
     @Test
     void testStartAntOptimization() {
-        AntColonyOptimization antTSP = new AntColonyOptimization(5, new Random(0));
+        var antTSP = new AntColonyOptimization(5, new Random(0));
 
         final var solve = Arrays.stream(antTSP.solve()).boxed().toList();
 

@@ -80,7 +80,7 @@ public class BinaryTree {
             }
 
             // Case 3: 2 children
-            int smallestValue = findSmallestValue(current.right);
+            var smallestValue = findSmallestValue(current.right);
             current.value = smallestValue;
             current.right = deleteRecursive(current.right, smallestValue);
             return current;
@@ -124,8 +124,8 @@ public class BinaryTree {
 
 
     public void traverseInOrderWithoutRecursion() {
-        Stack<Node> stack = new Stack<>();
-        Node current = root;
+        var stack = new Stack<Node>();
+        var current = root;
 
         while (current != null || !stack.isEmpty()) {
             while (current != null) {
@@ -133,14 +133,14 @@ public class BinaryTree {
                 current = current.left;
             }
 
-            Node top = stack.pop();
+            var top = stack.pop();
             visit(top.value);
             current = top.right;
         }
     }
 
     public void traversePreOrderWithoutRecursion() {
-        Stack<Node> stack = new Stack<>();
+        var stack = new Stack<Node>();
         Node current;
         stack.push(root);
         while(! stack.isEmpty()) {
@@ -158,15 +158,15 @@ public class BinaryTree {
     }
 
     public void traversePostOrderWithoutRecursion() {
-        Stack<Node> stack = new Stack<>();
-        Node prev = root;
+        var stack = new Stack<Node>();
+        var prev = root;
         Node current;
         stack.push(root);
 
         while (!stack.isEmpty()) {
             current = stack.peek();
-            boolean hasChild = (current.left != null || current.right != null);
-            boolean isPrevLastChild = (prev == current.right || (prev == current.left && current.right == null));
+            var hasChild = (current.left != null || current.right != null);
+            var isPrevLastChild = (prev == current.right || (prev == current.left && current.right == null));
 
             if (!hasChild || isPrevLastChild) {
                 current = stack.pop();

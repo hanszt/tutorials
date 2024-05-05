@@ -9,16 +9,16 @@ public class BruteForceAlgorithm {
 
     public int maxSubArray(int[] arr) {
 
-        int size = arr.length;
-        int maximumSubArraySum = Integer.MIN_VALUE;
-        int start = 0;
-        int end = 0;
+        var size = arr.length;
+        var maximumSubArraySum = Integer.MIN_VALUE;
+        var start = 0;
+        var end = 0;
 
-        for (int left = 0; left < size; left++) {
+        for (var left = 0; left < size; left++) {
 
-            int runningWindowSum = 0;
+            var runningWindowSum = 0;
 
-            for (int right = left; right < size; right++) {
+            for (var right = left; right < size; right++) {
                 runningWindowSum += arr[right];
 
                 if (runningWindowSum > maximumSubArraySum) {

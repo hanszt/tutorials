@@ -39,10 +39,10 @@ public class MultiSwarmUnitTest {
 	 */
 	@Test
 	public void givenMultiswarm_whenThousandIteration_thenSolutionFound() {
-		MultiSwarm multiswarm = new MultiSwarm(50, 1000, new LolFitnessFunction(), new Random(0));
+        var multiswarm = new MultiSwarm(50, 1000, new LolFitnessFunction(), new Random(0));
 
 		// Iterates 1000 times through the main loop and prints the result.
-		for (int i = 0; i < 1000; i++) {
+		for (var i = 0; i < 1000; i++) {
 			multiswarm.mainLoop();
 		}
 
