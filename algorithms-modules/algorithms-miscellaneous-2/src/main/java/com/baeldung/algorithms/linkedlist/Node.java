@@ -5,7 +5,7 @@ public class Node<T> {
     Node<T> next;
 
     public static <T> Node<T> createNewNode(T data, Node<T> next) {
-        Node<T> node = new Node<>();
+        var node = new Node<T>();
         node.data = data;
         node.next = next;
         return node;
@@ -16,7 +16,7 @@ public class Node<T> {
             return;
         }
 
-        Node<T> node = root;
+        var node = root;
         while (node != null) {
             System.out.println(node.data);
             node = node.next;
@@ -28,7 +28,7 @@ public class Node<T> {
             return null;
         }
 
-        Node<T> node = root;
+        var node = root;
         while (node.next != null) {
             node = node.next;
         }

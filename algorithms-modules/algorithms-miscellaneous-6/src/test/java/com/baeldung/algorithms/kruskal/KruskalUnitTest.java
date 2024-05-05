@@ -29,8 +29,8 @@ class KruskalUnitTest {
 
     @Test
     void givenGraph_whenMinimumSpanningTree_thenOutputCorrectResult() {
-        final Kruskal kruskal = new Kruskal();
-        ValueGraph<Integer, Double> spanningTree = kruskal.minSpanningTree(graph);
+        final var kruskal = new Kruskal();
+        var spanningTree = kruskal.minSpanningTree(graph);
 
         assertTrue(spanningTree.hasEdgeConnecting(0, 1));
         assertTrue(spanningTree.hasEdgeConnecting(0, 2));
@@ -48,8 +48,8 @@ class KruskalUnitTest {
 
     @Test
     void givenGraph_whenMaximumSpanningTree_thenOutputCorrectResult() {
-        final Kruskal kruskal = new Kruskal();
-        ValueGraph<Integer, Double> spanningTree = kruskal.maxSpanningTree(graph);
+        final var kruskal = new Kruskal();
+        var spanningTree = kruskal.maxSpanningTree(graph);
 
         assertTrue(spanningTree.hasEdgeConnecting(0, 1));
         assertTrue(spanningTree.hasEdgeConnecting(1, 3));

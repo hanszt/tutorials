@@ -74,7 +74,7 @@ class MiddleElementLookupUnitTest {
           .isPresent());
 
         // LinkedList with nulls
-        LinkedList<String> nullsList = new LinkedList<>();
+        var nullsList = new LinkedList<String>();
         nullsList.add(null);
         nullsList.add(null);
         assertFalse(MiddleElementLookup
@@ -94,9 +94,9 @@ class MiddleElementLookupUnitTest {
     }
 
     private static LinkedList<String> createLinkedList(int n) {
-        LinkedList<String> list = new LinkedList<>();
+        var list = new LinkedList<String>();
 
-        for (int i = 1; i <= n; i++) {
+        for (var i = 1; i <= n; i++) {
             list.add(String.valueOf(i));
         }
 
@@ -104,11 +104,11 @@ class MiddleElementLookupUnitTest {
     }
 
     private static Node createNodesList(int n) {
-        Node head = new Node("1");
-        Node current = head;
+        var head = new Node("1");
+        var current = head;
 
-        for (int i = 2; i <= n; i++) {
-            Node newNode = new Node(String.valueOf(i));
+        for (var i = 2; i <= n; i++) {
+            var newNode = new Node(String.valueOf(i));
             current.setNext(newNode);
             current = newNode;
         }

@@ -39,7 +39,7 @@ public class Swarm {
 	 */
 	public Swarm(int numParticles) {
 		particles = new Particle[numParticles];
-		for (int i = 0; i < numParticles; i++) {
+		for (var i = 0; i < numParticles; i++) {
 			long[] initialParticlePosition = { random.nextInt(Constants.PARTICLE_UPPER_BOUND),
 					random.nextInt(Constants.PARTICLE_UPPER_BOUND) };
 			long[] initialParticleSpeed = { random.nextInt(Constants.PARTICLE_UPPER_BOUND),
@@ -102,8 +102,8 @@ public class Swarm {
 	 */
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
+		final var prime = 31;
+        var result = 1;
 		long temp;
 		temp = Double.doubleToLongBits(bestFitness);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
@@ -129,7 +129,7 @@ public class Swarm {
 		if (getClass() != obj.getClass()) {
             return false;
         }
-		Swarm other = (Swarm) obj;
+        var other = (Swarm) obj;
 		if (Double.doubleToLongBits(bestFitness) != Double.doubleToLongBits(other.bestFitness)) {
             return false;
         }

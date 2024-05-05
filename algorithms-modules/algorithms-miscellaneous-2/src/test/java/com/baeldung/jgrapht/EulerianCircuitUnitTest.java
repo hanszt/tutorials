@@ -22,7 +22,7 @@ class EulerianCircuitUnitTest {
             simpleGraph.addVertex("v" + i);
         });
         IntStream.range(1, 6).forEach(i -> {
-            int endVertexNo = (i + 1) > 5 ? 1 : i + 1;
+            var endVertexNo = (i + 1) > 5 ? 1 : i + 1;
             simpleGraph.addEdge("v" + i, "v" + endVertexNo);
         });
     }
@@ -36,7 +36,7 @@ class EulerianCircuitUnitTest {
     @Test
     public void givenGraphWithEulerianCircuit_whenGetEulerianCycle_thenGetGraphPath() {
         HierholzerEulerianCycle eulerianCycle = new HierholzerEulerianCycle<>();
-        GraphPath path = eulerianCycle.getEulerianCycle(simpleGraph);
+        var path = eulerianCycle.getEulerianCycle(simpleGraph);
         assertTrue(path.getEdgeList().containsAll(simpleGraph.edgeSet()));
     }
 }

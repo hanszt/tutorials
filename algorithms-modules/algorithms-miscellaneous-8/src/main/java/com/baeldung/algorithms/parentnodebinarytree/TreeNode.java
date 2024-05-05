@@ -24,7 +24,7 @@ public class TreeNode {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        TreeNode treeNode = (TreeNode) o;
+        var treeNode = (TreeNode) o;
         return value == treeNode.value;
     }
 
@@ -82,8 +82,8 @@ public class TreeNode {
     private TreeNode iterativeParent(TreeNode current, TreeNode target) {
         Deque<TreeNode> parentCandidates = new LinkedList<>();
 
-        String notFoundMessage = format("No parent node found for 'target.value=%s' " +
-                        "The target is not in the tree or the target is the topmost root node.",
+        var notFoundMessage = format("No parent node found for 'target.value=%s' " +
+                                     "The target is not in the tree or the target is the topmost root node.",
                 target.value);
 
         if (target.equals(current)) {

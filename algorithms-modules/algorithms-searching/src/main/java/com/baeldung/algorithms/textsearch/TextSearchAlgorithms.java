@@ -5,12 +5,12 @@ import java.util.Random;
 
 public class TextSearchAlgorithms {
     public static long getBiggerPrime(int m) {
-        BigInteger prime = BigInteger.probablePrime(getNumberOfBits(m) + 1, new Random());
+        var prime = BigInteger.probablePrime(getNumberOfBits(m) + 1, new Random());
         return prime.longValue();
     }
 
     public static long getLowerPrime(long number) {
-        BigInteger prime = BigInteger.probablePrime(getNumberOfBits(number) - 1, new Random());
+        var prime = BigInteger.probablePrime(getNumberOfBits(number) - 1, new Random());
         return prime.longValue();
     }
 
@@ -23,13 +23,13 @@ public class TextSearchAlgorithms {
     }
 
     public static int simpleTextSearch(char[] pattern, char[] text) {
-        int patternSize = pattern.length;
-        int textSize = text.length;
+        var patternSize = pattern.length;
+        var textSize = text.length;
 
-        int i = 0;
+        var i = 0;
 
         while ((i + patternSize) <= textSize) {
-            int j = 0;
+            var j = 0;
             while (text[i + j] == pattern[j]) {
                 j += 1;
                 if (j >= patternSize) {
@@ -43,35 +43,35 @@ public class TextSearchAlgorithms {
     }
 
     public static int RabinKarpMethod(char[] pattern, char[] text) {
-        int patternSize = pattern.length; // m
-        int textSize = text.length; // n
+        var patternSize = pattern.length; // m
+        var textSize = text.length; // n
 
-        long prime = getBiggerPrime(patternSize);
+        var prime = getBiggerPrime(patternSize);
 
         long r = 1;
-        for (int i = 0; i < patternSize - 1; i++) {
+        for (var i = 0; i < patternSize - 1; i++) {
             r *= 2;
             r = r % prime;
         }
 
-        long[] t = new long[textSize];
+        var t = new long[textSize];
         t[0] = 0;
 
         long pfinger = 0;
 
-        for (int j = 0; j < patternSize; j++) {
+        for (var j = 0; j < patternSize; j++) {
             t[0] = (2 * t[0] + text[j]) % prime;
             pfinger = (2 * pfinger + pattern[j]) % prime;
         }
 
-        int i = 0;
-        boolean passed = false;
+        var i = 0;
+        var passed = false;
 
-        int diff = textSize - patternSize;
+        var diff = textSize - patternSize;
         for (i = 0; i <= diff; i++) {
             if (t[i] == pfinger) {
                 passed = true;
-                for (int k = 0; k < patternSize; k++) {
+                for (var k = 0; k < patternSize; k++) {
                     if (text[i + k] != pattern[k]) {
                         passed = false;
                         break;
@@ -84,7 +84,7 @@ public class TextSearchAlgorithms {
             }
 
             if (i < diff) {
-                long value = 2 * (t[i] - r * text[i]) + text[i + patternSize];
+                var value = 2 * (t[i] - r * text[i]) + text[i + patternSize];
                 t[i + 1] = ((value % prime) + prime) % prime;
             }
         }
@@ -93,12 +93,12 @@ public class TextSearchAlgorithms {
     }
 
     public static int KnuthMorrisPrattSearch(char[] pattern, char[] text) {
-        int patternSize = pattern.length; // m
-        int textSize = text.length; // n
+        var patternSize = pattern.length; // m
+        var textSize = text.length; // n
 
         int i = 0, j = 0;
 
-        int[] shift = KnuthMorrisPrattShift(pattern);
+        var shift = KnuthMorrisPrattShift(pattern);
 
         while ((i + patternSize) <= textSize) {
             while (text[i + j] == pattern[j]) {
@@ -120,9 +120,9 @@ public class TextSearchAlgorithms {
     }
 
     public static int[] KnuthMorrisPrattShift(char[] pattern) {
-        int patternSize = pattern.length;
+        var patternSize = pattern.length;
 
-        int[] shift = new int[patternSize];
+        var shift = new int[patternSize];
         shift[0] = 1;
 
         int i = 1, j = 0;
@@ -149,8 +149,8 @@ public class TextSearchAlgorithms {
     }
 
     public static int BoyerMooreHorspoolSimpleSearch(char[] pattern, char[] text) {
-        int patternSize = pattern.length;
-        int textSize = text.length;
+        var patternSize = pattern.length;
+        var textSize = text.length;
 
         int i = 0, j = 0;
 
@@ -171,11 +171,11 @@ public class TextSearchAlgorithms {
 
         int shift[] = new int[256];
 
-        for (int k = 0; k < 256; k++) {
+        for (var k = 0; k < 256; k++) {
             shift[k] = pattern.length;
         }
 
-        for (int k = 0; k < pattern.length - 1; k++) {
+        for (var k = 0; k < pattern.length - 1; k++) {
             shift[pattern[k]] = pattern.length - 1 - k;
         }
 

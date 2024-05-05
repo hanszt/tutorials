@@ -6,8 +6,8 @@ import java.util.Set;
 
 public class CheckTargetSum {
     public boolean isTargetSumExistNaive(int[] nums, int target) {
-        for (int i = 0; i < nums.length; i++) {
-            for (int j = i + 1; j < nums.length; j++) {
+        for (var i = 0; i < nums.length; i++) {
+            for (var j = i + 1; j < nums.length; j++) {
                 if (nums[i] + nums[j] == target) {
                     return true;
                 }
@@ -20,11 +20,11 @@ public class CheckTargetSum {
     public boolean isTargetSumExistSorted(int[] nums, int target) {
         Arrays.sort(nums);
 
-        int start = 0;
-        int end = nums.length - 1;
+        var start = 0;
+        var end = nums.length - 1;
 
         while (start < end) {
-            int sum = nums[start] + nums[end];
+            var sum = nums[start] + nums[end];
 
             if (sum == target) {
                 return true;
@@ -43,8 +43,8 @@ public class CheckTargetSum {
     public boolean isTargetSumExistHashSet(int[] nums, int target) {
         Set<Integer> hashSet = new HashSet<>();
 
-        for (int num : nums) {
-            int diff = target - num;
+        for (var num : nums) {
+            var diff = target - num;
 
             if (hashSet.contains(diff)) {
                 return true;

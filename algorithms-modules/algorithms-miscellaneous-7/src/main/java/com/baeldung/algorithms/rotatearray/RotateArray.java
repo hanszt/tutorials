@@ -22,9 +22,9 @@ public class RotateArray {
         k %= arr.length;
         int temp;
         int previous;
-        for (int i = 0; i < k; i++) {
+        for (var i = 0; i < k; i++) {
             previous = arr[arr.length - 1];
-            for (int j = 0; j < arr.length; j++) {
+            for (var j = 0; j < arr.length; j++) {
                 temp = arr[j];
                 arr[j] = previous;
                 previous = temp;
@@ -40,8 +40,8 @@ public class RotateArray {
     public static void withExtraArray(int[] arr, int k) {
         checkInvalidInput(arr, k);
 
-        int[] extraArray = new int[arr.length];
-        for (int i = 0; i < arr.length; i++) {
+        var extraArray = new int[arr.length];
+        for (var i = 0; i < arr.length; i++) {
             extraArray[(i + k) % arr.length] = arr[i];
         }
         System.arraycopy(extraArray, 0, arr, 0, arr.length);
@@ -56,13 +56,13 @@ public class RotateArray {
         checkInvalidInput(arr, k);
 
         k = k % arr.length;
-        int count = 0;
-        for (int start = 0; count < arr.length; start++) {
-            int current = start;
-            int prev = arr[start];
+        var count = 0;
+        for (var start = 0; count < arr.length; start++) {
+            var current = start;
+            var prev = arr[start];
             do {
-                int next = (current + k) % arr.length;
-                int temp = arr[next];
+                var next = (current + k) % arr.length;
+                var temp = arr[next];
                 arr[next] = prev;
                 prev = temp;
                 current = next;
@@ -87,7 +87,7 @@ public class RotateArray {
 
     private static void reverse(int[] nums, int start, int end) {
         while (start < end) {
-            int temp = nums[start];
+            var temp = nums[start];
             nums[start] = nums[end];
             nums[end] = temp;
             start++;

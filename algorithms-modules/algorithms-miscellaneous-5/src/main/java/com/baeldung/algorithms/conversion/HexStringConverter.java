@@ -19,9 +19,9 @@ public class HexStringConverter {
         if (hexString.length() % 2 == 1) {
             throw new IllegalArgumentException("Invalid hexadecimal String supplied.");
         }
-        byte[] bytes = new byte[hexString.length() / 2];
+        var bytes = new byte[hexString.length() / 2];
 
-        for (int i = 0; i < hexString.length(); i += 2) {
+        for (var i = 0; i < hexString.length(); i += 2) {
             bytes[i / 2] = hexToByte(hexString.substring(i, i + 2));
         }
         return bytes;
@@ -33,28 +33,28 @@ public class HexStringConverter {
      * @return Desired String of hexadecimal digits in lower case
      */
     public String encodeHexString(byte[] byteArray) {
-        StringBuffer hexStringBuffer = new StringBuffer();
-        for (int i = 0; i < byteArray.length; i++) {
+        var hexStringBuffer = new StringBuffer();
+        for (var i = 0; i < byteArray.length; i++) {
             hexStringBuffer.append(byteToHex(byteArray[i]));
         }
         return hexStringBuffer.toString();
     }
 
     public String byteToHex(byte num) {
-        char[] hexDigits = new char[2];
+        var hexDigits = new char[2];
         hexDigits[0] = Character.forDigit((num >> 4) & 0xF, 16);
         hexDigits[1] = Character.forDigit((num & 0xF), 16);
         return new String(hexDigits);
     }
 
     public byte hexToByte(String hexString) {
-        int firstDigit = toDigit(hexString.charAt(0));
-        int secondDigit = toDigit(hexString.charAt(1));
+        var firstDigit = toDigit(hexString.charAt(0));
+        var secondDigit = toDigit(hexString.charAt(1));
         return (byte) ((firstDigit << 4) + secondDigit);
     }
 
     private int toDigit(char hexChar) {
-        int digit = Character.digit(hexChar, 16);
+        var digit = Character.digit(hexChar, 16);
         if(digit == -1) {
             throw new IllegalArgumentException("Invalid Hexadecimal Character: "+ hexChar);
         }
@@ -62,19 +62,19 @@ public class HexStringConverter {
     }
 
     public String encodeUsingBigIntegerToString(byte[] bytes) {
-        BigInteger bigInteger = new BigInteger(1, bytes);
+        var bigInteger = new BigInteger(1, bytes);
         return bigInteger.toString(16);
     }
 
     public String encodeUsingBigIntegerStringFormat(byte[] bytes) {
-        BigInteger bigInteger = new BigInteger(1, bytes);
+        var bigInteger = new BigInteger(1, bytes);
         return String.format("%0" + (bytes.length << 1) + "x", bigInteger);
     }
 
     public byte[] decodeUsingBigInteger(String hexString) {
-        byte[] byteArray = new BigInteger(hexString, 16).toByteArray();
+        var byteArray = new BigInteger(hexString, 16).toByteArray();
         if (byteArray[0] == 0) {
-            byte[] output = new byte[byteArray.length - 1];
+            var output = new byte[byteArray.length - 1];
             System.arraycopy(byteArray, 1, output, 0, output.length);
             return output;
         }
@@ -108,12 +108,12 @@ public class HexStringConverter {
     }
 
     public String encodeUsingHexFormat(byte[] bytes) {
-        HexFormat hexFormat = HexFormat.of();
+        var hexFormat = HexFormat.of();
         return hexFormat.formatHex(bytes);
     }
 
     public byte[] decodeUsingHexFormat(String hexString) {
-        HexFormat hexFormat = HexFormat.of();
+        var hexFormat = HexFormat.of();
         return hexFormat.parseHex(hexString);
     }
 }

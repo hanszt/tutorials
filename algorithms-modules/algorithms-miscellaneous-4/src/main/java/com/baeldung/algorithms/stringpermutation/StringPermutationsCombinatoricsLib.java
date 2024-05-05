@@ -8,7 +8,7 @@ import org.paukov.combinatorics3.PermutationGenerator.TreatDuplicatesAs;
 public class StringPermutationsCombinatoricsLib {
 
 public List<String> permutationWithoutRepetitions(final String string) {
-    List<Character> chars = Helper.toCharacterList(string);
+    var chars = Helper.toCharacterList(string);
     return Generator.permutation(chars)
         .simple()
         .stream()
@@ -17,7 +17,7 @@ public List<String> permutationWithoutRepetitions(final String string) {
 }
 
     public List<String> permutationWithRepetitions(final String string) {
-        List<Character> chars = Helper.toCharacterList(string);
+        var chars = Helper.toCharacterList(string);
         return Generator.permutation(chars)
             .simple(TreatDuplicatesAs.IDENTICAL)
             .stream()

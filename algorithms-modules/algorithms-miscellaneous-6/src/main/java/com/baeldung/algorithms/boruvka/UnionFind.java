@@ -7,7 +7,7 @@ public class UnionFind {
     public UnionFind(int n) {
         parents = new int[n];
         ranks = new int[n];
-        for (int i = 0; i < n; i++) {
+        for (var i = 0; i < n; i++) {
             parents[i] = i;
             ranks[i] = 0;
         }
@@ -21,8 +21,8 @@ public class UnionFind {
     }
 
     public void union(int u, int v) {
-        int uParent = find(u);
-        int vParent = find(v);
+        var uParent = find(u);
+        var vParent = find(v);
         if (uParent == vParent) {
             return;
         }

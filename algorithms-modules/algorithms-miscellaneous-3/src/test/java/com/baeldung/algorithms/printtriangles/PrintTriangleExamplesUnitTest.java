@@ -8,24 +8,24 @@ import org.junit.jupiter.params.provider.MethodSource;
 class PrintTriangleExamplesUnitTest {
 
     private static Object[][] rightTriangles() {
-        String expected0 = "";
-        
-        String expected2 = "*" + System.lineSeparator() 
-                         + "**" + System.lineSeparator();
-        
-        String expected5 = "*" + System.lineSeparator() 
-                         + "**" + System.lineSeparator()
-                         + "***" + System.lineSeparator()
-                         + "****" + System.lineSeparator()
-                         + "*****" + System.lineSeparator();
-        
-        String expected7 = "*" + System.lineSeparator() 
-                         + "**" + System.lineSeparator()
-                         + "***" + System.lineSeparator()
-                         + "****" + System.lineSeparator()
-                         + "*****" + System.lineSeparator()
-                         + "******" + System.lineSeparator()
-                         + "*******" + System.lineSeparator();
+        var expected0 = "";
+
+        var expected2 = "*" + System.lineSeparator()
+                        + "**" + System.lineSeparator();
+
+        var expected5 = "*" + System.lineSeparator()
+                        + "**" + System.lineSeparator()
+                        + "***" + System.lineSeparator()
+                        + "****" + System.lineSeparator()
+                        + "*****" + System.lineSeparator();
+
+        var expected7 = "*" + System.lineSeparator()
+                        + "**" + System.lineSeparator()
+                        + "***" + System.lineSeparator()
+                        + "****" + System.lineSeparator()
+                        + "*****" + System.lineSeparator()
+                        + "******" + System.lineSeparator()
+                        + "*******" + System.lineSeparator();
         
         return new Object[][] {
             { 0, expected0 },
@@ -38,30 +38,30 @@ class PrintTriangleExamplesUnitTest {
     @ParameterizedTest
     @MethodSource("rightTriangles")
     void whenPrintARightTriangleIsCalled_ThenTheCorrectStringIsReturned(int nrOfRows, String expected) {
-        String actual = PrintTriangleExamples.printARightTriangle(nrOfRows);
+        var actual = PrintTriangleExamples.printARightTriangle(nrOfRows);
 
         assertEquals(expected, actual);
     }
     
     private static Object[][] isoscelesTriangles() {
-        String expected0 = ""; 
-        
-        String expected2 = " *" + System.lineSeparator() 
-                         + "***" + System.lineSeparator();
-        
-        String expected5 = "    *" + System.lineSeparator() 
-                         + "   ***" + System.lineSeparator()
-                         + "  *****" + System.lineSeparator()
-                         + " *******" + System.lineSeparator()
-                         + "*********" + System.lineSeparator();
-        
-        String expected7 = "      *" + System.lineSeparator() 
-                         + "     ***" + System.lineSeparator()
-                         + "    *****" + System.lineSeparator()
-                         + "   *******" + System.lineSeparator()
-                         + "  *********" + System.lineSeparator()
-                         + " ***********" + System.lineSeparator()
-                         + "*************" + System.lineSeparator();
+        var expected0 = "";
+
+        var expected2 = " *" + System.lineSeparator()
+                        + "***" + System.lineSeparator();
+
+        var expected5 = "    *" + System.lineSeparator()
+                        + "   ***" + System.lineSeparator()
+                        + "  *****" + System.lineSeparator()
+                        + " *******" + System.lineSeparator()
+                        + "*********" + System.lineSeparator();
+
+        var expected7 = "      *" + System.lineSeparator()
+                        + "     ***" + System.lineSeparator()
+                        + "    *****" + System.lineSeparator()
+                        + "   *******" + System.lineSeparator()
+                        + "  *********" + System.lineSeparator()
+                        + " ***********" + System.lineSeparator()
+                        + "*************" + System.lineSeparator();
         
         return new Object[][] {
             { 0, expected0 },
@@ -74,7 +74,7 @@ class PrintTriangleExamplesUnitTest {
     @ParameterizedTest
     @MethodSource("isoscelesTriangles")
     void whenPrintAnIsoscelesTriangleIsCalled_ThenTheCorrectStringIsReturned(int nrOfRows, String expected) {
-        String actual = PrintTriangleExamples.printAnIsoscelesTriangle(nrOfRows);
+        var actual = PrintTriangleExamples.printAnIsoscelesTriangle(nrOfRows);
 
         assertEquals(expected, actual);
     }
@@ -82,7 +82,7 @@ class PrintTriangleExamplesUnitTest {
     @ParameterizedTest
     @MethodSource("isoscelesTriangles")
     public void whenPrintAnIsoscelesTriangleUsingStringUtilsIsCalled_ThenTheCorrectStringIsReturned(int nrOfRows, String expected) {
-        String actual = PrintTriangleExamples.printAnIsoscelesTriangleUsingStringUtils(nrOfRows);
+        var actual = PrintTriangleExamples.printAnIsoscelesTriangleUsingStringUtils(nrOfRows);
 
         assertEquals(expected, actual);
     }
@@ -90,7 +90,7 @@ class PrintTriangleExamplesUnitTest {
     @ParameterizedTest
     @MethodSource("isoscelesTriangles")
     public void whenPrintAnIsoscelesTriangleUsingSubstringIsCalled_ThenTheCorrectStringIsReturned(int nrOfRows, String expected) {
-        String actual = PrintTriangleExamples.printAnIsoscelesTriangleUsingSubstring(nrOfRows);
+        var actual = PrintTriangleExamples.printAnIsoscelesTriangleUsingSubstring(nrOfRows);
 
         assertEquals(expected, actual);
     }

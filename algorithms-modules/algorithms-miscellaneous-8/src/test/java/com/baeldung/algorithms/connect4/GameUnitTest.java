@@ -5,17 +5,18 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class GameUnitTest {
+class GameUnitTest {
+
     @Test
-    public void blankGame() {
-        GameBoard gameBoard = new GameBoard(8, 6);
+    void blankGame() {
+        var gameBoard = new GameBoard(8, 6);
 
         System.out.println(gameBoard);
     }
 
     @Test
-    public void playedGame() {
-        GameBoard gameBoard = new GameBoard(8, 6);
+    void playedGame() {
+        var gameBoard = new GameBoard(8, 6);
 
         assertFalse(gameBoard.move(3, Piece.PLAYER_1));
         assertFalse(gameBoard.move(2, Piece.PLAYER_2));

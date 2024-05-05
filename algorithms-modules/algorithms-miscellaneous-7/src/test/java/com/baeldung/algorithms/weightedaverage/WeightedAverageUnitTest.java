@@ -26,14 +26,14 @@ public class WeightedAverageUnitTest {
 
     @Test
     void twoPass() {
-        double top = values.stream()
+        var top = values.stream()
                 .mapToDouble(v -> v.value * v.weight)
                 .sum();
-        double bottom = values.stream()
+        var bottom = values.stream()
                 .mapToDouble(v -> v.weight)
                 .sum();
 
-        double result = top / bottom;
+        var result = top / bottom;
         assertEquals(expected, result);
     }
 
@@ -42,18 +42,18 @@ public class WeightedAverageUnitTest {
         double top = 0;
         double bottom = 0;
 
-        for (Values v : values) {
+        for (var v : values) {
             top += (v.value * v.weight);
             bottom += v.weight;
         }
 
-        double result = top / bottom;
+        var result = top / bottom;
         assertEquals(expected, result);
     }
 
     @Test
     void expanding() {
-        double result = values.stream()
+        var result = values.stream()
                 .flatMap(v -> Collections.nCopies(v.weight, v.value).stream())
                 .mapToInt(v -> v)
                 .average()
@@ -77,7 +77,7 @@ public class WeightedAverageUnitTest {
             }
         }
 
-        double result = values.stream()
+        var result = values.stream()
                 .reduce(new WeightedAverage(0, 0),
                         (acc, next) -> new WeightedAverage(
                                 acc.top + (next.value * next.weight),

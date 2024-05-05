@@ -19,8 +19,8 @@ public class MiddleElementLookup {
         }
 
         // calculate the size of the list
-        Node current = head;
-        int size = 1;
+        var current = head;
+        var size = 1;
         while (current.hasNext()) {
             current = current.next();
             size++;
@@ -28,7 +28,7 @@ public class MiddleElementLookup {
 
         // iterate till the middle element
         current = head;
-        for (int i = 0; i < (size - 1) / 2; i++) {
+        for (var i = 0; i < (size - 1) / 2; i++) {
             current = current.next();
         }
 
@@ -40,7 +40,7 @@ public class MiddleElementLookup {
             return Optional.empty();
         }
 
-        MiddleAuxRecursion middleAux = new MiddleAuxRecursion();
+        var middleAux = new MiddleAuxRecursion();
         findMiddleRecursively(head, middleAux);
         return Optional.ofNullable(middleAux.middle.data());
     }
@@ -67,8 +67,8 @@ public class MiddleElementLookup {
             return Optional.empty();
         }
 
-        Node slowPointer = head;
-        Node fastPointer = head;
+        var slowPointer = head;
+        var fastPointer = head;
 
         while (fastPointer.hasNext() && fastPointer.next()
             .hasNext()) {

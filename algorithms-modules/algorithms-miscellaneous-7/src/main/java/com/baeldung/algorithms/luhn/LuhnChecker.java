@@ -19,11 +19,11 @@ public class LuhnChecker {
      * This is how the final digit of a credit card is calculated.
      */
     public static boolean checkLuhn(String cardNumber) {
-        int sum = 0;
+        var sum = 0;
 
         try {
-            for (int i = cardNumber.length() - 1; i >= 0; i--) {
-                int digit = Integer.parseInt(cardNumber.substring(i, i + 1));
+            for (var i = cardNumber.length() - 1; i >= 0; i--) {
+                var digit = Integer.parseInt(cardNumber.substring(i, i + 1));
 
                 if ((cardNumber.length() - i) % 2 == 0) {
                     digit = doubleAndSumDigits(digit);
@@ -41,8 +41,8 @@ public class LuhnChecker {
             LOGGER.error("Null pointer - Card number was probably null, returning false");
             return false;
         }
-        
-        boolean result = sum % 10 == 0;
+
+        var result = sum % 10 == 0;
         
         LOGGER.info("Luhn check result (sum divisible by 10): " + result);
         
@@ -62,7 +62,7 @@ public class LuhnChecker {
      * 9*2 = 18 -> 1+9 = 9 = 18-9
      */
     public static int doubleAndSumDigits(int digit) {
-        int ret = digit * 2;
+        var ret = digit * 2;
 
         if (ret > 9) {
             ret -= 9;

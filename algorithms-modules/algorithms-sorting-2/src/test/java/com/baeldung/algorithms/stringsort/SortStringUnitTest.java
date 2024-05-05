@@ -10,18 +10,18 @@ class SortStringUnitTest {
 
     @Test
     void givenString_whenSort_thenSorted() {
-        String abcd = "bdca";
-        char[] chars = abcd.toCharArray();
+        var abcd = "bdca";
+        var chars = abcd.toCharArray();
 
         Arrays.sort(chars);
-        String sorted = new String(chars);
+        var sorted = new String(chars);
 
         assertThat(sorted).isEqualTo("abcd");
     }
 
     @Test
     void givenString_whenSortJava8_thenSorted() {
-        String sorted = "bdca".chars()
+        var sorted = "bdca".chars()
             .sorted()
             .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
             .toString();

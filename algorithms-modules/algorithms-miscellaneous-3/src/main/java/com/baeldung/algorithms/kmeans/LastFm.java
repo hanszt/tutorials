@@ -34,17 +34,17 @@ public class LastFm {
     private static ObjectMapper mapper = new ObjectMapper();
 
     public static void main(String[] args) throws IOException {
-        List<String> artists = getTop100Artists();
-        Set<String> tags = getTop100Tags();
-        List<Record> records = datasetWithTaggedArtists(artists, tags);
+        var artists = getTop100Artists();
+        var tags = getTop100Tags();
+        var records = datasetWithTaggedArtists(artists, tags);
 
-        Map<Centroid, List<Record>> clusters = KMeans.fit(records, 7, new EuclideanDistance(), 1000);
+        var clusters = KMeans.fit(records, 7, new EuclideanDistance(), 1000);
         // Print the cluster configuration
         clusters.forEach((key, value) -> {
             System.out.println("------------------------------ CLUSTER -----------------------------------");
 
             System.out.println(sortedCentroid(key));
-            String members = String.join(", ", value
+            var members = String.join(", ", value
               .stream()
               .map(Record::getDescription)
               .collect(toSet()));
@@ -54,7 +54,7 @@ public class LastFm {
             System.out.println();
         });
 
-        Map<String, Object> json = convertToD3CompatibleMap(clusters);
+        var json = convertToD3CompatibleMap(clusters);
         System.out.println(mapper.writeValueAsString(json));
     }
 
@@ -66,7 +66,7 @@ public class LastFm {
             Map<String, Object> child = new HashMap<>();
             child.put("name", dominantGenre(sortedCentroid(key)));
             List<Map<String, String>> nested = new ArrayList<>();
-            for (Record record : value) {
+            for (var record : value) {
                 nested.add(Collections.singletonMap("name", record.getDescription()));
             }
             child.put("children", nested);
@@ -95,7 +95,7 @@ public class LastFm {
           .compareTo(e1.getValue()));
 
         Map<String, Double> sorted = new LinkedHashMap<>();
-        for (Map.Entry<String, Double> entry : entries) {
+        for (var entry : entries) {
             sorted.put(entry.getKey(), entry.getValue());
         }
 
@@ -104,8 +104,8 @@ public class LastFm {
 
     private static List<Record> datasetWithTaggedArtists(List<String> artists, Set<String> topTags) throws IOException {
         List<Record> records = new ArrayList<>();
-        for (String artist : artists) {
-            Map<String, Double> tags = lastFm
+        for (var artist : artists) {
+            var tags = lastFm
               .topTagsFor(artist)
               .execute()
               .body()
@@ -131,7 +131,7 @@ public class LastFm {
 
     private static List<String> getTop100Artists() throws IOException {
         List<String> artists = new ArrayList<>();
-        for (int i = 1; i <= 2; i++) {
+        for (var i = 1; i <= 2; i++) {
             artists.addAll(lastFm
               .topArtists(i)
               .execute()

@@ -12,7 +12,7 @@ class HeapUnitTest {
     @Test
     void givenNotEmptyHeap_whenPopCalled_thenItShouldReturnSmallestElement() {
         // given
-        Heap<Integer> heap = Heap.of(3, 5, 1, 4, 2);
+        var heap = Heap.of(3, 5, 1, 4, 2);
 
         // when
         int head = heap.pop();
@@ -24,10 +24,10 @@ class HeapUnitTest {
     @Test
     void givenNotEmptyIterable_whenSortCalled_thenItShouldReturnElementsInSortedList() {
         // given
-        List<Integer> elements = Arrays.asList(3, 5, 1, 4, 2);
+        var elements = Arrays.asList(3, 5, 1, 4, 2);
         
         // when
-        List<Integer> sortedElements = Heap.sort(elements);
+        var sortedElements = Heap.sort(elements);
         
         // then
         assertThat(sortedElements).isEqualTo(Arrays.asList(1, 2, 3, 4, 5));

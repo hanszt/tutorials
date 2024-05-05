@@ -19,8 +19,8 @@ class RotateArrayUnitTest {
 
     @Test
     void givenInputArray_whenNoRotationOrEmptyArray_thenThrowIllegalArgumentException() {
-        final int noRotation = 0;
-        final int someRotation = arr.length - 1;
+        final var noRotation = 0;
+        final var someRotation = arr.length - 1;
 
         assertThrows(IllegalArgumentException.class, () -> bruteForce(arr, noRotation));
         assertThrows(IllegalArgumentException.class, () -> withExtraArray(arr, noRotation));
@@ -49,7 +49,7 @@ class RotateArrayUnitTest {
 
     @Test
     void givenInputArray_whenUseBruteForceRotationEqArrayLength_thenDoNothing() {
-        int[] expected = arr.clone();
+        var expected = arr.clone();
 
         bruteForce(arr, arr.length);
         assertArrayEquals(expected, arr);
@@ -71,7 +71,7 @@ class RotateArrayUnitTest {
 
     @Test
     void givenInputArray_whenUseExtraArrayWithRotationEqArrayLength_thenDoNothing() {
-        int[] clone = arr.clone();
+        var clone = arr.clone();
 
         withExtraArray(arr, arr.length);
         assertArrayEquals(clone, arr);
@@ -93,7 +93,7 @@ class RotateArrayUnitTest {
 
     @Test
     void givenInputArray_whenUseCyclicReplacementRotationEqArrayLength_thenDoNothing() {
-        int[] clone = arr.clone();
+        var clone = arr.clone();
 
         cyclicReplacement(arr, arr.length);
         assertArrayEquals(clone, arr);
@@ -116,7 +116,7 @@ class RotateArrayUnitTest {
     @Test
     void givenInputArray_whenUseReverseRotationEqArrayLength_thenDoNothing() {
 
-        int[] clone = arr.clone();
+        var clone = arr.clone();
 
         reverse(arr, arr.length);
         assertArrayEquals(clone, arr);

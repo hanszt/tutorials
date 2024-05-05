@@ -5,8 +5,8 @@ import java.util.stream.IntStream;
 class PerfectNumber {
 
     public static boolean isPerfectBruteForce(int number) {
-        int sum = 0;
-        for (int i = 1; i <= number / 2; i++) {
+        var sum = 0;
+        for (var i = 1; i <= number / 2; i++) {
             if (number % i == 0) {
                 sum += i;
             }
@@ -15,15 +15,15 @@ class PerfectNumber {
     }
 
     public static boolean isPerfectStream(int number) {
-        int sum = IntStream.rangeClosed(2, (int) Math.sqrt(number))
+        var sum = IntStream.rangeClosed(2, (int) Math.sqrt(number))
                 .filter(test -> number % test == 0)
                 .reduce(1, (s, test) -> s + test + (number / test));
         return sum == number;
     }
 
     public static boolean isPerfectEuclidEuler(int number) {
-        int p = 2;
-        int perfectNumber = (int) (Math.pow(2, p - 1) * (Math.pow(2, p) - 1));
+        var p = 2;
+        var perfectNumber = (int) (Math.pow(2, p - 1) * (Math.pow(2, p) - 1));
         while (perfectNumber <= number) {
             if (perfectNumber == number) {
                 return true;
@@ -35,8 +35,8 @@ class PerfectNumber {
     }
 
     public static boolean isPerfectEuclidEulerUsingShift(int number) {
-        int p = 2;
-        int perfectNumber = (2 << (p - 1)) * ((2 << p) - 1);
+        var p = 2;
+        var perfectNumber = (2 << (p - 1)) * ((2 << p) - 1);
         while (perfectNumber <= number) {
             if (perfectNumber == number) {
                 return true;

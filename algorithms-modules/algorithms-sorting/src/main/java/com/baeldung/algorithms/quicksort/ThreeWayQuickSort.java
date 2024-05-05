@@ -9,13 +9,13 @@ public class ThreeWayQuickSort {
         }
 
         // partition
-        int i = begin;
-        int less = begin;
-        int greater = end;
+        var i = begin;
+        var less = begin;
+        var greater = end;
 
         while (i <= greater){
             if (a[i] < a[less]) {
-                int tmp = a[i];
+                var tmp = a[i];
                 a[i] = a[less];
                 a[less] = tmp;
 
@@ -23,7 +23,7 @@ public class ThreeWayQuickSort {
                 less++;
             }
             else if (a[less] < a[i])	{
-                int tmp = a[i];
+                var tmp = a[i];
                 a[i] = a[greater];
                 a[greater] = tmp;
 

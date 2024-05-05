@@ -17,8 +17,8 @@ public class Region {
     }
 
     public Region getQuadrant(int quadrantIndex) {
-        float quadrantWidth = (this.x2 - this.x1) / 2;
-        float quadrantHeight = (this.y2 - this.y1) / 2;
+        var quadrantWidth = (this.x2 - this.x1) / 2;
+        var quadrantHeight = (this.y2 - this.y1) / 2;
 
         // 0=SW, 1=NW, 2=NE, 3=SE
         switch (quadrantIndex) {

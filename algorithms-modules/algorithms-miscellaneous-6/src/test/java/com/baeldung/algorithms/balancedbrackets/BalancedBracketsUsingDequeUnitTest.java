@@ -16,67 +16,67 @@ class BalancedBracketsUsingDequeUnitTest {
 
     @Test
     void givenNullInput_whenCheckingForBalance_shouldReturnFalse() {
-        boolean result = balancedBracketsUsingDeque.isBalanced(null);
+        var result = balancedBracketsUsingDeque.isBalanced(null);
         assertThat(result).isFalse();
     }
 
     @Test
     void givenEmptyString_whenCheckingForBalance_shouldReturnTrue() {
-        boolean result = balancedBracketsUsingDeque.isBalanced("");
+        var result = balancedBracketsUsingDeque.isBalanced("");
         assertThat(result).isTrue();
     }
 
     @Test
     void givenInvalidCharacterString_whenCheckingForBalance_shouldReturnFalse() {
-        boolean result = balancedBracketsUsingDeque.isBalanced("abc[](){}");
+        var result = balancedBracketsUsingDeque.isBalanced("abc[](){}");
         assertThat(result).isFalse();
     }
 
     @Test
     void givenOddLengthString_whenCheckingForBalance_shouldReturnFalse() {
-        boolean result = balancedBracketsUsingDeque.isBalanced("{{[]()}}}");
+        var result = balancedBracketsUsingDeque.isBalanced("{{[]()}}}");
         assertThat(result).isFalse();
     }
 
     @Test
     void givenEvenLengthString_whenCheckingForBalance_shouldReturnFalse() {
-        boolean result = balancedBracketsUsingDeque.isBalanced("{{[]()}}}}");
+        var result = balancedBracketsUsingDeque.isBalanced("{{[]()}}}}");
         assertThat(result).isFalse();
     }
 
     @Test
     void givenEvenLengthUnbalancedString_whenCheckingForBalance_shouldReturnFalse() {
-        boolean result = balancedBracketsUsingDeque.isBalanced("{[(])}");
+        var result = balancedBracketsUsingDeque.isBalanced("{[(])}");
         assertThat(result).isFalse();
     }
 
     @Test
     void givenAnotherEvenLengthUnbalancedString_whenCheckingForBalance_shouldReturnFalse() {
-        boolean result = balancedBracketsUsingDeque.isBalanced("{{}(");
+        var result = balancedBracketsUsingDeque.isBalanced("{{}(");
         assertThat(result).isFalse();
     }
 
     @Test
     void givenEvenLengthBalancedString_whenCheckingForBalance_shouldReturnTrue() {
-        boolean result = balancedBracketsUsingDeque.isBalanced("{[()]}");
+        var result = balancedBracketsUsingDeque.isBalanced("{[()]}");
         assertThat(result).isTrue();
     }
 
     @Test
     void givenBalancedString_whenCheckingForBalance_shouldReturnTrue() {
-        boolean result = balancedBracketsUsingDeque.isBalanced("{{[[(())]]}}");
+        var result = balancedBracketsUsingDeque.isBalanced("{{[[(())]]}}");
         assertThat(result).isTrue();
     }
 
     @Test
     void givenAnotherBalancedString_whenCheckingForBalance_shouldReturnTrue() {
-        boolean result = balancedBracketsUsingDeque.isBalanced("{{([])}}");
+        var result = balancedBracketsUsingDeque.isBalanced("{{([])}}");
         assertThat(result).isTrue();
     }
 
     @Test
     void givenUnBalancedString_whenCheckingForBalance_shouldReturnFalse() {
-        boolean result = balancedBracketsUsingDeque.isBalanced("{{)[](}}");
+        var result = balancedBracketsUsingDeque.isBalanced("{{)[](}}");
         assertThat(result).isFalse();
     }
 

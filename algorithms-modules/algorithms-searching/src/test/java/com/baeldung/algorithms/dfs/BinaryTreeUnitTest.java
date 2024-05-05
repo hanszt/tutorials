@@ -11,7 +11,7 @@ class BinaryTreeUnitTest {
     @Test
     void givenABinaryTree_WhenAddingElements_ThenTreeNotEmpty() {
 
-        BinaryTree bt = createBinaryTree();
+        var bt = createBinaryTree();
 
         assertFalse(bt.isEmpty());
     }
@@ -19,7 +19,7 @@ class BinaryTreeUnitTest {
     @Test
     void givenABinaryTree_WhenAddingElements_ThenTreeContainsThoseElements() {
 
-        BinaryTree bt = createBinaryTree();
+        var bt = createBinaryTree();
 
         assertTrue(bt.containsNode(6));
         assertTrue(bt.containsNode(4));
@@ -30,9 +30,9 @@ class BinaryTreeUnitTest {
     @Test
     void givenABinaryTree_WhenAddingExistingElement_ThenElementIsNotAdded() {
 
-        BinaryTree bt = createBinaryTree();
+        var bt = createBinaryTree();
 
-        int initialSize = bt.getSize();
+        var initialSize = bt.getSize();
 
         assertTrue(bt.containsNode(3));
         bt.add(3);
@@ -42,7 +42,7 @@ class BinaryTreeUnitTest {
     @Test
     void givenABinaryTree_WhenLookingForNonExistingElement_ThenReturnsFalse() {
 
-        BinaryTree bt = createBinaryTree();
+        var bt = createBinaryTree();
 
         assertFalse(bt.containsNode(99));
     }
@@ -50,7 +50,7 @@ class BinaryTreeUnitTest {
     @Test
     void givenABinaryTree_WhenDeletingElements_ThenTreeDoesNotContainThoseElements() {
 
-        BinaryTree bt = createBinaryTree();
+        var bt = createBinaryTree();
 
         assertTrue(bt.containsNode(9));
         bt.delete(9);
@@ -60,9 +60,9 @@ class BinaryTreeUnitTest {
     @Test
     void givenABinaryTree_WhenDeletingNonExistingElement_ThenTreeDoesNotDelete() {
 
-        BinaryTree bt = createBinaryTree();
+        var bt = createBinaryTree();
 
-        int initialSize = bt.getSize();
+        var initialSize = bt.getSize();
 
         assertFalse(bt.containsNode(99));
         bt.delete(99);
@@ -72,8 +72,8 @@ class BinaryTreeUnitTest {
 
     @Test
     void it_deletes_the_root() {
-        int value = 12;
-        BinaryTree bt = new BinaryTree();
+        var value = 12;
+        var bt = new BinaryTree();
         bt.add(value);
 
         assertTrue(bt.containsNode(value));
@@ -84,7 +84,7 @@ class BinaryTreeUnitTest {
     @Test
     void givenABinaryTree_WhenTraversingInOrder_ThenPrintValues() {
 
-        BinaryTree bt = createBinaryTree();
+        var bt = createBinaryTree();
 
         bt.traverseInOrder(bt.root);
         System.out.println();
@@ -94,7 +94,7 @@ class BinaryTreeUnitTest {
     @Test
     void givenABinaryTree_WhenTraversingPreOrder_ThenPrintValues() {
 
-        BinaryTree bt = createBinaryTree();
+        var bt = createBinaryTree();
 
         bt.traversePreOrder(bt.root);
         System.out.println();
@@ -104,7 +104,7 @@ class BinaryTreeUnitTest {
     @Test
     void givenABinaryTree_WhenTraversingPostOrder_ThenPrintValues() {
 
-        BinaryTree bt = createBinaryTree();
+        var bt = createBinaryTree();
 
         bt.traversePostOrder(bt.root);
         System.out.println();
@@ -112,7 +112,7 @@ class BinaryTreeUnitTest {
     }
 
     private BinaryTree createBinaryTree() {
-        BinaryTree bt = new BinaryTree();
+        var bt = new BinaryTree();
 
         bt.add(6);
         bt.add(4);

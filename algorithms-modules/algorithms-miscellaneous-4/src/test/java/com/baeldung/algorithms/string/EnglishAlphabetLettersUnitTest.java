@@ -7,13 +7,13 @@ public class EnglishAlphabetLettersUnitTest {
 
     @Test
     void givenString_whenContainsAllCharacter_thenTrue() {
-        String input = "Farmer jack realized that big yellow quilts were expensive";
+        var input = "Farmer jack realized that big yellow quilts were expensive";
         Assertions.assertTrue(EnglishAlphabetLetters.checkStringForAllTheLetters(input));
     }
 
     @Test
     void givenString_whenContainsAllCharacter_thenUsingStreamExpectTrue() {
-        String input = "Farmer jack realized that big yellow quilts were expensive";
+        var input = "Farmer jack realized that big yellow quilts were expensive";
         Assertions.assertTrue(EnglishAlphabetLetters.checkStringForAllLetterUsingStream(input));
     }
 

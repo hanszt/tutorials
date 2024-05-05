@@ -10,18 +10,18 @@ public final class GradientDescent {
     }
 
     public static double findLocalMinimum(DoubleUnaryOperator f, double initialX) {
-        double stepCoefficient = 0.1;
-        double previousStep = 1.0;
-        double currentX = initialX;
-        double previousX = initialX;
-        double previousY = f.applyAsDouble(previousX);
-        int iter = 100;
+        var stepCoefficient = 0.1;
+        var previousStep = 1.0;
+        var currentX = initialX;
+        var previousX = initialX;
+        var previousY = f.applyAsDouble(previousX);
+        var iter = 100;
 
         currentX += stepCoefficient * previousY;
 
         while (previousStep > PRECISION && iter > 0) {
             iter--;
-            double currentY = f.applyAsDouble(currentX);
+            var currentY = f.applyAsDouble(currentX);
             if (currentY > previousY) {
                 stepCoefficient = -stepCoefficient / 2;
             }

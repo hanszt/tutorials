@@ -12,9 +12,9 @@ public class EditDistanceRecursive extends EditDistanceBase {
             return x.length();
         }
 
-        int substitution = calculate(x.substring(1), y.substring(1)) + costOfSubstitution(x.charAt(0), y.charAt(0));
-        int insertion = calculate(x, y.substring(1)) + 1;
-        int deletion = calculate(x.substring(1), y) + 1;
+        var substitution = calculate(x.substring(1), y.substring(1)) + costOfSubstitution(x.charAt(0), y.charAt(0));
+        var insertion = calculate(x, y.substring(1)) + 1;
+        var deletion = calculate(x.substring(1), y) + 1;
 
         return min(substitution, insertion, deletion);
     }

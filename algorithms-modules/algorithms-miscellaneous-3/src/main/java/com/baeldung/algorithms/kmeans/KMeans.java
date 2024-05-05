@@ -38,22 +38,22 @@ public class KMeans {
     public static Map<Centroid, List<Record>> fit(List<Record> records, int k, Distance distance, int maxIterations) {
         applyPreconditions(records, k, distance, maxIterations);
 
-        List<Centroid> centroids = randomCentroids(records, k);
+        var centroids = randomCentroids(records, k);
         Map<Centroid, List<Record>> clusters = new HashMap<>();
         Map<Centroid, List<Record>> lastState = new HashMap<>();
 
         // iterate for a pre-defined number of times
-        for (int i = 0; i < maxIterations; i++) {
-            boolean isLastIteration = i == maxIterations - 1;
+        for (var i = 0; i < maxIterations; i++) {
+            var isLastIteration = i == maxIterations - 1;
 
             // in each iteration we should find the nearest centroid for each record
-            for (Record record : records) {
-                Centroid centroid = nearestCentroid(record, centroids, distance);
+            for (var record : records) {
+                var centroid = nearestCentroid(record, centroids, distance);
                 assignToCluster(clusters, record, centroid);
             }
 
             // if the assignment does not change, then the algorithm terminates
-            boolean shouldTerminate = isLastIteration || clusters.equals(lastState);
+            var shouldTerminate = isLastIteration || clusters.equals(lastState);
             lastState = clusters;
             if (shouldTerminate) {
                 break;
@@ -100,7 +100,7 @@ public class KMeans {
 
         // Since some records don't have all possible attributes, we initialize
         // average coordinates equal to current centroid coordinates
-        Map<String, Double> average = centroid.getCoordinates();
+        var average = centroid.getCoordinates();
 
         // The average function works correctly if we clear all coordinates corresponding
         // to present record attributes
@@ -112,7 +112,7 @@ public class KMeans {
             .stream())
           .forEach(k -> average.put(k, 0.0));
 
-        for (Record record : records) {
+        for (var record : records) {
             record
               .getFeatures()
               .forEach((k, v) -> average.compute(k, (k1, currentValue) -> v + currentValue));
@@ -152,11 +152,11 @@ public class KMeans {
      * @return The nearest centroid to the given feature vector.
      */
     private static Centroid nearestCentroid(Record record, List<Centroid> centroids, Distance distance) {
-        double minimumDistance = Double.MAX_VALUE;
+        var minimumDistance = Double.MAX_VALUE;
         Centroid nearest = null;
 
-        for (Centroid centroid : centroids) {
-            double currentDistance = distance.calculate(record.getFeatures(), centroid.getCoordinates());
+        for (var centroid : centroids) {
+            var currentDistance = distance.calculate(record.getFeatures(), centroid.getCoordinates());
 
             if (currentDistance < minimumDistance) {
                 minimumDistance = currentDistance;
@@ -183,7 +183,7 @@ public class KMeans {
         Map<String, Double> maxs = new HashMap<>();
         Map<String, Double> mins = new HashMap<>();
 
-        for (Record record : records) {
+        for (var record : records) {
             record
               .getFeatures()
               .forEach((key, value) -> {
@@ -195,16 +195,16 @@ public class KMeans {
               });
         }
 
-        Set<String> attributes = records
+        var attributes = records
           .stream()
           .flatMap(e -> e
             .getFeatures()
             .keySet()
             .stream())
           .collect(toSet());
-        for (int i = 0; i < k; i++) {
+        for (var i = 0; i < k; i++) {
             Map<String, Double> coordinates = new HashMap<>();
-            for (String attribute : attributes) {
+            for (var attribute : attributes) {
                 double max = maxs.get(attribute);
                 double min = mins.get(attribute);
                 coordinates.put(attribute, random.nextDouble() * (max - min) + min);

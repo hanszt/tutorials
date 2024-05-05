@@ -6,7 +6,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Stack;
 
-public class HillClimbing {
+public final class HillClimbing {
 
     public static void main(final String[] args) {
         final var hillClimbing = new HillClimbing();

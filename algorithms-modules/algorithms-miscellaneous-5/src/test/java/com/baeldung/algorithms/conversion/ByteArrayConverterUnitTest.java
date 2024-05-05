@@ -20,44 +20,44 @@ class ByteArrayConverterUnitTest {
 
     @Test
     void shouldEncodeByteArrayToHexStringUsingBigIntegerToString() {
-        byte[] bytes = getSampleBytes();
-        String hexString = getSampleHexString();
+        var bytes = getSampleBytes();
+        var hexString = getSampleHexString();
         if (hexString.charAt(0) == '0') {
             hexString = hexString.substring(1);
         }
-        String output = hexStringConverter.encodeUsingBigIntegerToString(bytes);
+        var output = hexStringConverter.encodeUsingBigIntegerToString(bytes);
         assertThat(output, IsEqualIgnoringCase.equalToIgnoringCase(hexString));
     }
 
     @Test
     void shouldEncodeByteArrayToHexStringUsingBigIntegerStringFormat() {
-        byte[] bytes = getSampleBytes();
-        String hexString = getSampleHexString();
-        String output = hexStringConverter.encodeUsingBigIntegerStringFormat(bytes);
+        var bytes = getSampleBytes();
+        var hexString = getSampleHexString();
+        var output = hexStringConverter.encodeUsingBigIntegerStringFormat(bytes);
         assertThat(output, IsEqualIgnoringCase.equalToIgnoringCase(hexString));
     }
 
     @Test
     void shouldDecodeHexStringToByteArrayUsingBigInteger() {
-        byte[] bytes = getSampleBytes();
-        String hexString = getSampleHexString();
-        byte[] output = hexStringConverter.decodeUsingBigInteger(hexString);
+        var bytes = getSampleBytes();
+        var hexString = getSampleHexString();
+        var output = hexStringConverter.decodeUsingBigInteger(hexString);
         assertArrayEquals(bytes, output);
     }
 
     @Test
     void shouldEncodeByteArrayToHexStringUsingCharacterConversion() {
-        byte[] bytes = getSampleBytes();
-        String hexString = getSampleHexString();
-        String output = hexStringConverter.encodeHexString(bytes);
+        var bytes = getSampleBytes();
+        var hexString = getSampleHexString();
+        var output = hexStringConverter.encodeHexString(bytes);
         assertThat(output, IsEqualIgnoringCase.equalToIgnoringCase(hexString));
     }
 
     @Test
     void shouldDecodeHexStringToByteArrayUsingCharacterConversion() {
-        byte[] bytes = getSampleBytes();
-        String hexString = getSampleHexString();
-        byte[] output = hexStringConverter.decodeHexString(hexString);
+        var bytes = getSampleBytes();
+        var hexString = getSampleHexString();
+        var output = hexStringConverter.decodeHexString(hexString);
         assertArrayEquals(bytes, output);
     }
 
@@ -70,65 +70,65 @@ class ByteArrayConverterUnitTest {
 
     @Test
     void shouldEncodeByteArrayToHexStringDataTypeConverter() {
-        byte[] bytes = getSampleBytes();
-        String hexString = getSampleHexString();
-        String output = hexStringConverter.encodeUsingDataTypeConverter(bytes);
+        var bytes = getSampleBytes();
+        var hexString = getSampleHexString();
+        var output = hexStringConverter.encodeUsingDataTypeConverter(bytes);
         assertThat(output, IsEqualIgnoringCase.equalToIgnoringCase(hexString));
     }
 
     @Test
     void shouldDecodeHexStringToByteArrayUsingDataTypeConverter() {
-        byte[] bytes = getSampleBytes();
-        String hexString = getSampleHexString();
-        byte[] output = hexStringConverter.decodeUsingDataTypeConverter(hexString);
+        var bytes = getSampleBytes();
+        var hexString = getSampleHexString();
+        var output = hexStringConverter.decodeUsingDataTypeConverter(hexString);
         assertArrayEquals(bytes, output);
     }
 
     @Test
     void shouldEncodeByteArrayToHexStringUsingGuava() {
-        byte[] bytes = getSampleBytes();
-        String hexString = getSampleHexString();
-        String output = hexStringConverter.encodeUsingGuava(bytes);
+        var bytes = getSampleBytes();
+        var hexString = getSampleHexString();
+        var output = hexStringConverter.encodeUsingGuava(bytes);
         assertThat(output, IsEqualIgnoringCase.equalToIgnoringCase(hexString));
     }
 
     @Test
     void shouldDecodeHexStringToByteArrayUsingGuava() {
-        byte[] bytes = getSampleBytes();
-        String hexString = getSampleHexString();
-        byte[] output = hexStringConverter.decodeUsingGuava(hexString);
+        var bytes = getSampleBytes();
+        var hexString = getSampleHexString();
+        var output = hexStringConverter.decodeUsingGuava(hexString);
         assertArrayEquals(bytes, output);
     }
 
     @Test
     void shouldEncodeByteArrayToHexStringUsingApacheCommons() {
-        byte[] bytes = getSampleBytes();
-        String hexString = getSampleHexString();
-        String output = hexStringConverter.encodeUsingApacheCommons(bytes);
+        var bytes = getSampleBytes();
+        var hexString = getSampleHexString();
+        var output = hexStringConverter.encodeUsingApacheCommons(bytes);
         assertThat(output, IsEqualIgnoringCase.equalToIgnoringCase(hexString));
     }
 
     @Test
     void shouldDecodeHexStringToByteArrayUsingApacheCommons() throws DecoderException {
-        byte[] bytes = getSampleBytes();
-        String hexString = getSampleHexString();
-        byte[] output = hexStringConverter.decodeUsingApacheCommons(hexString);
+        var bytes = getSampleBytes();
+        var hexString = getSampleHexString();
+        var output = hexStringConverter.decodeUsingApacheCommons(hexString);
         assertArrayEquals(bytes, output);
     }
 
     @Test
     void shouldEncodeByteArrayToHexStringUsingHexFormat() {
-        byte[] bytes = getSampleBytes();
-        String hexString = getSampleHexString();
-        String output = hexStringConverter.encodeUsingHexFormat(bytes);
+        var bytes = getSampleBytes();
+        var hexString = getSampleHexString();
+        var output = hexStringConverter.encodeUsingHexFormat(bytes);
         assertThat(output, IsEqualIgnoringCase.equalToIgnoringCase(hexString));
     }
 
     @Test
     void shouldDecodeHexStringToByteArrayUsingHexFormat() {
-        byte[] bytes = getSampleBytes();
-        String hexString = getSampleHexString();
-        byte[] output = hexStringConverter.decodeUsingHexFormat(hexString);
+        var bytes = getSampleBytes();
+        var hexString = getSampleHexString();
+        var output = hexStringConverter.decodeUsingHexFormat(hexString);
         assertArrayEquals(bytes, output);
     }
 

@@ -30,19 +30,19 @@ public final class RouteFinder<T extends GraphNode> {
         Map<T, RouteNode<T>> allNodes = new HashMap<>();
         Queue<RouteNode<T>> openSet = new PriorityQueue<>();
 
-        RouteNode<T> start = new RouteNode<>(from, null, 0d, targetScorer.computeCost(from, to));
+        var start = new RouteNode<T>(from, null, 0d, targetScorer.computeCost(from, to));
         allNodes.put(from, start);
         openSet.add(start);
 
         while (!openSet.isEmpty()) {
             LOGGER.debug("Open Set contains: {}", openSet.stream().map(RouteNode::getCurrent).collect(Collectors.toSet()));
-            RouteNode<T> next = openSet.poll();
+            var next = openSet.poll();
             LOGGER.debug("Looking at node: {}", next);
             if (next.getCurrent().equals(to)) {
                 LOGGER.debug("Found our destination!");
 
                 List<T> route = new ArrayList<>();
-                RouteNode<T> current = next;
+                var current = next;
                 do {
                     route.addFirst(current.getCurrent());
                     current = allNodes.get(current.getPrevious());
@@ -53,8 +53,8 @@ public final class RouteFinder<T extends GraphNode> {
             }
 
             graph.getConnections(next.getCurrent()).forEach(connection -> {
-                double newScore = next.getRouteScore() + nextNodeScorer.computeCost(next.getCurrent(), connection);
-                RouteNode<T> nextNode = allNodes.getOrDefault(connection, new RouteNode<>(connection));
+                var newScore = next.getRouteScore() + nextNodeScorer.computeCost(next.getCurrent(), connection);
+                var nextNode = allNodes.getOrDefault(connection, new RouteNode<>(connection));
                 allNodes.put(connection, nextNode);
 
                 if (nextNode.getRouteScore() > newScore) {

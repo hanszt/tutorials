@@ -6,8 +6,8 @@ package com.baeldung.algorithms.automata;
  */
 public final class RtTransition implements Transition {
 
-    private String rule;
-    private State next;
+    private final String rule;
+    private final State next;
     
     /**
      * Ctor.

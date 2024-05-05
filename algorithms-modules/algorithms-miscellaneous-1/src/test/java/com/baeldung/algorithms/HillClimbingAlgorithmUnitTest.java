@@ -23,7 +23,7 @@ class HillClimbingAlgorithmUnitTest {
     void givenInitAndGoalState_whenGetPathWithHillClimbing_thenPathFound() {
         final var hillClimbing = new HillClimbing();
 
-        final List<State> path = hillClimbing.getRouteWithHillClimbing(initStack, goalStack);
+        final var path = hillClimbing.getRouteWithHillClimbing(initStack, goalStack);
         assertNotNull(path);
         assertEquals(path.getLast()
                 .getState()

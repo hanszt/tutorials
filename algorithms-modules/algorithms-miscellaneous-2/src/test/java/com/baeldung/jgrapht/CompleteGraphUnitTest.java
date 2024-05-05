@@ -22,7 +22,7 @@ class CompleteGraphUnitTest {
     @BeforeEach
     public void createCompleteGraph() {
         completeGraph = new SimpleWeightedGraph<>(DefaultEdge.class);
-        CompleteGraphGenerator<String, DefaultEdge> completeGenerator = new CompleteGraphGenerator<>(size);
+        var completeGenerator = new CompleteGraphGenerator<String, DefaultEdge>(size);
         VertexFactory<String> vFactory = new VertexFactory<>() {
             private int id = 0;
 
@@ -35,7 +35,7 @@ class CompleteGraphUnitTest {
 
     @Test
     public void givenCompleteGraph_whenGetHamiltonianCyclePath_thenGetVerticeListInSequence() {
-        List<String> verticeList = HamiltonianCycle.getApproximateOptimalForCompleteGraph(completeGraph);
+        var verticeList = HamiltonianCycle.getApproximateOptimalForCompleteGraph(completeGraph);
         assertEquals(verticeList.size(), completeGraph.vertexSet().size());
     }
 }

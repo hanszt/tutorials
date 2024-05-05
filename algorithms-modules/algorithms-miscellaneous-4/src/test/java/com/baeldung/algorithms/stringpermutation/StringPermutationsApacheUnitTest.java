@@ -13,9 +13,9 @@ class StringPermutationsApacheUnitTest {
                 "hello, 120",
                 "aaaaaa, 720"})
     void testPermutationsWithRepetitions(String string, int numberOfPermutations) {
-        StringPermutationsApache permutationGenerator = new StringPermutationsApache();
-        final List<String> permutations = permutationGenerator.eagerPermutationWithRepetitions(string);
-        final int size = permutations.size();
+        var permutationGenerator = new StringPermutationsApache();
+        final var permutations = permutationGenerator.eagerPermutationWithRepetitions(string);
+        final var size = permutations.size();
         assertThat(permutations)
             .as("\"%s\" should have %d permutation, but had %d", string, numberOfPermutations, size)
             .hasSize(numberOfPermutations);
@@ -26,9 +26,9 @@ class StringPermutationsApacheUnitTest {
         "hello, 120",
         "aaaaaa, 720"})
     void testPermutationsWithoutRepetitions(String string, int numberOfPermutations) {
-        StringPermutationsApache permutationGenerator = new StringPermutationsApache();
-        final List<String> permutations = permutationGenerator.lazyPermutationWithoutRepetitions(string);
-        int size = permutations.size();
+        var permutationGenerator = new StringPermutationsApache();
+        final var permutations = permutationGenerator.lazyPermutationWithoutRepetitions(string);
+        var size = permutations.size();
         assertThat(size)
             .as("\"%s\" should have %d permutation, but had %d", string, numberOfPermutations, size)
             .isEqualTo(numberOfPermutations);

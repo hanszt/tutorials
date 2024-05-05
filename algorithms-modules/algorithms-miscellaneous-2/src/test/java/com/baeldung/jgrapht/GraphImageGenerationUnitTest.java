@@ -27,12 +27,12 @@ class GraphImageGenerationUnitTest {
 
     @BeforeEach
     public void createGraph() throws IOException {
-        File imgFile = new File("src/test/resources/graph1.png");
+        var imgFile = new File("src/test/resources/graph1.png");
         imgFile.createNewFile();
         g = new DefaultDirectedGraph<>(DefaultEdge.class);
-        String x1 = "x1";
-        String x2 = "x2";
-        String x3 = "x3";
+        var x1 = "x1";
+        var x2 = "x2";
+        var x3 = "x3";
         g.addVertex(x1);
         g.addVertex(x2);
         g.addVertex(x3);
@@ -43,17 +43,17 @@ class GraphImageGenerationUnitTest {
 
     @AfterEach
     public void cleanup() {
-        File imgFile = new File("src/test/resources/graph1.png");
+        var imgFile = new File("src/test/resources/graph1.png");
         imgFile.deleteOnExit();
     }
 
     @Test
     void givenAdaptedGraph_whenWriteBufferedImage_ThenFileShouldExist() throws IOException {
-        JGraphXAdapter<String, DefaultEdge> graphAdapter = new JGraphXAdapter<>(g);
+        var graphAdapter = new JGraphXAdapter<String, DefaultEdge>(g);
         mxIGraphLayout layout = new mxCircleLayout(graphAdapter);
         layout.execute(graphAdapter.getDefaultParent());
-        File imgFile = new File("src/test/resources/graph1.png");
-        BufferedImage image = mxCellRenderer.createBufferedImage(graphAdapter, null, 2, Color.WHITE, true, null);
+        var imgFile = new File("src/test/resources/graph1.png");
+        var image = mxCellRenderer.createBufferedImage(graphAdapter, null, 2, Color.WHITE, true, null);
         ImageIO.write(image, "PNG", imgFile);
         assertTrue(imgFile.exists());
     }

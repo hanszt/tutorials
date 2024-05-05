@@ -20,13 +20,13 @@ public final class InputData {
     public static Map<User, Map<Item, Double>> initializeData(int numberOfUsers, RandomGenerator random) {
         final Map<User, Map<Item, Double>> data = new HashMap<>();
 
-        for (int i = 0; i < numberOfUsers; i++) {
+        for (var i = 0; i < numberOfUsers; i++) {
             Map<Item, Double> newUser = new HashMap<>();
             Set<Item> newRecommendationSet = new HashSet<>();
-            for (int j = 0; j < 3; j++) {
+            for (var j = 0; j < 3; j++) {
                 newRecommendationSet.add(items.get(random.nextInt(items.size())));
             }
-            for (Item item : newRecommendationSet) {
+            for (var item : newRecommendationSet) {
                 newUser.put(item, random.nextDouble());
             }
             data.put(new User("User " + i), newUser);

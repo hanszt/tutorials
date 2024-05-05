@@ -50,22 +50,22 @@ class DirectedGraphUnitTest {
     @Test
     void givenDirectedGraph_whenGetStronglyConnectedSubgraphs_thenPathExistsBetweenStronglyconnectedVertices() {
         StrongConnectivityAlgorithm<String, DefaultEdge> scAlg = new KosarajuStrongConnectivityInspector<>(directedGraph);
-        List<DirectedSubgraph<String, DefaultEdge>> stronglyConnectedSubgraphs = scAlg.stronglyConnectedSubgraphs();
+        var stronglyConnectedSubgraphs = scAlg.stronglyConnectedSubgraphs();
         List<String> stronglyConnectedVertices = new ArrayList<>(stronglyConnectedSubgraphs.get(3).vertexSet());
 
-        String randomVertex1 = stronglyConnectedVertices.get(0);
-        String randomVertex2 = stronglyConnectedVertices.get(3);
-        AllDirectedPaths<String, DefaultEdge> allDirectedPaths = new AllDirectedPaths<>(directedGraph);
+        var randomVertex1 = stronglyConnectedVertices.get(0);
+        var randomVertex2 = stronglyConnectedVertices.get(3);
+        var allDirectedPaths = new AllDirectedPaths<String, DefaultEdge>(directedGraph);
 
-        List<GraphPath<String, DefaultEdge>> possiblePathList = allDirectedPaths.getAllPaths(randomVertex1, randomVertex2, false, stronglyConnectedVertices.size());
+        var possiblePathList = allDirectedPaths.getAllPaths(randomVertex1, randomVertex2, false, stronglyConnectedVertices.size());
         assertTrue(possiblePathList.size() > 0);
     }
 
     @Test
     void givenDirectedGraphWithCycle_whenCheckCycles_thenDetectCycles() {
-        CycleDetector<String, DefaultEdge> cycleDetector = new CycleDetector<>(directedGraph);
+        var cycleDetector = new CycleDetector<String, DefaultEdge>(directedGraph);
         assertTrue(cycleDetector.detectCycles());
-        Set<String> cycleVertices = cycleDetector.findCycles();
+        var cycleVertices = cycleDetector.findCycles();
         assertTrue(cycleVertices.size() > 0);
     }
 
@@ -83,14 +83,14 @@ class DirectedGraphUnitTest {
 
     @Test
     void givenDirectedGraph_whenGetDijkstraShortestPath_thenGetNotNullPath() {
-        DijkstraShortestPath dijkstraShortestPath = new DijkstraShortestPath(directedGraph);
+        var dijkstraShortestPath = new DijkstraShortestPath(directedGraph);
         List<String> shortestPath = dijkstraShortestPath.getPath("v1", "v4").getVertexList();
         assertNotNull(shortestPath);
     }
 
     @Test
     void givenDirectedGraph_whenGetBellmanFordShortestPath_thenGetNotNullPath() {
-        BellmanFordShortestPath bellmanFordShortestPath = new BellmanFordShortestPath(directedGraph);
+        var bellmanFordShortestPath = new BellmanFordShortestPath(directedGraph);
         List<String> shortestPath = bellmanFordShortestPath.getPath("v1", "v4").getVertexList();
         assertNotNull(shortestPath);
     }

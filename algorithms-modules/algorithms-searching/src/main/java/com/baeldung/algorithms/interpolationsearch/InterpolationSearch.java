@@ -4,12 +4,12 @@ public class InterpolationSearch {
 
     public static int interpolationSearch(int[] data, int item) {
 
-        int highEnd = (data.length - 1);
-        int lowEnd = 0;
+        var highEnd = (data.length - 1);
+        var lowEnd = 0;
 
         while (item >= data[lowEnd] && item <= data[highEnd] && lowEnd <= highEnd) {
 
-            int probe = lowEnd + (highEnd - lowEnd) * (item - data[lowEnd]) / (data[highEnd] - data[lowEnd]);
+            var probe = lowEnd + (highEnd - lowEnd) * (item - data[lowEnd]) / (data[highEnd] - data[lowEnd]);
 
             if (highEnd == lowEnd) {
                 if (data[lowEnd] == item) {

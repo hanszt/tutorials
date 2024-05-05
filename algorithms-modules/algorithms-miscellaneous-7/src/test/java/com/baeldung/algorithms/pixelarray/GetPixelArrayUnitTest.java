@@ -22,8 +22,8 @@ public class GetPixelArrayUnitTest {
             throw new RuntimeException(e);
         }
 
-        int[][] firstResult = get2DPixelArraySlow(sampleImage);
-        int[][] secondResult = get2DPixelArrayFast(sampleImage);
+        var firstResult = get2DPixelArraySlow(sampleImage);
+        var secondResult = get2DPixelArrayFast(sampleImage);
 
         assertTrue(Arrays.deepEquals(firstResult, secondResult));
     }

@@ -150,8 +150,8 @@ public class Particle {
 	 */
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
+		final var prime = 31;
+        var result = 1;
 		long temp;
 		temp = Double.doubleToLongBits(bestFitness);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
@@ -179,7 +179,7 @@ public class Particle {
 		if (getClass() != obj.getClass()) {
             return false;
         }
-		Particle other = (Particle) obj;
+        var other = (Particle) obj;
 		if (Double.doubleToLongBits(bestFitness) != Double.doubleToLongBits(other.bestFitness)) {
             return false;
         }

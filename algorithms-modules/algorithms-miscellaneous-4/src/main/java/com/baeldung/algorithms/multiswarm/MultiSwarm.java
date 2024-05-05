@@ -51,7 +51,7 @@ public final class MultiSwarm {
         this.random = random;
         this.fitnessFunction = fitnessFunction;
 		this.swarms = new Swarm[numSwarms];
-		for (int i = 0; i < numSwarms; i++) {
+		for (var i = 0; i < numSwarms; i++) {
 			swarms[i] = new Swarm(particlesPerSwarm);
 		}
 	}
@@ -63,10 +63,10 @@ public final class MultiSwarm {
 	 * swarms and finally updates the particle position and speed.
 	 */
 	public void mainLoop() {
-		for (Swarm swarm : swarms) {
-			for (Particle particle : swarm.getParticles()) {
+		for (var swarm : swarms) {
+			for (var particle : swarm.getParticles()) {
 
-				long[] particleOldPosition = particle.getPosition().clone();
+                var particleOldPosition = particle.getPosition().clone();
 
 				// Calculate the particle fitness.
 				particle.setFitness(fitnessFunction.getFitness(particleOldPosition));
@@ -91,8 +91,8 @@ public final class MultiSwarm {
 
 				// Updates the particle position by adding the speed to the
 				// actual position.
-				long[] position = particle.getPosition();
-				long[] speed = particle.getSpeed();
+                var position = particle.getPosition();
+                var speed = particle.getSpeed();
 
 				position[0] += speed[0];
 				position[1] += speed[1];
@@ -164,8 +164,8 @@ public final class MultiSwarm {
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
+		final var prime = 31;
+        var result = 1;
 		long temp;
 		temp = Double.doubleToLongBits(bestFitness);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
@@ -187,7 +187,7 @@ public final class MultiSwarm {
 		if (getClass() != obj.getClass()) {
             return false;
         }
-		MultiSwarm other = (MultiSwarm) obj;
+        var other = (MultiSwarm) obj;
 		if (Double.doubleToLongBits(bestFitness) != Double.doubleToLongBits(other.bestFitness)) {
             return false;
         }

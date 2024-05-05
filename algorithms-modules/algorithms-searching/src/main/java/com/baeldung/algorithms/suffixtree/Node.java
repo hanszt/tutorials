@@ -39,11 +39,11 @@ public class Node {
     }
 
     public String printTree(String depthIndicator) {
-        String str = "";
-        String positionStr = position > -1 ? "[" + String.valueOf(position) + "]" : "";
+        var str = "";
+        var positionStr = position > -1 ? "[" + String.valueOf(position) + "]" : "";
         str += depthIndicator + text + positionStr + "\n";
 
-        for (int i = 0; i < children.size(); i++) {
+        for (var i = 0; i < children.size(); i++) {
             str += children.get(i)
                 .printTree(depthIndicator + "\t");
         }

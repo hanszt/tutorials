@@ -27,7 +27,7 @@ public class Tree<T> {
     }
 
     public Tree<T> addChild(T value) {
-        Tree<T> newChild = new Tree<>(value);
+        var newChild = new Tree<T>(value);
         children.add(newChild);
         return newChild;
     }

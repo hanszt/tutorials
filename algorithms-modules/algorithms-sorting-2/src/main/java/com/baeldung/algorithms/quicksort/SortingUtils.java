@@ -4,7 +4,7 @@ public class SortingUtils {
 
     public static void swap(int[] array, int position1, int position2) {
         if (position1 != position2) {
-            int temp = array[position1];
+            var temp = array[position1];
             array[position1] = array[position2];
             array[position2] = temp;
         }
@@ -24,7 +24,7 @@ public class SortingUtils {
         if (array == null) {
             return;
         }
-        for (int e : array) {
+        for (var e : array) {
             System.out.print(e + " ");
         }
         System.out.println();

@@ -109,9 +109,9 @@ public class AntColonyOptimization {
      * Select next city for each ant
      */
     private int selectNextCity(Ant ant) {
-        int t = random.nextInt(numberOfCities - currentIndex);
+        var t = random.nextInt(numberOfCities - currentIndex);
         if (random.nextDouble() < randomFactor) {
-            OptionalInt cityIndex = IntStream.range(0, numberOfCities)
+            var cityIndex = IntStream.range(0, numberOfCities)
                 .filter(i -> i == t && !ant.visited(i))
                 .findFirst();
             if (cityIndex.isPresent()) {
@@ -119,9 +119,9 @@ public class AntColonyOptimization {
             }
         }
         calculateProbabilities(ant);
-        double r = random.nextDouble();
+        var r = random.nextDouble();
         double total = 0;
-        for (int i = 0; i < numberOfCities; i++) {
+        for (var i = 0; i < numberOfCities; i++) {
             total += probabilities[i];
             if (total >= r) {
                 return i;
@@ -135,18 +135,18 @@ public class AntColonyOptimization {
      * Calculate the next city picks probabilities
      */
     public void calculateProbabilities(Ant ant) {
-        int i = ant.trail[currentIndex];
-        double pheromone = 0.0;
-        for (int l = 0; l < numberOfCities; l++) {
+        var i = ant.trail[currentIndex];
+        var pheromone = 0.0;
+        for (var l = 0; l < numberOfCities; l++) {
             if (!ant.visited(l)) {
                 pheromone += Math.pow(trails[i][l], alpha) * Math.pow(1.0 / graph[i][l], beta);
             }
         }
-        for (int j = 0; j < numberOfCities; j++) {
+        for (var j = 0; j < numberOfCities; j++) {
             if (ant.visited(j)) {
                 probabilities[j] = 0.0;
             } else {
-                double numerator = Math.pow(trails[i][j], alpha) * Math.pow(1.0 / graph[i][j], beta);
+                var numerator = Math.pow(trails[i][j], alpha) * Math.pow(1.0 / graph[i][j], beta);
                 probabilities[j] = numerator / pheromone;
             }
         }
@@ -156,14 +156,14 @@ public class AntColonyOptimization {
      * Update trails that ants used
      */
     private void updateTrails() {
-        for (int i = 0; i < numberOfCities; i++) {
-            for (int j = 0; j < numberOfCities; j++) {
+        for (var i = 0; i < numberOfCities; i++) {
+            for (var j = 0; j < numberOfCities; j++) {
                 trails[i][j] *= evaporation;
             }
         }
-        for (Ant a : ants) {
-            double contribution = Q / a.trailLength(graph);
-            for (int i = 0; i < numberOfCities - 1; i++) {
+        for (var a : ants) {
+            var contribution = Q / a.trailLength(graph);
+            for (var i = 0; i < numberOfCities - 1; i++) {
                 trails[a.trail[i]][a.trail[i + 1]] += contribution;
             }
             trails[a.trail[numberOfCities - 1]][a.trail[0]] += contribution;
@@ -180,7 +180,7 @@ public class AntColonyOptimization {
             bestTourLength = first
                 .trailLength(graph);
         }
-        for (Ant a : ants) {
+        for (var a : ants) {
             if (a.trailLength(graph) < bestTourLength) {
                 bestTourLength = a.trailLength(graph);
                 bestTourOrder = a.trail.clone();

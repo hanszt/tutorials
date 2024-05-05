@@ -21,7 +21,7 @@ public class ParentKeeperTreeNode {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        ParentKeeperTreeNode treeNode = (ParentKeeperTreeNode) o;
+        var treeNode = (ParentKeeperTreeNode) o;
         return value == treeNode.value;
     }
 

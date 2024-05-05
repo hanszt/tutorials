@@ -9,7 +9,7 @@ public class TreeReverser {
             return;
         }
 
-        TreeNode temp = treeNode.getLeftChild();
+        var temp = treeNode.getLeftChild();
         treeNode.setLeftChild(treeNode.getRightChild());
         treeNode.setRightChild(temp);
 
@@ -18,7 +18,7 @@ public class TreeReverser {
     }
 
     public void reverseIterative(TreeNode treeNode) {
-        LinkedList<TreeNode> queue = new LinkedList<>();
+        var queue = new LinkedList<TreeNode>();
 
         if (treeNode != null) {
             queue.add(treeNode);
@@ -26,7 +26,7 @@ public class TreeReverser {
 
         while (!queue.isEmpty()) {
 
-            TreeNode node = queue.poll();
+            var node = queue.poll();
             if (node.getLeftChild() != null) {
                 queue.add(node.getLeftChild());
             }
@@ -34,7 +34,7 @@ public class TreeReverser {
                 queue.add(node.getRightChild());
             }
 
-            TreeNode temp = node.getLeftChild();
+            var temp = node.getLeftChild();
             node.setLeftChild(node.getRightChild());
             node.setRightChild(temp);
         }
@@ -45,7 +45,7 @@ public class TreeReverser {
             return "";
         }
 
-        StringBuffer buffer = new StringBuffer(String.valueOf(root.getValue())).append(" ");
+        var buffer = new StringBuffer(String.valueOf(root.getValue())).append(" ");
 
         buffer.append(toString(root.getLeftChild()));
         buffer.append(toString(root.getRightChild()));

@@ -10,10 +10,10 @@ class TextSearchAlgorithmsUnitTest {
 
     @Test
     void testStringSearchAlgorithms() {
-        String text = "This is some nice text.";
-        String pattern = "some";
+        var text = "This is some nice text.";
+        var pattern = "some";
 
-        int realPosition = text.indexOf(pattern);
+        var realPosition = text.indexOf(pattern);
         assertEquals(TextSearchAlgorithms.simpleTextSearch(pattern.toCharArray(), text.toCharArray()), realPosition);
         assertEquals(TextSearchAlgorithms.RabinKarpMethod(pattern.toCharArray(), text.toCharArray()), realPosition);
         assertEquals(TextSearchAlgorithms.KnuthMorrisPrattSearch(pattern.toCharArray(), text.toCharArray()) , realPosition);

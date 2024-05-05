@@ -9,13 +9,13 @@ public class KadaneAlgorithm {
 
     public int maxSubArraySum(int[] arr) {
 
-        int size = arr.length;
-        int start = 0;
-        int end = 0;
+        var size = arr.length;
+        var start = 0;
+        var end = 0;
 
         int maxSoFar = arr[0], maxEndingHere = arr[0];
 
-        for (int i = 1; i < size; i++) {
+        for (var i = 1; i < size; i++) {
             maxEndingHere = maxEndingHere + arr[i];
             if (arr[i] > maxEndingHere) {
                 maxEndingHere = arr[i];

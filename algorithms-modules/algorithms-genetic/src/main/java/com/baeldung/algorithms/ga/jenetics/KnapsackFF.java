@@ -17,7 +17,7 @@ public class KnapsackFF implements Function<Genotype<BitGene>, Double> {
 
     @Override
     public Double apply(Genotype<BitGene> gt) {
-        KnapsackItem sum = ((BitChromosome) gt.getChromosome()).ones()
+        var sum = ((BitChromosome) gt.getChromosome()).ones()
             .mapToObj(i -> items[i])
             .collect(KnapsackItem.toSum());
         return sum.size <= this.size ? sum.value : 0;

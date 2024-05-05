@@ -19,11 +19,11 @@ public class Prim {
             graph.get(0).setVisited(true);
         }
         while (isDisconnected()){
-            Edge nextMinimum = new Edge(Integer.MAX_VALUE);
-            Vertex nextVertex = graph.get(0);
-            for (Vertex vertex : graph){
+            var nextMinimum = new Edge(Integer.MAX_VALUE);
+            var nextVertex = graph.get(0);
+            for (var vertex : graph){
                 if (vertex.isVisited()){
-                    Pair<Vertex, Edge> candidate = vertex.nextMinimum();
+                    var candidate = vertex.nextMinimum();
                     if (candidate.getValue().getWeight() < nextMinimum.getWeight()){
                         nextMinimum = candidate.getValue();
                         nextVertex = candidate.getKey();
@@ -36,7 +36,7 @@ public class Prim {
     }
 
     private boolean isDisconnected(){
-        for (Vertex vertex : graph){
+        for (var vertex : graph){
             if (!vertex.isVisited()){
                 return true;
             }
@@ -45,26 +45,26 @@ public class Prim {
     }
 
     public String originalGraphToString(){
-        StringBuilder sb = new StringBuilder();
-        for (Vertex vertex : graph){
+        var sb = new StringBuilder();
+        for (var vertex : graph){
             sb.append(vertex.originalToString());
         }
         return sb.toString();
     }
 
     public void resetPrintHistory(){
-        for (Vertex vertex : graph){
-            Iterator<Map.Entry<Vertex,Edge>> it = vertex.getEdges().entrySet().iterator();
+        for (var vertex : graph){
+            var it = vertex.getEdges().entrySet().iterator();
             while (it.hasNext()) {
-                Map.Entry<Vertex,Edge> pair = it.next();
+                var pair = it.next();
                 pair.getValue().setPrinted(false);
             }
         }
     }
 
     public String minimumSpanningTreeToString(){
-        StringBuilder sb = new StringBuilder();
-        for (Vertex vertex : graph){
+        var sb = new StringBuilder();
+        for (var vertex : graph){
             sb.append(vertex.includedToString());
         }
         return sb.toString();

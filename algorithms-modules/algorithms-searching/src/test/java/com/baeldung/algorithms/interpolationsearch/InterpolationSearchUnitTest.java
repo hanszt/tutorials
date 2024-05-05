@@ -17,13 +17,13 @@ class InterpolationSearchUnitTest {
     
     @Test
     void givenSortedArray_whenLookingFor84_thenReturn6() {
-        int pos = InterpolationSearch.interpolationSearch(myData, 84);
+        var pos = InterpolationSearch.interpolationSearch(myData, 84);
         assertEquals(6, pos);
     }
     
     @Test
     void givenSortedArray_whenLookingFor19_thenReturnMinusOne() {
-        int pos = InterpolationSearch.interpolationSearch(myData, 19);
+        var pos = InterpolationSearch.interpolationSearch(myData, 19);
         assertEquals(-1, pos);
     }
 

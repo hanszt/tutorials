@@ -9,10 +9,10 @@ public class BruteForceTopKElementsFinder implements TopKElementsFinder<Integer>
         List<Integer> array = new ArrayList<>(input);
         List<Integer> topKList = new ArrayList<>();
 
-        for (int i = 0; i < k; i++) {
-            int maxIndex = 0;
+        for (var i = 0; i < k; i++) {
+            var maxIndex = 0;
 
-            for (int j = 1; j < array.size(); j++) {
+            for (var j = 1; j < array.size(); j++) {
                 if (array.get(j) > array.get(maxIndex)) {
                     maxIndex = j;
                 }

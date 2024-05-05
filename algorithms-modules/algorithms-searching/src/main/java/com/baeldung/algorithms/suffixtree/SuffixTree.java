@@ -18,7 +18,7 @@ public class SuffixTree {
 
     public SuffixTree(String text) {
         root = new Node("", POSITION_UNDEFINED);
-        for (int i = 0; i < text.length(); i++) {
+        for (var i = 0; i < text.length(); i++) {
             addSuffix(text.substring(i) + WORD_TERMINATION, i);
         }
         fullText = text;
@@ -27,12 +27,12 @@ public class SuffixTree {
     public List<String> searchText(String pattern) {
         LOGGER.debug("Searching for pattern \"{}\"", pattern);
         List<String> result = new ArrayList<>();
-        List<Node> nodes = getAllNodesInTraversePath(pattern, root, false);
+        var nodes = getAllNodesInTraversePath(pattern, root, false);
 
         if (nodes.size() > 0) {
-            Node lastNode = nodes.get(nodes.size() - 1);
+            var lastNode = nodes.get(nodes.size() - 1);
             if (lastNode != null) {
-                List<Integer> positions = getPositions(lastNode);
+                var positions = getPositions(lastNode);
                 positions = positions.stream()
                     .sorted()
                     .collect(Collectors.toList());
@@ -44,15 +44,15 @@ public class SuffixTree {
 
     private void addSuffix(String suffix, int position) {
         LOGGER.debug(">>>>>>>>>>>> Adding new suffix {}", suffix);
-        List<Node> nodes = getAllNodesInTraversePath(suffix, root, true);
+        var nodes = getAllNodesInTraversePath(suffix, root, true);
         if (nodes.size() == 0) {
             addChildNode(root, suffix, position);
             LOGGER.debug("{}", printTree());
         } else {
-            Node lastNode = nodes.remove(nodes.size() - 1);
-            String newText = suffix;
+            var lastNode = nodes.remove(nodes.size() - 1);
+            var newText = suffix;
             if (nodes.size() > 0) {
-                String existingSuffixUptoLastNode = nodes.stream()
+                var existingSuffixUptoLastNode = nodes.stream()
                     .map(a -> a.getText())
                     .reduce("", String::concat);
 
@@ -70,7 +70,7 @@ public class SuffixTree {
             .endsWith(WORD_TERMINATION)) {
             positions.add(node.getPosition());
         }
-        for (int i = 0; i < node.getChildren()
+        for (var i = 0; i < node.getChildren()
             .size(); i++) {
             positions.addAll(getPositions(node.getChildren()
                 .get(i)));
@@ -79,9 +79,9 @@ public class SuffixTree {
     }
 
     private String markPatternInText(Integer startPosition, String pattern) {
-        String matchingTextLHS = fullText.substring(0, startPosition);
-        String matchingText = fullText.substring(startPosition, startPosition + pattern.length());
-        String matchingTextRHS = fullText.substring(startPosition + pattern.length());
+        var matchingTextLHS = fullText.substring(0, startPosition);
+        var matchingText = fullText.substring(startPosition, startPosition + pattern.length());
+        var matchingTextRHS = fullText.substring(startPosition + pattern.length());
         return matchingTextLHS + "[" + matchingText + "]" + matchingTextRHS;
     }
 
@@ -91,21 +91,21 @@ public class SuffixTree {
     }
 
     private void extendNode(Node node, String newText, int position) {
-        String currentText = node.getText();
-        String commonPrefix = getLongestCommonPrefix(currentText, newText);
+        var currentText = node.getText();
+        var commonPrefix = getLongestCommonPrefix(currentText, newText);
 
         if (commonPrefix != currentText) {
-            String parentText = currentText.substring(0, commonPrefix.length());
-            String childText = currentText.substring(commonPrefix.length());
+            var parentText = currentText.substring(0, commonPrefix.length());
+            var childText = currentText.substring(commonPrefix.length());
             splitNodeToParentAndChild(node, parentText, childText);
         }
 
-        String remainingText = newText.substring(commonPrefix.length());
+        var remainingText = newText.substring(commonPrefix.length());
         addChildNode(node, remainingText, position);
     }
 
     private void splitNodeToParentAndChild(Node parentNode, String parentNewText, String childNewText) {
-        Node childNode = new Node(childNewText, parentNode.getPosition());
+        var childNode = new Node(childNewText, parentNode.getPosition());
 
         if (parentNode.getChildren()
             .size() > 0) {
@@ -124,8 +124,8 @@ public class SuffixTree {
     }
 
     private String getLongestCommonPrefix(String str1, String str2) {
-        int compareLength = Math.min(str1.length(), str2.length());
-        for (int i = 0; i < compareLength; i++) {
+        var compareLength = Math.min(str1.length(), str2.length());
+        for (var i = 0; i < compareLength; i++) {
             if (str1.charAt(i) != str2.charAt(i)) {
                 return str1.substring(0, i);
             }
@@ -135,19 +135,19 @@ public class SuffixTree {
 
     private List<Node> getAllNodesInTraversePath(String pattern, Node startNode, boolean isAllowPartialMatch) {
         List<Node> nodes = new ArrayList<>();
-        for (int i = 0; i < startNode.getChildren()
+        for (var i = 0; i < startNode.getChildren()
             .size(); i++) {
-            Node currentNode = startNode.getChildren()
+            var currentNode = startNode.getChildren()
                 .get(i);
-            String nodeText = currentNode.getText();
+            var nodeText = currentNode.getText();
             if (pattern.charAt(0) == nodeText.charAt(0)) {
                 if (isAllowPartialMatch && pattern.length() <= nodeText.length()) {
                     nodes.add(currentNode);
                     return nodes;
                 }
 
-                int compareLength = Math.min(nodeText.length(), pattern.length());
-                for (int j = 1; j < compareLength; j++) {
+                var compareLength = Math.min(nodeText.length(), pattern.length());
+                for (var j = 1; j < compareLength; j++) {
                     if (pattern.charAt(j) != nodeText.charAt(j)) {
                         if (isAllowPartialMatch) {
                             nodes.add(currentNode);
@@ -158,7 +158,7 @@ public class SuffixTree {
 
                 nodes.add(currentNode);
                 if (pattern.length() > compareLength) {
-                    List<Node> nodes2 = getAllNodesInTraversePath(pattern.substring(compareLength), currentNode, isAllowPartialMatch);
+                    var nodes2 = getAllNodesInTraversePath(pattern.substring(compareLength), currentNode, isAllowPartialMatch);
                     if (nodes2.size() > 0) {
                         nodes.addAll(nodes2);
                     } else if (!isAllowPartialMatch) {

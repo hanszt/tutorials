@@ -35,8 +35,8 @@ public class Node {
         if (node.getParent() != null) {
             this.parent = node.getParent();
         }
-        List<Node> childArray = node.getChildArray();
-        for (Node child : childArray) {
+        var childArray = node.getChildArray();
+        for (var child : childArray) {
             this.childArray.add(new Node(child));
         }
     }
@@ -66,8 +66,8 @@ public class Node {
     }
 
     public Node getRandomChildNode(RandomGenerator random) {
-        int noOfPossibleMoves = this.childArray.size();
-        int selectRandom = random.nextInt(noOfPossibleMoves);
+        var noOfPossibleMoves = this.childArray.size();
+        var selectRandom = random.nextInt(noOfPossibleMoves);
         return this.childArray.get(selectRandom);
     }
 

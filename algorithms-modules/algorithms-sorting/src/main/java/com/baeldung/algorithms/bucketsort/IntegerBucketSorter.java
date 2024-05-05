@@ -19,9 +19,9 @@ public class IntegerBucketSorter implements Sorter<Integer> {
 
     public List<Integer> sort(List<Integer> arrayToSort) {
 
-        List<List<Integer>> buckets = splitIntoUnsortedBuckets(arrayToSort);
+        var buckets = splitIntoUnsortedBuckets(arrayToSort);
 
-        for(List<Integer> bucket  : buckets){
+        for(var bucket  : buckets){
             bucket.sort(comparator);
         }
 
@@ -30,7 +30,7 @@ public class IntegerBucketSorter implements Sorter<Integer> {
 
     private List<Integer> concatenateSortedBuckets(List<List<Integer>> buckets){
         List<Integer> sortedArray = new LinkedList<>();
-        for(List<Integer> bucket : buckets){
+        for(var bucket : buckets){
             sortedArray.addAll(bucket);
         }
         return sortedArray;
@@ -38,11 +38,11 @@ public class IntegerBucketSorter implements Sorter<Integer> {
 
     private List<List<Integer>> splitIntoUnsortedBuckets(List<Integer> initialList){
 
-        final int max = findMax(initialList);
-        final int numberOfBuckets = (int) Math.sqrt(initialList.size());
+        final var max = findMax(initialList);
+        final var numberOfBuckets = (int) Math.sqrt(initialList.size());
 
         List<List<Integer>> buckets = new ArrayList<>();
-        for(int i = 0; i < numberOfBuckets; i++) {
+        for(var i = 0; i < numberOfBuckets; i++) {
             buckets.add(new ArrayList<>());
         }
 
@@ -55,7 +55,7 @@ public class IntegerBucketSorter implements Sorter<Integer> {
     }
 
     private int findMax(List<Integer> input){
-        int m = Integer.MIN_VALUE;
+        var m = Integer.MIN_VALUE;
         for (int i : input){
             m = Math.max(i, m);
         }

@@ -49,7 +49,7 @@ public final class Human {
 
     private int generateScore(Board board, int depth) {
         if (depth >= 3) {
-            int finalScore = calculateFinalScore(board);
+            var finalScore = calculateFinalScore(board);
             LOG.debug("Final score for board {}: {}", board, finalScore);
             return finalScore;
         }
@@ -59,9 +59,9 @@ public final class Human {
                 .flatMap(cell -> Stream.of(new Pair<>(cell, 2), new Pair<>(cell, 4)))
                 .mapToInt(move -> {
                     LOG.debug("Simulating move {} at depth {}", move, depth);
-                    Board newBoard = board.placeTile(move.getFirst(), move.getSecond());
-                    int boardScore = calculateScore(newBoard, depth + 1);
-                    int calculatedScore = (int) (boardScore * (move.getSecond() == 2 ? 0.9 : 0.1));
+                    var newBoard = board.placeTile(move.getFirst(), move.getSecond());
+                    var boardScore = calculateScore(newBoard, depth + 1);
+                    var calculatedScore = (int) (boardScore * (move.getSecond() == 2 ? 0.9 : 0.1));
                     LOG.debug("Calculated score for board {} and move {} at depth {}: {}", newBoard, move, depth, calculatedScore);
                     return calculatedScore;
                 })
@@ -81,11 +81,11 @@ public final class Human {
     private int calculateFinalScore(Board board) {
         List<int[]> rowsToScore = new ArrayList<>();
         final var boardSize = board.getSize();
-        for (int i = 0; i < boardSize; ++i) {
+        for (var i = 0; i < boardSize; ++i) {
             final var row = new int[boardSize];
             final var col = new int[boardSize];
 
-            for (int j = 0; j < boardSize; ++j) {
+            for (var j = 0; j < boardSize; ++j) {
                 row[j] = board.getCell(new Cell(i, j));
                 col[j] = board.getCell(new Cell(j, i));
             }
@@ -104,10 +104,10 @@ public final class Human {
                 .filter(value -> value != 0)
                 .toArray();
 
-        int numMerges = 0;
-        int monotonicityLeft = 0;
-        int monotonicityRight = 0;
-        for (int i = 0; i < preMerged.length - 1; ++i) {
+        var numMerges = 0;
+        var monotonicityLeft = 0;
+        var monotonicityRight = 0;
+        for (var i = 0; i < preMerged.length - 1; ++i) {
             final var first = preMerged[i];
             final var second = preMerged[i + 1];
             if (first == second) {

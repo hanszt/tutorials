@@ -11,16 +11,16 @@ import java.util.List;
 class GreedyAlgorithmUnitTest {
 
     private SocialConnector prepareNetwork() {
-        SocialUser root = new SocialUser("root");
-        SocialUser child1 = new SocialUser("child1");
-        SocialUser child2 = new SocialUser("child2");
-        SocialUser child3 = new SocialUser("child3");
-        SocialUser child21 = new SocialUser("child21");
-        SocialUser child211 = new SocialUser("child211");
-        SocialUser child2111 = new SocialUser("child2111");
-        SocialUser child31 = new SocialUser("child31");
-        SocialUser child311 = new SocialUser("child311");
-        SocialUser child3111 = new SocialUser("child3111");
+        var root = new SocialUser("root");
+        var child1 = new SocialUser("child1");
+        var child2 = new SocialUser("child2");
+        var child3 = new SocialUser("child3");
+        var child21 = new SocialUser("child21");
+        var child211 = new SocialUser("child211");
+        var child2111 = new SocialUser("child2111");
+        var child31 = new SocialUser("child31");
+        var child311 = new SocialUser("child311");
+        var child3111 = new SocialUser("child3111");
         child211.addFollowers(List.of(child2111));
         child311.addFollowers(List.of(child3111));
         child21.addFollowers(List.of(child211));
@@ -35,13 +35,13 @@ class GreedyAlgorithmUnitTest {
 
     @Test
     void greedyAlgorithmTest() {
-        GreedyAlgorithm ga = new GreedyAlgorithm(prepareNetwork());
+        var ga = new GreedyAlgorithm(prepareNetwork());
         assertEquals(ga.findMostFollowersPath("root"), 5);
     }
 
     @Test
     void nongreedyAlgorithmTest() {
-        NonGreedyAlgorithm nga = new NonGreedyAlgorithm(prepareNetwork(), 0);
+        var nga = new NonGreedyAlgorithm(prepareNetwork(), 0);
         assertThrows(IllegalStateException.class, () -> {
             nga.findMostFollowersPath("root");
           });
@@ -49,9 +49,9 @@ class GreedyAlgorithmUnitTest {
 
     @Test
     void nongreedyAlgorithmUnboundedTest() {
-        SocialConnector sc = prepareNetwork();
+        var sc = prepareNetwork();
         sc.switchCounter();
-        NonGreedyAlgorithm nga = new NonGreedyAlgorithm(sc, 0);
+        var nga = new NonGreedyAlgorithm(sc, 0);
         assertEquals(nga.findMostFollowersPath("root"), 6);
     }
 }

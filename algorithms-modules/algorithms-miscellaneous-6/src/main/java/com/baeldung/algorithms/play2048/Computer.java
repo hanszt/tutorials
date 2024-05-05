@@ -12,14 +12,14 @@ public final class Computer {
     private final SecureRandom secureRandom = new SecureRandom();
 
     public Board makeMove(Board input) {
-        List<Cell> emptyCells = input.emptyCells();
+        var emptyCells = input.emptyCells();
         LOG.info("Number of empty cells: {}", emptyCells.size());
 
-        double numberToPlace = secureRandom.nextDouble();
+        var numberToPlace = secureRandom.nextDouble();
         LOG.info("New number probability: {}", numberToPlace);
 
-        int indexToPlace = secureRandom.nextInt(emptyCells.size());
-        Cell cellToPlace = emptyCells.get(indexToPlace);
+        var indexToPlace = secureRandom.nextInt(emptyCells.size());
+        var cellToPlace = emptyCells.get(indexToPlace);
         LOG.info("Placing number into empty cell: {}", cellToPlace);
 
         return input.placeTile(cellToPlace, numberToPlace >= 0.9 ? 4 : 2);

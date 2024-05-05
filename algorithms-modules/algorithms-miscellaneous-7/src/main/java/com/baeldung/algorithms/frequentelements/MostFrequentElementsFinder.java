@@ -9,19 +9,19 @@ public class MostFrequentElementsFinder {
         Map<Integer, Integer> countMap = new HashMap<>();
 
         // For each element i in the array, add it to the countMap and increment its count.
-        for (Integer i : array) {
+        for (var i : array) {
             countMap.put(i, countMap.getOrDefault(i, 0) + 1);
         }
 
         // Create a max heap (priority queue) that will prioritize elements with higher counts.
-        PriorityQueue<Integer> heap = new PriorityQueue<>(
+        var heap = new PriorityQueue<Integer>(
                 (a, b) -> countMap.get(b) - countMap.get(a));
 
         // Add all the unique elements in the array to the heap.
         heap.addAll(countMap.keySet());
 
         List<Integer> result = new ArrayList<>();
-        for (int i = 0; i < n && !heap.isEmpty(); i++) {
+        for (var i = 0; i < n && !heap.isEmpty(); i++) {
             // Poll the highest-count element from the heap and add it to the result list.
             result.add(heap.poll());
         }
@@ -52,7 +52,7 @@ public class MostFrequentElementsFinder {
 
         // Extract the n most frequent elements from the sorted list of entries
         List<Integer> result = new ArrayList<>();
-        for (int i = 0; i < n && i < sortedEntries.size(); i++) {
+        for (var i = 0; i < n && i < sortedEntries.size(); i++) {
             result.add(sortedEntries.get(i).getKey());
         }
 
@@ -80,7 +80,7 @@ public class MostFrequentElementsFinder {
 
         // Loop through the bucket array in reverse order and add the elements to the result list
         // until we have found the n most frequent elements
-        for (int i = bucket.length - 1; i >= 0 && result.size() < n; i--) {
+        for (var i = bucket.length - 1; i >= 0 && result.size() < n; i--) {
             if (bucket[i] != null) {
                 result.addAll(bucket[i]);
             }

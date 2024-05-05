@@ -5,9 +5,9 @@ import org.apache.commons.lang3.StringUtils;
 public class PrintTriangleExamples {
 
     public static String printARightTriangle(int N) {
-        StringBuilder result = new StringBuilder();
-        for (int r = 1; r <= N; r++) {
-            for (int j = 1; j <= r; j++) {
+        var result = new StringBuilder();
+        for (var r = 1; r <= N; r++) {
+            for (var j = 1; j <= r; j++) {
                 result.append("*");
             }
             result.append(System.lineSeparator());
@@ -16,12 +16,12 @@ public class PrintTriangleExamples {
     }
 
     public static String printAnIsoscelesTriangle(int N) {
-        StringBuilder result = new StringBuilder();
-        for (int r = 1; r <= N; r++) {
-            for (int sp = 1; sp <= N - r; sp++) {
+        var result = new StringBuilder();
+        for (var r = 1; r <= N; r++) {
+            for (var sp = 1; sp <= N - r; sp++) {
                 result.append(" ");
             }
-            for (int c = 1; c <= (r * 2) - 1; c++) {
+            for (var c = 1; c <= (r * 2) - 1; c++) {
                 result.append("*");
             }
             result.append(System.lineSeparator());
@@ -30,9 +30,9 @@ public class PrintTriangleExamples {
     }
 
     public static String printAnIsoscelesTriangleUsingStringUtils(int N) {
-        StringBuilder result = new StringBuilder();
+        var result = new StringBuilder();
 
-        for (int r = 1; r <= N; r++) {
+        for (var r = 1; r <= N; r++) {
             result.append(StringUtils.repeat(' ', N - r));
             result.append(StringUtils.repeat('*', 2 * r - 1));
             result.append(System.lineSeparator());
@@ -41,10 +41,10 @@ public class PrintTriangleExamples {
     }
 
     public static String printAnIsoscelesTriangleUsingSubstring(int N) {
-        StringBuilder result = new StringBuilder();
-        String helperString = StringUtils.repeat(' ', N - 1) + StringUtils.repeat('*', N * 2 - 1);
+        var result = new StringBuilder();
+        var helperString = StringUtils.repeat(' ', N - 1) + StringUtils.repeat('*', N * 2 - 1);
 
-        for (int r = 0; r < N; r++) {
+        for (var r = 0; r < N; r++) {
             result.append(helperString.substring(r, N + 2 * r));
             result.append(System.lineSeparator());
         }

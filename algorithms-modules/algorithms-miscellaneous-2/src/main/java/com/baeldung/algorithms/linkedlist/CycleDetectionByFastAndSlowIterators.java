@@ -7,8 +7,8 @@ public class CycleDetectionByFastAndSlowIterators {
             return new CycleDetectionResult<>(false, null);
         }
 
-        Node<T> slow = head;
-        Node<T> fast = head;
+        var slow = head;
+        var fast = head;
 
         while (fast != null && fast.next != null) {
             slow = slow.next;

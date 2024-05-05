@@ -14,7 +14,7 @@ public final class NaturalOrderComparators {
             .comparingDouble(NaturalOrderComparators::parseStringToNumber);
 
     private static double parseStringToNumber(String input) {
-        final String digitsOnly = input.replaceAll(DIGIT_AND_DECIMAL_REGEX, "");
+        final var digitsOnly = input.replaceAll(DIGIT_AND_DECIMAL_REGEX, "");
 
         if (digitsOnly.isEmpty()) {
             return 0;

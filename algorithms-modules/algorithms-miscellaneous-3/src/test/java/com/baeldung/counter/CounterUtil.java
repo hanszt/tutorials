@@ -9,7 +9,7 @@ public class CounterUtil {
     public static String[] COUNTRY_NAMES = { "China", "Australia", "India", "USA", "USSR", "UK", "China", "France", "Poland", "Austria", "India", "USA", "Egypt", "China" };
 
     public static void counterWithWrapperObject(Map<String, Integer> counterMap) {
-        for (String country : COUNTRY_NAMES) {
+        for (var country : COUNTRY_NAMES) {
             counterMap.compute(country, (k, v) -> v == null ? 1 : v + 1);
         }
     }
@@ -42,14 +42,14 @@ public class CounterUtil {
     }
 
     public static void counterWithMutableInteger(Map<String, MutableInteger> counterMap) {
-        for (String country : COUNTRY_NAMES) {
+        for (var country : COUNTRY_NAMES) {
             counterMap.compute(country, (k, v) -> v == null ? new MutableInteger(0) : v)
                 .increment();
         }
     }
 
     public static void counterWithPrimitiveArray(Map<String, int[]> counterMap) {
-        for (String country : COUNTRY_NAMES) {
+        for (var country : COUNTRY_NAMES) {
             counterMap.compute(country, (k, v) -> v == null ? new int[] { 0 } : v)[0]++;
         }
     }

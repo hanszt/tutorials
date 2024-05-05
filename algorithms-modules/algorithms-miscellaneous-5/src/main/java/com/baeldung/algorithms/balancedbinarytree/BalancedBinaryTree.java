@@ -11,12 +11,12 @@ public class BalancedBinaryTree {
             return new Result(true, -1);
         }
 
-        Result leftSubtreeResult = isBalancedRecursive(tree.left(), depth + 1);
-        Result rightSubtreeResult = isBalancedRecursive(tree.right(), depth + 1);
+        var leftSubtreeResult = isBalancedRecursive(tree.left(), depth + 1);
+        var rightSubtreeResult = isBalancedRecursive(tree.right(), depth + 1);
 
-        boolean isBalanced = Math.abs(leftSubtreeResult.height - rightSubtreeResult.height) <= 1;
-        boolean subtreesAreBalanced = leftSubtreeResult.isBalanced && rightSubtreeResult.isBalanced;
-        int height = Math.max(leftSubtreeResult.height, rightSubtreeResult.height) + 1;
+        var isBalanced = Math.abs(leftSubtreeResult.height - rightSubtreeResult.height) <= 1;
+        var subtreesAreBalanced = leftSubtreeResult.isBalanced && rightSubtreeResult.isBalanced;
+        var height = Math.max(leftSubtreeResult.height, rightSubtreeResult.height) + 1;
 
         return new Result(isBalanced && subtreesAreBalanced, height);
     }

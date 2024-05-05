@@ -21,9 +21,9 @@ public final class Board {
         this.board = new int[size][];
         this.score = 0;
 
-        for (int x = 0; x < size; ++x) {
+        for (var x = 0; x < size; ++x) {
             this.board[x] = new int[size];
-            for (int y = 0; y < size; ++y) {
+            for (var y = 0; y < size; ++y) {
                 board[x][y] = 0;
             }
         }
@@ -33,7 +33,7 @@ public final class Board {
         this.score = score;
         this.board = new int[board.length][];
 
-        for (int x = 0; x < board.length; ++x) {
+        for (var x = 0; x < board.length; ++x) {
             this.board[x] = Arrays.copyOf(board[x], board[x].length);
         }
     }
@@ -47,8 +47,8 @@ public final class Board {
     }
 
     public int getCell(Cell cell) {
-        int x = cell.x();
-        int y = cell.y();
+        var x = cell.x();
+        var y = cell.y();
         assert(x >= 0 && x < board.length);
         assert(y >= 0 && y < board.length);
 
@@ -61,9 +61,9 @@ public final class Board {
 
     public List<Cell> emptyCells() {
         List<Cell> result = new ArrayList<>();
-        for (int x = 0; x < board.length; ++x) {
-            for (int y = 0; y < board[x].length; ++y) {
-                Cell cell = new Cell(x, y);
+        for (var x = 0; x < board.length; ++x) {
+            for (var y = 0; y < board[x].length; ++y) {
+                var cell = new Cell(x, y);
                 if (isEmpty(cell)) {
                     result.add(cell);
                 }
@@ -77,15 +77,15 @@ public final class Board {
             throw new IllegalArgumentException("That cell is not empty");
         }
 
-        Board result = new Board(this.board, this.score);
+        var result = new Board(this.board, this.score);
         result.board[cell.x()][cell.y()] = number;
         return result;
     }
 
     public Board move(Move move) {
         // Clone the board
-        int[][] tiles = new int[this.board.length][];
-        for (int x = 0; x < this.board.length; ++x) {
+        var tiles = new int[this.board.length][];
+        for (var x = 0; x < this.board.length; ++x) {
             tiles[x] = Arrays.copyOf(this.board[x], this.board[x].length);
         }
 
@@ -104,25 +104,25 @@ public final class Board {
         LOG.debug("Ready to move: {}", Arrays.deepToString(tiles));
 
         // Shift everything up
-        int[][] result = new int[tiles.length][];
-        int newScore = 0;
-        for (int x = 0; x < tiles.length; ++x) {
-            LinkedList<Integer> thisRow = new LinkedList<>();
-            for (int y = 0; y < tiles[0].length; ++y) {
+        var result = new int[tiles.length][];
+        var newScore = 0;
+        for (var x = 0; x < tiles.length; ++x) {
+            var thisRow = new LinkedList<Integer>();
+            for (var y = 0; y < tiles[0].length; ++y) {
                 if (tiles[x][y] > 0) {
                     thisRow.add(tiles[x][y]);
                 }
             }
 
             LOG.debug("Unmerged row: {}", thisRow);
-            LinkedList<Integer> newRow = new LinkedList<>();
+            var newRow = new LinkedList<Integer>();
             while (thisRow.size() >= 2) {
                 int first = thisRow.pop();
                 int second = thisRow.peek();
                 LOG.debug("Looking at numbers {} and {}", first, second);
                 if (second == first) {
                     LOG.debug("Numbers match, combining");
-                    int newNumber = first * 2;
+                    var newNumber = first * 2;
                     newRow.add(newNumber);
                     newScore += newNumber;
                     thisRow.pop();
@@ -135,7 +135,7 @@ public final class Board {
             LOG.debug("Merged row: {}", newRow);
 
             result[x] = new int[tiles[0].length];
-            for (int y = 0; y < tiles[0].length; ++y) {
+            for (var y = 0; y < tiles[0].length; ++y) {
                 if (newRow.isEmpty()) {
                     result[x][y] = 0;
                 } else {
@@ -159,11 +159,11 @@ public final class Board {
     }
 
     private static int[][] transpose(int[][] input) {
-        int[][] result = new int[input.length][];
+        var result = new int[input.length][];
 
-        for (int x = 0; x < input.length; ++x) {
+        for (var x = 0; x < input.length; ++x) {
             result[x] = new int[input[0].length];
-            for (int y = 0; y < input[0].length; ++y) {
+            for (var y = 0; y < input[0].length; ++y) {
                 result[x][y] = input[y][x];
             }
         }
@@ -172,11 +172,11 @@ public final class Board {
     }
 
     private static int[][] reverse(int[][] input) {
-        int[][] result = new int[input.length][];
+        var result = new int[input.length][];
 
-        for (int x = 0; x < input.length; ++x) {
+        for (var x = 0; x < input.length; ++x) {
             result[x] = new int[input[0].length];
-            for (int y = 0; y < input[0].length; ++y) {
+            for (var y = 0; y < input[0].length; ++y) {
                 result[x][y] = input[x][input.length - y - 1];
             }
         }
@@ -197,7 +197,7 @@ public final class Board {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Board board1 = (Board) o;
+        var board1 = (Board) o;
         return Arrays.deepEquals(board, board1.board);
     }
 

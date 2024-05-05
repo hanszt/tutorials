@@ -3,7 +3,7 @@ package com.baeldung.algorithms.linkedlist;
 public class CycleRemovalBruteForce {
 
     public static <T> boolean detectAndRemoveCycle(Node<T> head) {
-        CycleDetectionResult<T> result = CycleDetectionByFastAndSlowIterators.detectCycle(head);
+        var result = CycleDetectionByFastAndSlowIterators.detectCycle(head);
 
         if (result.cycleExists) {
             removeCycle(result.node, head);
@@ -19,11 +19,11 @@ public class CycleRemovalBruteForce {
      * @param head - reference to the head of the list
      */
     private static <T> void removeCycle(Node<T> loopNodeParam, Node<T> head) {
-        Node<T> it = head;
+        var it = head;
 
         while (it != null) {
             if (isNodeReachableFromLoopNode(it, loopNodeParam)) {
-                Node<T> loopStart = it;
+                var loopStart = it;
                 findEndNodeAndBreakCycle(loopStart);
                 break;
             }
@@ -32,7 +32,7 @@ public class CycleRemovalBruteForce {
     }
 
     private static <T> boolean isNodeReachableFromLoopNode(Node<T> it, Node<T> loopNodeParam) {
-        Node<T> loopNode = loopNodeParam;
+        var loopNode = loopNodeParam;
 
         do {
             if (it == loopNode) {
@@ -45,7 +45,7 @@ public class CycleRemovalBruteForce {
     }
 
     private static <T> void findEndNodeAndBreakCycle(Node<T> loopStartParam) {
-        Node<T> loopStart = loopStartParam;
+        var loopStart = loopStartParam;
 
         while (loopStart.next != loopStartParam) {
             loopStart = loopStart.next;

@@ -9,10 +9,10 @@ class KadaneAlgorithmUnitTest {
     @Test
     void givenArrayWithNegativeNumberWhenMaximumSubarrayThenReturnsExpectedResult() {
         //given
-        int[] arr = new int[] { -3, 1, -8, 4, -1, 2, 1, -5, 5 };
+        var arr = new int[] { -3, 1, -8, 4, -1, 2, 1, -5, 5 };
         //when
-        KadaneAlgorithm algorithm = new KadaneAlgorithm();
-        int maxSum = algorithm.maxSubArraySum(arr);
+        var algorithm = new KadaneAlgorithm();
+        var maxSum = algorithm.maxSubArraySum(arr);
         //then
         assertEquals(6, maxSum);
     }
@@ -20,10 +20,10 @@ class KadaneAlgorithmUnitTest {
     @Test
     void givenArrayWithAllNegativeNumbersWhenMaximumSubarrayThenReturnsExpectedResult() {
         //given
-        int[] arr = new int[] { -8, -7, -5, -4, -3, -1, -2 };
+        var arr = new int[] { -8, -7, -5, -4, -3, -1, -2 };
         //when
-        KadaneAlgorithm algorithm = new KadaneAlgorithm();
-        int maxSum = algorithm.maxSubArraySum(arr);
+        var algorithm = new KadaneAlgorithm();
+        var maxSum = algorithm.maxSubArraySum(arr);
         //then
         assertEquals(-1, maxSum);
     }
@@ -31,10 +31,10 @@ class KadaneAlgorithmUnitTest {
     @Test
     void givenArrayWithAllPosiitveNumbersWhenMaximumSubarrayThenReturnsExpectedResult() {
         //given
-        int[] arr = new int[] {4, 1, 3, 2};
+        var arr = new int[] {4, 1, 3, 2};
         //when
-        KadaneAlgorithm algorithm = new KadaneAlgorithm();
-        int maxSum = algorithm.maxSubArraySum(arr);
+        var algorithm = new KadaneAlgorithm();
+        var maxSum = algorithm.maxSubArraySum(arr);
         //then
         assertEquals(10, maxSum);
     }
@@ -42,10 +42,10 @@ class KadaneAlgorithmUnitTest {
     @Test
     void givenArrayToTestStartIndexWhenMaximumSubarrayThenReturnsExpectedResult() {
         //given
-        int[] arr = new int[] { 1, 2, -1, 3, -6, -2 };
+        var arr = new int[] { 1, 2, -1, 3, -6, -2 };
         //when
-        KadaneAlgorithm algorithm = new KadaneAlgorithm();
-        int maxSum = algorithm.maxSubArraySum(arr);
+        var algorithm = new KadaneAlgorithm();
+        var maxSum = algorithm.maxSubArraySum(arr);
         //then
         assertEquals(5, maxSum);
     }

@@ -8,7 +8,7 @@ public class BentleyMcIlroyPartioning {
         int left = begin, right = end;
         int leftEqualKeysCount = 0, rightEqualKeysCount = 0;
 
-        int partitioningValue = input[end];
+        var partitioningValue = input[end];
 
         while (true) {
             while (input[left] < partitioningValue) {
@@ -46,12 +46,12 @@ public class BentleyMcIlroyPartioning {
             left++; right--;
         }
         right = left - 1;
-        for (int k = begin; k < begin + leftEqualKeysCount; k++, right--) {
+        for (var k = begin; k < begin + leftEqualKeysCount; k++, right--) {
             if (right >= begin + leftEqualKeysCount) {
                 swap(input, k, right);
             }
         }
-        for (int k = end; k > end - rightEqualKeysCount; k--, left++) {
+        for (var k = end; k > end - rightEqualKeysCount; k--, left++) {
             if (left <= end - rightEqualKeysCount) {
                 swap(input, left, k);
             }
@@ -63,7 +63,7 @@ public class BentleyMcIlroyPartioning {
         if (end <= begin) {
             return;
         }
-        Partition middlePartition = partition(input, begin, end);
+        var middlePartition = partition(input, begin, end);
         quicksort(input, begin, middlePartition.getLeft() - 1);
         quicksort(input, middlePartition.getRight() + 1, end);
     }

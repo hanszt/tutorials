@@ -24,7 +24,7 @@ public final class SocialConnector {
             if(this.isCounterEnabled) {
                 counter--;
             }
-            for(SocialUser user : users) {
+            for(var user : users) {
                 if (user.getUsername().equals(account)) {
                     return user.getFollowers();
                 }

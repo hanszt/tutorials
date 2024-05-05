@@ -21,7 +21,7 @@ public final class State {
 
     State(final State state) {
         this.state = new ArrayList<>();
-        for (final Stack<String> s : state.getState()) {
+        for (final var s : state.getState()) {
             this.state.add(s.stream().collect(toCollection(Stack::new)));
         }
         this.heuristics = state.getHeuristics();

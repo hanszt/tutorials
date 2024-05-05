@@ -11,7 +11,7 @@ class FindKthLargestUnitTest {
 
     private final Random random = new Random(0);
     private final FindKthLargest findKthLargest = new FindKthLargest(random);
-    private final int[] arr = { 3, 7, 1, 2, 8, 10, 4, 5, 6, 9 };
+    private final int[] arr = {3, 7, 1, 2, 8, 10, 4, 5, 6, 9};
 
     @Test
     void givenIntArray_whenFindKthLargestBySorting_thenGetResult() {

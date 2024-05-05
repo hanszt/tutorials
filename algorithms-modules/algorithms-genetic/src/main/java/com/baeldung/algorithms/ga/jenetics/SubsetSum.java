@@ -48,15 +48,15 @@ public class SubsetSum implements Problem<ISeq<Integer>, EnumGene<Integer>, Inte
     }
 
     public static void main(String[] args) {
-        SubsetSum problem = of(500, 15, new LCG64ShiftRandom(101010));
+        var problem = of(500, 15, new LCG64ShiftRandom(101010));
 
-        Engine<EnumGene<Integer>, Integer> engine = Engine.builder(problem)
+        var engine = Engine.builder(problem)
             .minimizing()
             .maximalPhenotypeAge(5)
             .alterers(new PartiallyMatchedCrossover<>(0.4), new Mutator<>(0.3))
             .build();
 
-        Phenotype<EnumGene<Integer>, Integer> result = engine.stream()
+        var result = engine.stream()
             .limit(limit.bySteadyFitness(55))
             .collect(EvolutionResult.toBestPhenotype());
 

@@ -7,15 +7,15 @@ public class CycleDetectionBruteForce {
             return new CycleDetectionResult<>(false, null);
         }
 
-        Node<T> it1 = head;
-        int nodesTraversedByOuter = 0;
+        var it1 = head;
+        var nodesTraversedByOuter = 0;
         while (it1 != null && it1.next != null) {
             it1 = it1.next;
             nodesTraversedByOuter++;
 
-            int x = nodesTraversedByOuter;
-            Node<T> it2 = head;
-            int noOfTimesCurrentNodeVisited = 0;
+            var x = nodesTraversedByOuter;
+            var it2 = head;
+            var noOfTimesCurrentNodeVisited = 0;
 
             while (x > 0) {
                 it2 = it2.next;

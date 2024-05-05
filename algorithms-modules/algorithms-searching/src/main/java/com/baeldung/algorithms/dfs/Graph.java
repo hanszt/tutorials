@@ -24,8 +24,8 @@ public class Graph {
     }
 
     public boolean[] dfsWithoutRecursion(int start) {
-        Stack<Integer> stack = new Stack<>();
-        boolean[] isVisited = new boolean[adjVertices.size()];
+        var stack = new Stack<Integer>();
+        var isVisited = new boolean[adjVertices.size()];
         stack.push(start);
         while (!stack.isEmpty()) {
             int current = stack.pop();
@@ -43,7 +43,7 @@ public class Graph {
     }
 
     public boolean[] dfs(int start) {
-        boolean[] isVisited = new boolean[adjVertices.size()];
+        var isVisited = new boolean[adjVertices.size()];
         return dfsRecursive(start, isVisited);
     }
 
@@ -59,8 +59,8 @@ public class Graph {
     }
 
     public List<Integer> topologicalSort(int start) {
-        LinkedList<Integer> result = new LinkedList<>();
-        boolean[] isVisited = new boolean[adjVertices.size()];
+        var result = new LinkedList<Integer>();
+        var isVisited = new boolean[adjVertices.size()];
         topologicalSortRecursive(start, isVisited, result);
         return result;
     }

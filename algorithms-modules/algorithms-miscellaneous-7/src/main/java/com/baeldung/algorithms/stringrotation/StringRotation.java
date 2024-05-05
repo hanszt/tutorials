@@ -21,7 +21,7 @@ public class StringRotation {
 
         if (origin.length() == rotation.length()) {
 
-            List<Integer> indexes = IntStream.range(0, origin.length())
+            var indexes = IntStream.range(0, origin.length())
               .filter(i -> rotation.charAt(i) == origin.charAt(0))
               .boxed()
               .collect(Collectors.toList());
@@ -38,7 +38,7 @@ public class StringRotation {
 
     static boolean isRotation(int startingAt, String rotation, String origin) {
 
-        for (int i = 0; i < origin.length(); i++) {
+        for (var i = 0; i < origin.length(); i++) {
             if (rotation.charAt((startingAt + i) % origin.length()) != origin.charAt(i)) {
                 return false;
             }
@@ -60,11 +60,11 @@ public class StringRotation {
 
         if (origin.length() == rotation.length()) {
 
-            Queue<Character> originQueue = getCharactersQueue(origin);
+            var originQueue = getCharactersQueue(origin);
 
-            Queue<Character> rotationQueue = getCharactersQueue(rotation);
+            var rotationQueue = getCharactersQueue(rotation);
 
-            int k = rotation.length();
+            var k = rotation.length();
             while (k > 0 && null != rotationQueue.peek()) {
                 k--;
                 char ch = rotationQueue.peek();
@@ -97,7 +97,7 @@ public class StringRotation {
     static boolean checkPrefixAndSuffix(String origin, String rotation) {
         if (origin.length() == rotation.length()) {
 
-            for (int i = 0; i < origin.length(); i++) {
+            for (var i = 0; i < origin.length(); i++) {
                 if (origin.charAt(i) == rotation.charAt(0)) {
                     if (checkRotationPrefixWithOriginSuffix(origin, rotation, i)) {
                         if (checkOriginPrefixWithRotationSuffix(origin, rotation, i)) {

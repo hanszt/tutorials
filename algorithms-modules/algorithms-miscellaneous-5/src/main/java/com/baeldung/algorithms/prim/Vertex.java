@@ -47,11 +47,11 @@ public class Vertex {
     }
 
     public Pair<Vertex, Edge> nextMinimum(){
-        Edge nextMinimum = new Edge(Integer.MAX_VALUE);
-        Vertex nextVertex = this;
-        Iterator<Map.Entry<Vertex,Edge>> it = edges.entrySet().iterator();
+        var nextMinimum = new Edge(Integer.MAX_VALUE);
+        var nextVertex = this;
+        var it = edges.entrySet().iterator();
         while (it.hasNext()) {
-            Map.Entry<Vertex,Edge> pair = it.next();
+            var pair = it.next();
             if (!pair.getKey().isVisited()){
                 if (!pair.getValue().isIncluded()) {
                     if (pair.getValue().getWeight() < nextMinimum.getWeight()) {
@@ -65,10 +65,10 @@ public class Vertex {
     }
 
     public String originalToString(){
-        StringBuilder sb = new StringBuilder();
-        Iterator<Map.Entry<Vertex,Edge>> it = edges.entrySet().iterator();
+        var sb = new StringBuilder();
+        var it = edges.entrySet().iterator();
         while (it.hasNext()) {
-            Map.Entry<Vertex,Edge> pair = it.next();
+            var pair = it.next();
             if (!pair.getValue().isPrinted()) {
                 sb.append(getLabel());
                 sb.append(" --- ");
@@ -83,11 +83,11 @@ public class Vertex {
     }
 
     public String includedToString(){
-        StringBuilder sb = new StringBuilder();
+        var sb = new StringBuilder();
         if (isVisited()) {
-            Iterator<Map.Entry<Vertex,Edge>> it = edges.entrySet().iterator();
+            var it = edges.entrySet().iterator();
             while (it.hasNext()) {
-                Map.Entry<Vertex,Edge> pair = it.next();
+                var pair = it.next();
                 if (pair.getValue().isIncluded()) {
                     if (!pair.getValue().isPrinted()) {
                         sb.append(getLabel());

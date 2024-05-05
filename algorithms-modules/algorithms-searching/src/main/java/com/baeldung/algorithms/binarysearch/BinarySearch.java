@@ -4,15 +4,15 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class BinarySearch {
+public final class BinarySearch {
 
     public int runBinarySearchIteratively(int[] sortedArray, int key, int low, int high) {
 
-        int index = Integer.MAX_VALUE;
+        var index = Integer.MAX_VALUE;
 
         while (low <= high) {
 
-            int mid = low + ((high - low) / 2);
+            var mid = low + ((high - low) / 2);
 
             if (sortedArray[mid] < key) {
                 low = mid + 1;
@@ -28,7 +28,7 @@ public class BinarySearch {
 
     public int runBinarySearchRecursively(int[] sortedArray, int key, int low, int high) {
 
-        int middle = low + ((high - low) / 2);
+        var middle = low + ((high - low) / 2);
         if (high < low) {
             return -1;
         }
@@ -43,13 +43,11 @@ public class BinarySearch {
     }
 
     public int runBinarySearchUsingJavaArrays(int[] sortedArray, Integer key) {
-        int index = Arrays.binarySearch(sortedArray, key);
-        return index;
+        return Arrays.binarySearch(sortedArray, key);
     }
 
     public int runBinarySearchUsingJavaCollections(List<Integer> sortedList, Integer key) {
-        int index = Collections.binarySearch(sortedList, key);
-        return index;
+        return Collections.binarySearch(sortedList, key);
     }
 
 }

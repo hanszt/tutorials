@@ -53,7 +53,7 @@ public final class FindKthLargest {
     }
 
     private int partition(final int[] arr, final int left, final int right) {
-        final int pivot = arr[right];
+        final var pivot = arr[right];
 
         final var leftArr = IntStream.range(left, right)
                 .filter(i -> arr[i] < pivot)
@@ -74,8 +74,8 @@ public final class FindKthLargest {
     }
 
     private int partitionIterative(final int[] arr, final int left, final int right) {
-        final int pivot = arr[right];
-        int i = left;
+        final var pivot = arr[right];
+        var i = left;
         for (var j = left; j <= right - 1; j++) {
             if (arr[j] <= pivot) {
                 swap(arr, i, j);
@@ -108,14 +108,14 @@ public final class FindKthLargest {
     }
 
     private static void reverse(int[] array) {
-        for (int i = 0; i < array.length / 2; i++) {
-            int j = array.length - i - 1;
+        for (var i = 0; i < array.length / 2; i++) {
+            var j = array.length - i - 1;
             swap(array, i, j);
         }
     }
 
     private static void swap(final int[] arr, final int n1, final int n2) {
-        final int temp = arr[n2];
+        final var temp = arr[n2];
         arr[n2] = arr[n1];
         arr[n1] = temp;
     }

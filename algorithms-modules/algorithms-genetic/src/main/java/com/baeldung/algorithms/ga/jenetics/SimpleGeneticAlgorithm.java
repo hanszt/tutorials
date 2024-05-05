@@ -19,10 +19,10 @@ public class SimpleGeneticAlgorithm {
         Factory<Genotype<BitGene>> gtf = Genotype.of(BitChromosome.of(10, 0.5));
         System.out.println("Before the evolution:\n" + gtf);
 
-        Engine<BitGene, Integer> engine = Engine.builder(SimpleGeneticAlgorithm::eval, gtf)
+        var engine = Engine.builder(SimpleGeneticAlgorithm::eval, gtf)
             .build();
 
-        Genotype<BitGene> result = engine.stream()
+        var result = engine.stream()
             .limit(500)
             .collect(EvolutionResult.toBestGenotype());
 

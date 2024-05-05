@@ -10,7 +10,7 @@ class PrimUnitTest {
 
     @Test
      void givenAGraph_whenPrimRuns_thenPrintMST() {
-        Prim prim = new Prim(createGraph());
+        var prim = new Prim(createGraph());
         System.out.println(prim.originalGraphToString());
         System.out.println("----------------");
         prim.run();
@@ -21,27 +21,27 @@ class PrimUnitTest {
 
     public static List<Vertex> createGraph() {
         List<Vertex> graph = new ArrayList<>();
-        Vertex a = new Vertex("A");
-        Vertex b = new Vertex("B");
-        Vertex c = new Vertex("C");
-        Vertex d = new Vertex("D");
-        Vertex e = new Vertex("E");
-        Edge ab = new Edge(2);
+        var a = new Vertex("A");
+        var b = new Vertex("B");
+        var c = new Vertex("C");
+        var d = new Vertex("D");
+        var e = new Vertex("E");
+        var ab = new Edge(2);
         a.addEdge(b, ab);
         b.addEdge(a, ab);
-        Edge ac = new Edge(3);
+        var ac = new Edge(3);
         a.addEdge(c, ac);
         c.addEdge(a, ac);
-        Edge bc = new Edge(2);
+        var bc = new Edge(2);
         b.addEdge(c, bc);
         c.addEdge(b, bc);
-        Edge be = new Edge(5);
+        var be = new Edge(5);
         b.addEdge(e, be);
         e.addEdge(b, be);
-        Edge cd = new Edge(1);
+        var cd = new Edge(1);
         c.addEdge(d, cd);
         d.addEdge(c, cd);
-        Edge ce = new Edge(1);
+        var ce = new Edge(1);
         c.addEdge(e, ce);
         e.addEdge(c, ce);
         graph.add(a);

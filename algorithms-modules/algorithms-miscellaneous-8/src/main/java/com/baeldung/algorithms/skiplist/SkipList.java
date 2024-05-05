@@ -17,10 +17,10 @@ public class SkipList {
     }
 
     public void insert(int value) {
-        Node[] update = new Node[maxLevel + 1];
-        Node current = this.head;
+        var update = new Node[maxLevel + 1];
+        var current = this.head;
 
-        for (int i = level; i >= 0; i--) {
+        for (var i = level; i >= 0; i--) {
             while (current.forward[i] != null && current.forward[i].value < value) {
                 current = current.forward[i];
             }
@@ -30,17 +30,17 @@ public class SkipList {
         current = current.forward[0];
 
         if (current == null || current.value != value) {
-            int lvl = randomLevel();
+            var lvl = randomLevel();
 
             if (lvl > level) {
-                for (int i = level + 1; i <= lvl; i++) {
+                for (var i = level + 1; i <= lvl; i++) {
                     update[i] = head;
                 }
                 level = lvl;
             }
 
-            Node newNode = new Node(value, lvl);
-            for (int i = 0; i <= lvl; i++) {
+            var newNode = new Node(value, lvl);
+            for (var i = 0; i <= lvl; i++) {
                 newNode.forward[i] = update[i].forward[i];
                 update[i].forward[i] = newNode;
             }
@@ -48,8 +48,8 @@ public class SkipList {
     }
 
     public boolean search(int value) {
-        Node current = this.head;
-        for (int i = level; i >= 0; i--) {
+        var current = this.head;
+        for (var i = level; i >= 0; i--) {
             while (current.forward[i] != null && current.forward[i].value < value) {
                 current = current.forward[i];
             }
@@ -59,10 +59,10 @@ public class SkipList {
     }
 
     public void delete(int value) {
-        Node[] update = new Node[maxLevel + 1];
-        Node current = this.head;
+        var update = new Node[maxLevel + 1];
+        var current = this.head;
 
-        for (int i = level; i >= 0; i--) {
+        for (var i = level; i >= 0; i--) {
             while (current.forward[i] != null && current.forward[i].value < value) {
                 current = current.forward[i];
             }
@@ -71,7 +71,7 @@ public class SkipList {
         current = current.forward[0];
 
         if (current != null && current.value == value) {
-            for (int i = 0; i <= level; i++) {
+            for (var i = 0; i <= level; i++) {
                 if (update[i].forward[i] != current) {
                     break;
                 }
@@ -85,7 +85,7 @@ public class SkipList {
     }
 
     private int randomLevel() {
-        int lvl = 0;
+        var lvl = 0;
         while (lvl < maxLevel && random.nextDouble() < 0.5) {
             lvl++;
         }

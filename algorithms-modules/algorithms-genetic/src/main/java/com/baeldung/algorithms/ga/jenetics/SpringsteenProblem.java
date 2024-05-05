@@ -26,16 +26,16 @@ public class SpringsteenProblem implements Problem<ISeq<SpringsteenRecord>, BitG
     @Override
     public Function<ISeq<SpringsteenRecord>, Double> fitness() {
         return SpringsteenRecords -> {
-            double cost = SpringsteenRecords.stream()
+            var cost = SpringsteenRecords.stream()
                 .mapToDouble(r -> r.price)
                 .sum();
 
-            int uniqueSongCount = SpringsteenRecords.stream()
+            var uniqueSongCount = SpringsteenRecords.stream()
                 .flatMap(r -> r.songs.stream())
                 .collect(Collectors.toSet())
                 .size();
 
-            double pricePerUniqueSong = cost / uniqueSongCount;
+            var pricePerUniqueSong = cost / uniqueSongCount;
 
             return pricePerUniqueSong <= maxPricePerUniqueSong ? uniqueSongCount : 0.0;
         };
@@ -47,33 +47,33 @@ public class SpringsteenProblem implements Problem<ISeq<SpringsteenRecord>, BitG
     }
 
     public static void main(String[] args) {
-        double maxPricePerUniqueSong = 2.5;
+        var maxPricePerUniqueSong = 2.5;
 
-        SpringsteenProblem springsteen = new SpringsteenProblem(
+        var springsteen = new SpringsteenProblem(
             ISeq.of(new SpringsteenRecord("SpringsteenRecord1", 25, ISeq.of("Song1", "Song2", "Song3", "Song4", "Song5", "Song6")), new SpringsteenRecord("SpringsteenRecord2", 15, ISeq.of("Song2", "Song3", "Song4", "Song5", "Song6", "Song7")),
                 new SpringsteenRecord("SpringsteenRecord3", 35, ISeq.of("Song5", "Song6", "Song7", "Song8", "Song9", "Song10")), new SpringsteenRecord("SpringsteenRecord4", 17, ISeq.of("Song9", "Song10", "Song12", "Song4", "Song13", "Song14")),
                 new SpringsteenRecord("SpringsteenRecord5", 29, ISeq.of("Song1", "Song2", "Song13", "Song14", "Song15", "Song16")), new SpringsteenRecord("SpringsteenRecord6", 5, ISeq.of("Song18", "Song20", "Song30", "Song40"))),
             maxPricePerUniqueSong);
 
-        Engine<BitGene, Double> engine = Engine.builder(springsteen)
+        var engine = Engine.builder(springsteen)
             .build();
 
-        ISeq<SpringsteenRecord> result = springsteen.codec()
+        var result = springsteen.codec()
             .decoder()
             .apply(engine.stream()
                 .limit(10)
                 .collect(EvolutionResult.toBestGenotype()));
 
-        double cost = result.stream()
+        var cost = result.stream()
             .mapToDouble(r -> r.price)
             .sum();
 
-        int uniqueSongCount = result.stream()
+        var uniqueSongCount = result.stream()
             .flatMap(r -> r.songs.stream())
             .collect(Collectors.toSet())
             .size();
 
-        double pricePerUniqueSong = cost / uniqueSongCount;
+        var pricePerUniqueSong = cost / uniqueSongCount;
 
         System.out.println("Overall cost:  " + cost);
         System.out.println("Unique songs:  " + uniqueSongCount);

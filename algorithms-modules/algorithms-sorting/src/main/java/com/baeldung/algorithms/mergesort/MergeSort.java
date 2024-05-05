@@ -3,9 +3,9 @@ package com.baeldung.algorithms.mergesort;
 public class MergeSort {
 
     public static void main(String[] args) {
-        int[] a = { 5, 1, 6, 2, 3, 4 };
+        var a = new int[]{5, 1, 6, 2, 3, 4};
         mergeSort(a, a.length);
-        for (int i = 0; i < a.length; i++) {
+        for (var i = 0; i < a.length; i++) {
             System.out.println(a[i]);
         }
     }
@@ -14,14 +14,14 @@ public class MergeSort {
         if (n < 2) {
             return;
         }
-        int mid = n / 2;
-        int[] l = new int[mid];
-        int[] r = new int[n - mid];
+        var mid = n / 2;
+        var l = new int[mid];
+        var r = new int[n - mid];
 
-        for (int i = 0; i < mid; i++) {
+        for (var i = 0; i < mid; i++) {
             l[i] = a[i];
         }
-        for (int i = mid; i < n; i++) {
+        for (var i = mid; i < n; i++) {
             r[i - mid] = a[i];
         }
         mergeSort(l, mid);

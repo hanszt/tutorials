@@ -3,9 +3,9 @@ package com.baeldung.algorithms.insertionsort;
 public class InsertionSort {
 
     public static void insertionSortImperative(int[] input) {
-        for (int i = 1; i < input.length; i++) {
-            int key = input[i];
-            int j = i - 1;
+        for (var i = 1; i < input.length; i++) {
+            var key = input[i];
+            var j = i - 1;
             while (j >= 0 && input[j] > key) {
                 input[j + 1] = input[j];
                 j = j - 1;
@@ -28,8 +28,8 @@ public class InsertionSort {
         insertionSortRecursive(input, i - 1);
 
         // then find the correct position of the element at position i
-        int key = input[i - 1];
-        int j = i - 2;
+        var key = input[i - 1];
+        var j = i - 2;
         // shifting the elements from their position by 1
         while (j >= 0 && input[j] > key) {
             input[j + 1] = input[j];

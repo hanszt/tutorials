@@ -62,7 +62,7 @@ class BinaryTreeParentNodeFinderUnitTest {
 
     @Test
     void givenParentKeeperBinaryTree_whenGetParent_thenReturnCorrectParent() {
-        ParentKeeperTreeNode subject = new ParentKeeperTreeNode(8);
+        var subject = new ParentKeeperTreeNode(8);
         subject.insert(5);
         subject.insert(12);
         subject.insert(3);

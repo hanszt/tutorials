@@ -9,7 +9,7 @@ public class SkipListUnitTest {
 
     @Test
     public void givenSkipList_WhenInsert_ThenSearchFound() {
-        SkipList skipList = new SkipList();
+        var skipList = new SkipList();
 
         skipList.insert(3);
         assertTrue(skipList.search(3), "Should find 3");
@@ -19,7 +19,7 @@ public class SkipListUnitTest {
 
     @Test
     public void givenSkipList_WhenDeleteElement_ThenRemoveFromList() {
-        SkipList skipList = new SkipList();
+        var skipList = new SkipList();
 
         skipList.insert(3);
         skipList.insert(7);

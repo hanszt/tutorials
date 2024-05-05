@@ -45,7 +45,7 @@ public final class MiniMax {
     private void checkWin(final Node node) {
         final var children = node.getChildren();
         final var isMaxPlayer = node.isMaxPlayer();
-        for (Node child : children) {
+        for (var child : children) {
             if (child.getNoOfBones() == 0) {
                 child.setScore(isMaxPlayer ? 1 : -1);
             } else {

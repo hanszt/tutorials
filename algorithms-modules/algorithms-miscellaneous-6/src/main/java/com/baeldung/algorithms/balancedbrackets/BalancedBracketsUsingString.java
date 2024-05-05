@@ -6,8 +6,8 @@ public class BalancedBracketsUsingString {
         if (null == str || ((str.length() % 2) != 0)) {
             return false;
         } else {
-            char[] ch = str.toCharArray();
-            for (char c : ch) {
+            var ch = str.toCharArray();
+            for (var c : ch) {
                 if (!(c == '{' || c == '[' || c == '(' || c == '}' || c == ']' || c == ')')) {
                     return false;
                 }

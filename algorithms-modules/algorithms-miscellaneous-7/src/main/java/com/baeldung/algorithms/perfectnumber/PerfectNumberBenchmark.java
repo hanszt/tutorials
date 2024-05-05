@@ -31,7 +31,7 @@ public class PerfectNumberBenchmark {
     }
 
     public static void main(String[] args) throws Exception {
-        Options options = new OptionsBuilder()
+        var options = new OptionsBuilder()
                 .include(PerfectNumberBenchmark.class.getSimpleName())
                 .forks(1)
                 .build();

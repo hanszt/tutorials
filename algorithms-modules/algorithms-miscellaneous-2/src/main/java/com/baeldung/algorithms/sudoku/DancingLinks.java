@@ -13,13 +13,13 @@ public class DancingLinks {
         if (header.R == header) {
             handleSolution(answer);
         } else {
-            ColumnNode c = selectColumnNodeHeuristic();
+            var c = selectColumnNodeHeuristic();
             c.cover();
 
-            for (DancingNode r = c.D; r != c; r = r.D) {
+            for (var r = c.D; r != c; r = r.D) {
                 answer.add(r);
 
-                for (DancingNode j = r.R; j != r; j = j.R) {
+                for (var j = r.R; j != r; j = j.R) {
                     j.C.cover();
                 }
 
@@ -28,7 +28,7 @@ public class DancingLinks {
                 r = answer.remove(answer.size() - 1);
                 c = r.C;
 
-                for (DancingNode j = r.L; j != r; j = j.L) {
+                for (var j = r.L; j != r; j = j.L) {
                     j.C.uncover();
                 }
             }
@@ -37,9 +37,9 @@ public class DancingLinks {
     }
 
     private ColumnNode selectColumnNodeHeuristic() {
-        int min = Integer.MAX_VALUE;
+        var min = Integer.MAX_VALUE;
         ColumnNode ret = null;
-        for (ColumnNode c = (ColumnNode) header.R; c != header; c = (ColumnNode) c.R) {
+        for (var c = (ColumnNode) header.R; c != header; c = (ColumnNode) c.R) {
             if (c.size < min) {
                 min = c.size;
                 ret = c;
@@ -49,24 +49,24 @@ public class DancingLinks {
     }
 
     private ColumnNode makeDLXBoard(boolean[][] grid) {
-        final int COLS = grid[0].length;
+        final var COLS = grid[0].length;
 
-        ColumnNode headerNode = new ColumnNode("header");
+        var headerNode = new ColumnNode("header");
         List<ColumnNode> columnNodes = new ArrayList<>();
 
-        for (int i = 0; i < COLS; i++) {
-            ColumnNode n = new ColumnNode(Integer.toString(i));
+        for (var i = 0; i < COLS; i++) {
+            var n = new ColumnNode(Integer.toString(i));
             columnNodes.add(n);
             headerNode = (ColumnNode) headerNode.hookRight(n);
         }
         headerNode = headerNode.R.C;
 
-        for (boolean[] aGrid : grid) {
+        for (var aGrid : grid) {
             DancingNode prev = null;
-            for (int j = 0; j < COLS; j++) {
+            for (var j = 0; j < COLS; j++) {
                 if (aGrid[j]) {
-                    ColumnNode col = columnNodes.get(j);
-                    DancingNode newNode = new DancingNode(col);
+                    var col = columnNodes.get(j);
+                    var newNode = new DancingNode(col);
                     if (prev == null) {
                         prev = newNode;
                     }
@@ -92,39 +92,39 @@ public class DancingLinks {
     }
 
     private void handleSolution(List<DancingNode> answer) {
-        int[][] result = parseBoard(answer);
+        var result = parseBoard(answer);
         printSolution(result);
     }
 
     private int size = 9;
 
     private int[][] parseBoard(List<DancingNode> answer) {
-        int[][] result = new int[size][size];
-        for (DancingNode n : answer) {
-            DancingNode rcNode = n;
-            int min = Integer.parseInt(rcNode.C.name);
-            for (DancingNode tmp = n.R; tmp != n; tmp = tmp.R) {
-                int val = Integer.parseInt(tmp.C.name);
+        var result = new int[size][size];
+        for (var n : answer) {
+            var rcNode = n;
+            var min = Integer.parseInt(rcNode.C.name);
+            for (var tmp = n.R; tmp != n; tmp = tmp.R) {
+                var val = Integer.parseInt(tmp.C.name);
                 if (val < min) {
                     min = val;
                     rcNode = tmp;
                 }
             }
-            int ans1 = Integer.parseInt(rcNode.C.name);
-            int ans2 = Integer.parseInt(rcNode.R.C.name);
-            int r = ans1 / size;
-            int c = ans1 % size;
-            int num = (ans2 % size) + 1;
+            var ans1 = Integer.parseInt(rcNode.C.name);
+            var ans2 = Integer.parseInt(rcNode.R.C.name);
+            var r = ans1 / size;
+            var c = ans1 % size;
+            var num = (ans2 % size) + 1;
             result[r][c] = num;
         }
         return result;
     }
 
     private static void printSolution(int[][] result) {
-        int size = result.length;
-        for (int[] aResult : result) {
-            StringBuilder ret = new StringBuilder();
-            for (int j = 0; j < size; j++) {
+        var size = result.length;
+        for (var aResult : result) {
+            var ret = new StringBuilder();
+            for (var j = 0; j < size; j++) {
                 ret.append(aResult[j]).append(" ");
             }
             System.out.println(ret);

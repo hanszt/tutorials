@@ -23,7 +23,7 @@ public final class FoldingHash {
      * @return integer value from 0 (inclusive) to maxValue (exclusive)
      */
     public int hash(String str, int groupSize, int maxValue) {
-        final int[] codes = this.toAsciiCodes(str);
+        final var codes = this.toAsciiCodes(str);
         return IntStream.range(0, str.length())
             .filter(i -> i % groupSize == 0)
             .mapToObj(i -> extract(codes, i, groupSize))
@@ -44,10 +44,10 @@ public final class FoldingHash {
      * @return
      */
     public int[] extract(int[] numbers, int offset, int length) {
-        final int defect = numbers.length - (offset + length);
-        final int s = defect < 0 ? length + defect : length;
-        int[] result = new int[s];
-        for (int index = 0; index < s; index++) {
+        final var defect = numbers.length - (offset + length);
+        final var s = defect < 0 ? length + defect : length;
+        var result = new int[s];
+        for (var index = 0; index < s; index++) {
             result[index] = numbers[index + offset];
         }
         return result;
@@ -60,7 +60,7 @@ public final class FoldingHash {
      * @return
      */
     public int concatenate(int[] numbers) {
-        final String merged = IntStream.of(numbers)
+        final var merged = IntStream.of(numbers)
             .mapToObj(number -> "" + number)
             .collect(Collectors.joining());
         return Integer.parseInt(merged, 10);

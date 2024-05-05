@@ -24,8 +24,8 @@ public record Population(List<Individual> individuals) {
     }
 
     public Individual getFittest(ToIntFunction<Individual> fitnessFunction) {
-        Individual fittest = individuals.getFirst();
-        for (int i = 0; i < individuals.size(); i++) {
+        var fittest = individuals.getFirst();
+        for (var i = 0; i < individuals.size(); i++) {
             final var individual = getIndividual(i);
             if (getNewFitness(fittest, fitnessFunction) <= getNewFitness(individual, fitnessFunction)) {
                 fittest = individual;
@@ -40,8 +40,8 @@ public record Population(List<Individual> individuals) {
 
     private static List<Individual> createNewPopulation(RandomGenerator randomGenerator, int size) {
         final var individuals = new ArrayList<Individual>(size);
-        for (int i = 0; i < size; i++) {
-            Individual newIndividual = new Individual(randomGenerator);
+        for (var i = 0; i < size; i++) {
+            var newIndividual = new Individual(randomGenerator);
             individuals.add(i, newIndividual);
         }
         return individuals;

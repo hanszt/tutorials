@@ -13,12 +13,12 @@ class GraphCycleDetectionUnitTest {
     @Test
     public void givenGraph_whenCycleExists_thenReturnTrue() {
 
-        Vertex vertexA = new Vertex("A");
-        Vertex vertexB = new Vertex("B");
-        Vertex vertexC = new Vertex("C");
-        Vertex vertexD = new Vertex("D");
+        var vertexA = new Vertex("A");
+        var vertexB = new Vertex("B");
+        var vertexC = new Vertex("C");
+        var vertexD = new Vertex("D");
 
-        Graph graph = new Graph();
+        var graph = new Graph();
         graph.addVertex(vertexA);
         graph.addVertex(vertexB);
         graph.addVertex(vertexC);
@@ -35,12 +35,12 @@ class GraphCycleDetectionUnitTest {
     @Test
     void givenGraph_whenNoCycleExists_thenReturnFalse() {
 
-        Vertex vertexA = new Vertex("A");
-        Vertex vertexB = new Vertex("B");
-        Vertex vertexC = new Vertex("C");
-        Vertex vertexD = new Vertex("D");
+        var vertexA = new Vertex("A");
+        var vertexB = new Vertex("B");
+        var vertexC = new Vertex("C");
+        var vertexD = new Vertex("D");
 
-        Graph graph = new Graph();
+        var graph = new Graph();
         graph.addVertex(vertexA);
         graph.addVertex(vertexB);
         graph.addVertex(vertexC);
