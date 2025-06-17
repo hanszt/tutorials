@@ -8,6 +8,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
@@ -26,10 +27,10 @@ import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.Directory;
 
-public class LuceneFileSearch {
+public final class LuceneFileSearch {
 
-    private Directory indexDirectory;
-    private StandardAnalyzer analyzer;
+    private final Directory indexDirectory;
+    private final StandardAnalyzer analyzer;
 
     public LuceneFileSearch(Directory fsDirectory, StandardAnalyzer analyzer) {
         super();
@@ -39,7 +40,7 @@ public class LuceneFileSearch {
 
     public void addFileToIndex(String filepath) throws IOException, URISyntaxException {
 
-        Path path = Paths.get(getClass().getClassLoader().getResource(filepath).toURI());
+        Path path = Paths.get(Objects.requireNonNull(getClass().getClassLoader().getResource(filepath)).toURI());
         File file = path.toFile();
         IndexWriterConfig indexWriterConfig = new IndexWriterConfig(analyzer);
         IndexWriter indexWriter = new IndexWriter(indexDirectory, indexWriterConfig);

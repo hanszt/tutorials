@@ -26,8 +26,8 @@ import org.apache.lucene.util.BytesRef;
 
 public class InMemoryLuceneIndex {
 
-    private Directory memoryIndex;
-    private Analyzer analyzer;
+    private final Directory memoryIndex;
+    private final Analyzer analyzer;
 
     public InMemoryLuceneIndex(Directory memoryIndex, Analyzer analyzer) {
         super();
@@ -54,7 +54,7 @@ public class InMemoryLuceneIndex {
             writter.addDocument(document);
             writter.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new IllegalStateException(e);
         }
     }
 
@@ -72,10 +72,8 @@ public class InMemoryLuceneIndex {
 
             return documents;
         } catch (IOException | ParseException e) {
-            e.printStackTrace();
+            throw new IllegalStateException(e);
         }
-        return null;
-
     }
 
     public void deleteDocument(Term term) {
@@ -85,7 +83,7 @@ public class InMemoryLuceneIndex {
             writter.deleteDocuments(term);
             writter.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new IllegalStateException(e);
         }
     }
 
@@ -101,10 +99,8 @@ public class InMemoryLuceneIndex {
 
             return documents;
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new IllegalStateException(e);
         }
-        return null;
-
     }
 
     public List<Document> searchIndex(Query query, Sort sort) {
@@ -119,10 +115,8 @@ public class InMemoryLuceneIndex {
 
             return documents;
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new IllegalStateException(e);
         }
-        return null;
-
     }
 
 }
