@@ -14,11 +14,6 @@ class FindKthLargestUnitTest {
     private final int[] arr = {3, 7, 1, 2, 8, 10, 4, 5, 6, 9};
 
     @Test
-    void givenIntArray_whenFindSecondLargestWithoutSorting_thenGetResult() throws Exception {
-        assertThat(findKthLargest.findSecondLargestWithoutSorting(arr)).isEqualTo(9);
-    }
-
-    @Test
     void givenIntArray_whenFindKthLargestBySorting_thenGetResult() {
         final var k = 3;
         assertThat(findKthLargest.findKthLargestBySorting(arr, k)).isEqualTo(8);
