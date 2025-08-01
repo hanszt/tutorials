@@ -20,7 +20,9 @@ bin/
 .metadata/
 
 # Intellij
-.idea/
+**/.idea/*
+# Do add the icon to git
+!/.idea/icon.*
 *.iml
 *.iws
 out/
